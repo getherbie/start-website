@@ -1,5 +1,5 @@
 ---
-title: Produkte
+title: Products
 ---
 
 # In mollis luctus libero nec euismod

@@ -1,9 +1,9 @@
 ---
-title: Übersicht
+title: Survey
 layout: home.html
 ---
 
-# Deine neue Herbie-Website läuft!
+# Your new Herbie site runs!
 
 
 --- left ---

@@ -1,5 +1,5 @@
 ---
-title: Über uns
+title: About Us
 ---
 
 # Duis sed nisl ac mauris semper cursus

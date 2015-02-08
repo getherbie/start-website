@@ -1,3 +1,7 @@
+site:
+    title: "Herbie"
+    root_title: "Herbie - Flat-File CMS & Blog"
+
 nice_urls: true
 
 plugins:
