@@ -17,6 +17,7 @@ document.getElementById('menuLink').addEventListener('click', function() {
     toggleClass(document.getElementById('mobile-menu'), 'pure-hidden-phone');
 });
 
+/*
 (function(i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r;
     i[r] = i[r] || function() {
@@ -28,5 +29,6 @@ document.getElementById('menuLink').addEventListener('click', function() {
     a.src = g;
     m.parentNode.insertBefore(a, m)
 })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-ga('create', 'UA-47872092-1', 'getherbie.org');
+ga('create', 'UA-XXXX', 'example.com');
 ga('send', 'pageview');
+*/
