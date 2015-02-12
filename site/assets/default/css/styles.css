@@ -86,8 +86,8 @@ table {
 .header .pure-menu a {
     color:#000000;
 }
-.header .pure-menu-selected a {
-    background-color:#eee;
+.header .pure-menu .active a {
+    background-color: #eee;
 }
 
 /* Brand */
@@ -332,6 +332,7 @@ span.e {
     text-align:center;
     text-transform:uppercase;
 }
+#mobile-menu .pure-menu-selected a,
 #mobile-menu a:hover {
     background-color:#4d5158;
 }
