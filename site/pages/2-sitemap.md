@@ -4,4 +4,4 @@ title: Sitemap
 
 # Sitemap
 
-{{ sitemap() }}
+[sitemap]
