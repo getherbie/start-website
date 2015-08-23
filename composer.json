@@ -9,7 +9,6 @@
         "php": ">=5.4.0",
         "getherbie/herbie": "dev-master",
         "getherbie/composer": "dev-master",
-        "getherbie/plugin-markdown": "dev-master",
         "getherbie/plugin-simplecontact": "dev-master",
         "getherbie/plugin-simplesearch": "dev-master"
     },
