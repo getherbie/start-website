@@ -24,8 +24,8 @@ simplecontact:
       error: "Uups! Da gibt's ein Problem. Bitte vervollständige das Formular und probier's nochmal."
       fail: "Uups! Etwas ist schief gegangen. Das Nachricht konnte nicht übermittelt werden."
     errors:
-      emptyField: "Dies ist ein Pflichtfeld"
-      invalidEmail: "Die eingegebene E-Mail ist ungültig"
+      empty_field: "Dies ist ein Pflichtfeld"
+      invalid_email: "Die eingegebene E-Mail ist ungültig"
 ---
 
 <h1>Kontakt</h1>
