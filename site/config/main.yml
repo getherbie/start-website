@@ -2,6 +2,5 @@ nice_urls: true
 
 plugins:
     enable:
-        - markdown
         - simplecontact
         - simplesearch
