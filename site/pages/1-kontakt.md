@@ -1,6 +1,6 @@
 ---
 title: Kontakt
-noCache: 1
+nocache: 1
 simplecontact:
     subject: "Kontaktanfrage deiner Herbie-Website!"
     recipient: "blackhole@example.com"
