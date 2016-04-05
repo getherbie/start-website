@@ -6,11 +6,10 @@
     "minimum-stability": "dev",
     "license":"BSD-3-Clause",
     "require": {
-        "php": ">=5.4.0",
         "getherbie/herbie": "^1.0.0",
-        "getherbie/composer": "dev-master",
-        "getherbie/plugin-simplecontact": "dev-master",
-        "getherbie/plugin-simplesearch": "dev-master"
+        "getherbie/composer": "^1.0.0",
+        "getherbie/plugin-simplecontact": "^1.0.0",
+        "getherbie/plugin-simplesearch": "^1.0.0"
     },
     "config": {
         "process-timeout": 1800
