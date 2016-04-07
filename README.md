@@ -3,7 +3,7 @@ Herbie Website (Kick)-Starter
 
 Ein neues Website-Projekt startest du mit Hilfe von Composer. 
 
-    $ composer create-project getherbie/start-website:dev-master
+    $ composer create-project getherbie/start-website
     
 Composer installiert den Website-Starter in das Verzeichnis `start-website`. 
     
