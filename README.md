@@ -1,20 +1,25 @@
 Herbie Website (Kick)-Starter
 =============================
 
-Ein neues Website-Projekt startest du mit Hilfe von Composer. 
+Dein neues Website-Projekt startest du mit Hilfe von Composer. 
 
-    $ composer create-project getherbie/start-website
+    $ composer create-project getherbie/start-website myproject
     
-Composer installiert den Website-Starter in das Verzeichnis `start-website`. 
-    
-Die einzelnen Schritte kannst du auch einzeln durchführen:
+Composer installiert eine einfache Herbie-Website mit allen Abhängigkeiten in das Verzeichnis `myproject`. 
 
-	$ git clone https://github.com/getherbie/start-website.git
-    $ cd start-website
+Die obigen Schritte kannst du natürlich auch einzeln ausführen:
+
+	$ git clone https://github.com/getherbie/start-website.git myproject
+    $ cd myproject
     $ composer update
+    
+Nun wechselst du in's Webverzeichnis und startest den internen Webserver von PHP.
+
+    $ cd myproject/web
+    $ php -S localhost:8888
+
+Jetzt musst du nur noch die Website im Browser unter <http://localhost:8888> aufrufen.
 
 Fertig!
-
-Die Website rufst du im Browser unter `http://localhost/start-website/web/` auf.
 
 Weitere Informationen zu Herbie findest du unter [Herbie](http://www.getherbie.org)
