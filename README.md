@@ -22,4 +22,4 @@ Jetzt musst du nur noch die Website im Browser unter <http://localhost:8888> auf
 
 Fertig!
 
-Weitere Informationen zu Herbie findest du unter [Herbie](http://www.getherbie.org)
+Weitere Informationen zu Herbie findest du unter [Herbie](https://www.getherbie.org)
