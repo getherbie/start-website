@@ -3,7 +3,6 @@
     "homepage": "http://www.getherbie.org",
     "description": "The website starter",
     "type": "project",
-    "minimum-stability": "dev",
     "license":"BSD-3-Clause",
     "require": {
         "getherbie/herbie": "^1.0.0",
