@@ -1,6 +1,9 @@
 # netbeans project files
 nbproject
 
+# phpstorm project files
+.idea
+
 # composer itself
 composer.phar
 
