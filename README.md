@@ -23,3 +23,20 @@ Jetzt musst du nur noch die Website im Browser unter <http://localhost:8888> auf
 Fertig!
 
 Weitere Informationen zu Herbie findest du unter [Herbie](https://www.getherbie.org)
+
+## Docker verwenden
+Die Docker-Konfiguration findest du in folgenden Dateien:
+```
+docker-compose.yml
+docker
+    - nginx
+        - app.conf
+docker
+    - php
+        - Dockerfile
+        - php.ini
+```
+
+Du solltest zunächst in der Datei `docker/nginx/app.conf` den Servernamen anpassen (`server_name your-domain.tld;` -> zB. `server_name mydomain.org`).
+
+Anschließend einfach mit `docker-compose up -d` den Docker-Container starten und zB. http://mydomain.org (oder die von dir konfigurierte Domain) aufrufen.
