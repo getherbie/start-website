@@ -1,6 +1,6 @@
 ---
 title: Übersicht
-layout: home.html
+layout: home
 ---
 
 # Deine neue Herbie-Website läuft!
