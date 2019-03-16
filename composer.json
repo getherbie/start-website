@@ -5,10 +5,12 @@
     "type": "project",
     "license":"BSD-3-Clause",
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "getherbie/herbie": "v2.0.0-RC1",
         "getherbie/plugin-simplecontact": "dev-master",
-        "getherbie/plugin-simplesearch": "dev-master"
+        "getherbie/plugin-simplesearch": "dev-master",
+        "zendframework/zend-diactoros": "^2.1@dev"
     },    
     "config": {
         "process-timeout": 1800
@@ -26,7 +28,7 @@
         ],
         "executable": []
     },
-    "autoload-dev": {
+    "xxx-autoload-dev": {
         "psr-4": {
             "Herbie\\": "../herbie/src/"
         }

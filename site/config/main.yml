@@ -1,6 +1,6 @@
-nice_urls: true
-
-plugins:
-    enable:
-        - simplecontact
-        - simplesearch
+niceUrls: true
+fileExtensions:
+    layouts: 'twig'
+enabledPlugins:
+    - simplecontact
+    - simplesearch

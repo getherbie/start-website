@@ -9,7 +9,11 @@
  * file that was distributed with this source code.
  */
 
+use herbie\Application;
+
 require_once(__DIR__ . '/../vendor/autoload.php');
 
-$app = new Herbie\Application('../site');
+define('HERBIE_DEBUG', true);
+
+$app = new Application('../site');
 $app->run();
