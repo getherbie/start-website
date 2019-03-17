@@ -1,3 +1,5 @@
+language: en
+locale: en_EN
 niceUrls: true
 fileExtensions:
     layouts: 'twig'

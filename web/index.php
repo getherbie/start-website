@@ -9,6 +9,12 @@
  * file that was distributed with this source code.
  */
 
+if (php_sapi_name() == 'cli-server') {
+    if (preg_match('/\.(?:js|css|gif|jpg|jpeg|png)$/', $_SERVER["REQUEST_URI"])) {
+        return false;
+    }
+}
+
 use herbie\Application;
 
 require_once(__DIR__ . '/../vendor/autoload.php');
