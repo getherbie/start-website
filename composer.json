@@ -22,15 +22,11 @@
     },
     "extra": {
         "writable": [
-            "site/cache/data",
-            "site/cache/page",
-            "site/cache/twig"
+            "site/runtime/cache/data",
+            "site/runtime/cache/page",
+            "site/runtime/cache/twig",
+            "site/runtime/log"
         ],
         "executable": []
-    },
-    "xxx-autoload-dev": {
-        "psr-4": {
-            "Herbie\\": "../herbie/src/"
-        }
     }
 }
