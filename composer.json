@@ -5,10 +5,12 @@
     "type": "project",
     "license":"BSD-3-Clause",
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
-        "getherbie/herbie": "dev-php-7",
+        "getherbie/herbie": "v2.0.0-RC1",
         "getherbie/plugin-simplecontact": "dev-master",
-        "getherbie/plugin-simplesearch": "dev-master"
+        "getherbie/plugin-simplesearch": "dev-master",
+        "zendframework/zend-diactoros": "^2.1@dev"
     },    
     "config": {
         "process-timeout": 1800
@@ -20,41 +22,11 @@
     },
     "extra": {
         "writable": [
-            "site/cache/data",
-            "site/cache/page",
-            "site/cache/twig"
+            "site/runtime/cache/data",
+            "site/runtime/cache/page",
+            "site/runtime/cache/twig",
+            "site/runtime/log"
         ],
         "executable": []
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Herbie\\": "../herbie/src/"
-        }
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/getherbie-plugin/simplecontact"
-        },        
-        {
-            "type": "vcs",
-            "url": "https://github.com/getherbie-plugin/simplesearch"
-        },        
-        {
-            "type": "vcs",
-            "url": "https://github.com/getherbie-plugin/markdown"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/getherbie-plugin/shortcode"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/getherbie-plugin/textile"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/getherbie-plugin/twig"
-        }
-    ]         
+    }
 }

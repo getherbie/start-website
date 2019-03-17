@@ -16,5 +16,9 @@ vendor/
 # mac DS_Store files
 .DS_Store
 
-# plugins folder
+# site folder
+site/cache/data
+site/cache/page
+site/cache/twig
 site/plugins
+site/runtime/log
