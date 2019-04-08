@@ -1,18 +1,18 @@
 [
   {
-    "route": "kontakt",
-    "label": "Kontakt"
+    "route": "services",
+    "label": "Services"
   },
   {
-    "route": "dienstleistung",
-    "label": "Dienstleistung"
+    "route": "products",
+    "label": "Products"
   },
   {
-    "route": "produkte",
-    "label": "Produkte"
+    "route": "about",
+    "label": "About"
   },
   {
-    "route": "ueber",
-    "label": "Über"
+    "route": "contact",
+    "label": "Contact"
   }
 ]
