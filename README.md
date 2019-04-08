@@ -1,31 +1,35 @@
-Herbie Website (Kick)-Starter
-=============================
+# Website Kickstarter
 
-Dein neues Website-Projekt startest du mit Hilfe von Composer. 
+## Using Composer
 
+You can start your new website by using Composer.
+
+    # for the stable version 1
     $ composer create-project getherbie/start-website myproject
-    
-Composer installiert eine einfache Herbie-Website mit allen Abhängigkeiten in das Verzeichnis `myproject`. 
 
-Die obigen Schritte kannst du natürlich auch einzeln ausführen:
+    # for the dev-master version
+    $ composer create-project getherbie/start-website:dev-master myproject
+    
+Composer installs a simple Herbie demo website with all needed dependencies into the `myproject` folder. 
+
+Alternatively, the above command can be done step-by-step:
 
 	$ git clone https://github.com/getherbie/start-website.git myproject
     $ cd myproject
     $ composer update
     
-Nun wechselst du in's Webverzeichnis und startest den internen Webserver von PHP.
+In your terminal go to the web directory and start the internal PHP webserver.
 
     $ cd myproject/web
-    $ php -S localhost:8888
+    $ php -S localhost:8888 index.php
 
-Jetzt musst du nur noch die Website im Browser unter <http://localhost:8888> aufrufen.
+Now, open the URL <http://localhost:8888> in your browser. Finished!
 
-Fertig!
 
-Weitere Informationen zu Herbie findest du unter [Herbie](https://www.getherbie.org)
+## Using Docker
 
-## Docker verwenden
-Die Docker-Konfiguration findest du in folgenden Dateien:
+You can find the Docker configuration files here:
+
 ```
 docker-compose.yml
 docker
@@ -37,6 +41,8 @@ docker
         - php.ini
 ```
 
-Du solltest zunächst in der Datei `docker/nginx/app.conf` den Servernamen anpassen (`server_name your-domain.tld;` -> zB. `server_name mydomain.org`).
+First, you should update the server name in the config file `docker/nginx/app.conf` (`server_name your-domain.tld;` -> for example `server_name mydomain.org`).
 
-Anschließend einfach mit `docker-compose up -d` den Docker-Container starten und zB. http://mydomain.org (oder die von dir konfigurierte Domain) aufrufen.
+Then start the Docker container by using `docker-compose up -d` in the root dir of the website.
+
+Now, open the URL <http://0.0.0.0> or <http://mydomain.org> in your browser. Finished!
