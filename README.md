@@ -2,7 +2,7 @@
 
 ## Using Composer
 
-You can start your new website by using Composer.
+You can start your new Herbie website by using Composer.
 
     # for the stable version 1
     $ composer create-project getherbie/start-website myproject
@@ -10,9 +10,9 @@ You can start your new website by using Composer.
     # for the dev-master version
     $ composer create-project getherbie/start-website:dev-master myproject
     
-Composer installs a simple Herbie demo website with all needed dependencies into the `myproject` folder. 
+Composer installs a simple demo website including the needed dependencies into the `myproject` folder. 
 
-Alternatively, the above command can be done step-by-step:
+Alternatively, you can run the above commands step-by-step:
 
 	$ git clone https://github.com/getherbie/start-website.git myproject
     $ cd myproject
