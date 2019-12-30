@@ -7,6 +7,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
+        "php": "^7.1.3",        
         "erusev/parsedown-extra": "^0.7.1",
         "getherbie/herbie": "dev-master",
         "getherbie/plugin-simplecontact": "dev-master",
