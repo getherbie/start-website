@@ -2,12 +2,11 @@
 [![GitHub](https://img.shields.io/github/release/getherbie/start-website/all.svg)](https://github.com/getherbie/start-website/releases)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://github.com/getherbie/start-website/blob/master/LICENCE.md)
 
+# Website Kickstarter for Herbie CMS
 
-# Website Kickstarter
+## Install Herbie CMS using Composer
 
-## Using Composer
-
-You can start your new Herbie website by using Composer.
+You can start your new Herbie CMS website by using Composer.
 
     # for the stable version 1
     $ composer create-project getherbie/start-website myproject
@@ -21,8 +20,8 @@ Alternatively, you can run the above commands step-by-step:
 
 	$ git clone https://github.com/getherbie/start-website.git myproject
     $ cd myproject
-    $ composer update
-    
+    $ composer install
+
 In your terminal go to the web directory and start the internal PHP webserver.
 
     $ cd myproject/web
@@ -31,7 +30,7 @@ In your terminal go to the web directory and start the internal PHP webserver.
 Now, open the URL <http://localhost:8888> in your browser. Finished!
 
 
-## Using Docker
+## Install Herbie CMS using Docker
 
 You can find the Docker configuration files here:
 
@@ -51,3 +50,7 @@ First, you should update the server name in the config file `docker/nginx/app.co
 Then start the Docker container by using `docker-compose up -d` in the root dir of the website.
 
 Now, open the URL <http://0.0.0.0> or <http://mydomain.org> in your browser. Finished!
+
+## More Information
+
+<https://herbie.tebe.ch>

@@ -1,34 +1,19 @@
 {
     "name": "getherbie/start-website",
-    "homepage": "http://www.getherbie.org",
-    "description": "The website starter",
+    "homepage": "https://herbie.tebe.ch",
+    "description": "The website kickstarter for Herbie CMS",
     "type": "project",
     "license":"BSD-3-Clause",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.1.3",        
-        "erusev/parsedown-extra": "^0.7.1",
-        "getherbie/herbie": "dev-master",
+        "erusev/parsedown-extra": "^0.8",
+        "getherbie/herbie": "2.x-dev",
         "getherbie/plugin-simplecontact": "dev-master",
         "getherbie/plugin-simplesearch": "dev-master",
-        "zendframework/zend-diactoros": "^2.1"
+        "laminas/laminas-diactoros": "^2.0"
     },    
     "config": {
-        "process-timeout": 1800
-    },
-    "scripts": {
-        "post-create-project-cmd": [
-            "Herbie\\Composer\\Installer::setPermission"
-        ]
-    },
-    "extra": {
-        "writable": [
-            "site/runtime/cache/data",
-            "site/runtime/cache/page",
-            "site/runtime/cache/twig",
-            "site/runtime/log"
-        ],
-        "executable": []
+        "sort-packages": true
     }
 }
