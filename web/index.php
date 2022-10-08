@@ -18,8 +18,8 @@ herbie\handle_internal_webserver_assets(__FILE__);
 define('HERBIE_DEBUG', true);
 
 $app = new Application(
-    dirname(__DIR__) . '/site',
-    dirname(__DIR__) . '/vendor'
+    dirname(__DIR__),
+    dirname(__DIR__) . '/site'
 );
 
 $app->run();
