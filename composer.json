@@ -8,7 +8,7 @@
     "prefer-stable": true,
     "require": {
         "erusev/parsedown-extra": "^0.8",
-        "getherbie/herbie": "dev-2.x-develop",
+        "getherbie/herbie": "2.x-dev",
         "getherbie/plugin-simplecontact": "dev-master",
         "getherbie/plugin-simplesearch": "dev-master",
         "laminas/laminas-diactoros": "^2.0"
