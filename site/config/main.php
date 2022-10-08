@@ -8,5 +8,5 @@ return [
         'layouts' => 'twig',
     ],
     'enabledPlugins' => 'simplecontact,simplesearch',
-    'enabledSysPlugins' => 'markdown,imagine'
+    'enabledSysPlugins' => 'twig_core,twig_plus,markdown,imagine'
 ];
