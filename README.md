@@ -16,8 +16,8 @@ Alternatively, you can run the above commands step-by-step:
 
 	$ git clone https://github.com/getherbie/start-website.git myproject
     $ cd myproject
-    $ composer update
-    
+    $ composer install
+
 In your terminal go to the web directory and start the internal PHP webserver.
 
     $ cd myproject/web
