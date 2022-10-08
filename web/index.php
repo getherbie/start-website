@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-if (php_sapi_name() == 'cli-server') {
-    if (preg_match('/\.(?:js|css|gif|jpg|jpeg|png)$/', $_SERVER["REQUEST_URI"])) {
-        return false;
-    }
-}
+require_once(__DIR__ . '/../vendor/autoload.php');
 
 use herbie\Application;
 
-require_once(__DIR__ . '/../vendor/autoload.php');
+herbie\handle_internal_webserver_assets(__FILE__);
 
 define('HERBIE_DEBUG', true);
 
-$app = new Application('../site');
+$app = new Application(
+    dirname(__DIR__) . '/site',
+    dirname(__DIR__) . '/vendor'
+);
+
 $app->run();
