@@ -1,4 +1,4 @@
-RewriteEngine off
+RewriteEngine on
 
 # if a directory or a file exists, use it directly
 RewriteCond %{REQUEST_FILENAME} !-f
