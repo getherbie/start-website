@@ -7,8 +7,6 @@ use herbie\ApplicationPaths;
 
 herbie\handle_internal_webserver_assets(__FILE__);
 
-define('HERBIE_DEBUG', true);
-
 $app = new Application(
     new ApplicationPaths(
         dirname(__DIR__)
