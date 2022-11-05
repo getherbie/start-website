@@ -8,27 +8,32 @@
 
 You can start your new Herbie CMS website by using Composer.
 
-    # for the stable version 1
-    $ composer create-project getherbie/start-website myproject
+For the upcoming 2.x version:
 
-    # for the dev-master version
-    $ composer create-project getherbie/start-website:dev-master myproject
-    
-Composer installs a simple demo website including the needed dependencies into the `myproject` folder. 
+    composer create-project getherbie/start-website:dev-master mywebsite
 
-Alternatively, you can run the above commands step-by-step:
+For the stable 1.x version (only with PHP 5.x):
 
-	$ git clone https://github.com/getherbie/start-website.git myproject
-    $ cd myproject
-    $ composer install
+    composer create-project getherbie/start-website mywebsite 
+
+Composer installs a simple demo website including the needed dependencies into the `mywebsite` folder. 
 
 In your terminal go to the web directory and start the internal PHP webserver.
 
-    $ cd myproject/web
-    $ php -S localhost:8888 index.php
+    cd mywebsite/web
+    php -S localhost:8888 index.php
 
 Now, open the URL <http://localhost:8888> in your browser. Finished!
 
+If you want to have additional console output or logging information, set the debug environment variable.
+
+    HERBIE_DEBUG=1 php -S localhost:8888 index.php
+
+If you want to debug using Xdebug (3.x), start the internal web server as follows.
+
+    XDEBUG_MODE=debug php -S localhost:8888 index.php
+
+For this to work, Xdebug must of course be installed.
 
 ## Install Herbie CMS using Docker
 
