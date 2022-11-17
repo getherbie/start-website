@@ -3,7 +3,11 @@
 return [
     'language' => 'en',
     'locale' => 'en_EN',
-    'niceUrls' => false,
     'enabledPlugins' => 'simplecontact,simplesearch',
-    'enabledSysPlugins' => 'twig_core,twig_plus,markdown,imagine'
+    'enabledSysPlugins' => 'twig_core,twig_plus,markdown,imagine',
+    'components' => [
+        'urlManager' => [
+            'niceUrls' => false,
+        ]
+    ]
 ];
