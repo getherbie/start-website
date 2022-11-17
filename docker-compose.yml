@@ -4,6 +4,7 @@ services:
     build: ./docker/php/
     environment:
       TIMEZONE: Europe/Berlin
+      HERBIE_DEBUG: 1
     volumes:
     - ./docker/php/php.ini:/usr/local/etc/php/php.ini:ro
     - ./:/var/www/app:cached
