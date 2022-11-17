@@ -54,7 +54,7 @@ First, you should update the server name in the config file `docker/nginx/app.co
 
 Then start the Docker container by using `docker-compose up -d` in the root dir of the website.
 
-Now, open the URL <http://0.0.0.0> or <http://mydomain.org> in your browser. Finished!
+Now, open the URL <http://0.0.0.0:8888> or <http://mydomain.org> in your browser. Finished!
 
 ## More Information
 
