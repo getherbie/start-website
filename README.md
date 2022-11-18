@@ -4,40 +4,43 @@
 
 # Website Kickstarter for Herbie CMS
 
-## Install Herbie CMS using Composer
+## Installation 
 
 You can start your new Herbie CMS website by using Composer.
 
-For the upcoming 2.x version:
+For the upcoming 2.x version with PHP 7.4, 8.0, 8.1:
 
     composer create-project getherbie/start-website:dev-master mywebsite
 
-For the stable 1.x version (only with PHP 5.x):
+For the stable 1.x version with PHP 5.x only:
 
     composer create-project getherbie/start-website mywebsite 
 
-Composer installs a simple demo website including the needed dependencies into the `mywebsite` folder. 
+This will install a simple demo website and all required dependencies.
 
-In your terminal go to the web directory and start the internal PHP webserver.
+## Run website using built-in web server
+
+In your terminal go to the web directory and start the built-in web server.
 
     cd mywebsite/web
     php -S localhost:8888 index.php
 
-Now, open the URL <http://localhost:8888> in your browser. Finished!
+Now, open <http://localhost:8888> with your browser.
+That’s all it takes!
 
-If you want to have additional console output or logging information, set the debug environment variable.
+If you need additional console output or logging information, set the debug environment variable.
 
     HERBIE_DEBUG=1 php -S localhost:8888 index.php
 
-If you want to debug using Xdebug (3.x), start the internal web server as follows.
+If you want to debug using Xdebug (3.x), start the web server as follows.
 
     XDEBUG_MODE=debug php -S localhost:8888 index.php
 
 For this to work, Xdebug must of course be installed.
 
-## Install Herbie CMS using Docker
+## Run website using Docker
 
-You can find the Docker configuration files here:
+The Docker configuration files can be found here:
 
 ```
 docker-compose.yml
@@ -50,12 +53,10 @@ docker
         - php.ini
 ```
 
-First, you should update the server name in the config file `docker/nginx/app.conf` (`server_name your-domain.tld;` -> for example `server_name mydomain.org`).
+Start the Docker container by using `docker-compose up -d` in the root directory of the website.
 
-Then start the Docker container by using `docker-compose up -d` in the root dir of the website.
-
-Now, open the URL <http://0.0.0.0:8888> or <http://mydomain.org> in your browser. Finished!
+Then, open <http://0.0.0.0:8888> in your browser.
 
 ## More Information
 
-<https://herbie.tebe.ch>
+For more information, see <https://herbie.tebe.ch>.
