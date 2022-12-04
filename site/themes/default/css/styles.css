@@ -5,6 +5,18 @@ body {
     margin:0;
     padding:0;
 }
+/* Sticky Footer */
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.content-container {
+    flex: 1;
+    width: 100%;
+}
 
 html, button, input, select, textarea,
 .pure-g [class *= "pure-u"] {
