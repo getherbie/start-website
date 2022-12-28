@@ -4,7 +4,7 @@ return [
     'language' => 'en',
     'locale' => 'en_EN',
     'enabledPlugins' => 'simplecontact,simplesearch',
-    'enabledSysPlugins' => 'twig_core,twig_plus,markdown,imagine',
+    'enabledSysPlugins' => 'twig,markdown,imagine',
     'components' => [
         'urlManager' => [
             'niceUrls' => false,
