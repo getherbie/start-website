@@ -8,13 +8,7 @@
 
 You can start your new Herbie CMS website by using Composer.
 
-For the upcoming 2.x version with PHP 7.4, 8.0, 8.1:
-
-    composer create-project getherbie/start-website:dev-master mywebsite
-
-For the stable 1.x version with PHP 5.x only:
-
-    composer create-project getherbie/start-website mywebsite 
+    composer create-project getherbie/start-website mywebsite
 
 This will install a simple demo website and all required dependencies.
 
