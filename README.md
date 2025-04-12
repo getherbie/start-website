@@ -40,7 +40,7 @@ For this to work, Xdebug must of course be installed.
 
 Start Herbie CMS website by using Composer.
 
-    docker run --rm --interactive --tty --volume $PWD:/app composer create-project --ignore-platform-reqs getherbie/start-website mywebsite
+    docker run --rm -v $PWD:/app composer create-project --ignore-platform-reqs getherbie/start-website mywebsite
 
 ### Run website
 
