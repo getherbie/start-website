@@ -4,7 +4,9 @@
 
 # Website Kickstarter for Herbie CMS
 
-## Installation 
+## Using PHP
+
+### Installation
 
 You can start your new Herbie CMS website by using Composer.
 
@@ -12,7 +14,7 @@ You can start your new Herbie CMS website by using Composer.
 
 This will install a simple demo website and all required dependencies.
 
-## Run website using built-in web server
+### Run website
 
 In your terminal go to the web directory and start the built-in web server.
 
@@ -32,24 +34,25 @@ If you want to debug using Xdebug (3.x), start the web server as follows.
 
 For this to work, Xdebug must of course be installed.
 
-## Run website using Docker
+## Using Docker and Docker Compose
 
-The Docker configuration files can be found here:
+### Installation
 
-```
-docker-compose.yml
-docker
-    - nginx
-        - app.conf
-docker
-    - php
-        - Dockerfile
-        - php.ini
-```
+Start Herbie CMS website by using Composer.
 
-Start the Docker container by using `docker-compose up -d` in the root directory of the website.
+    docker run --rm --interactive --tty --volume $PWD:/app composer create-project --ignore-platform-reqs getherbie/start-website mywebsite
 
-Then, open <http://0.0.0.0:8888> in your browser.
+### Run website
+
+Go to the web directory
+
+    cd mywebsite/web
+
+And start website
+
+    docker compose up website
+
+Open <http://localhost:8888> with your browser.
 
 ## More Information
 
