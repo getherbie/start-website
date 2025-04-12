@@ -4,6 +4,10 @@
 
 # Website Kickstarter for Herbie CMS
 
+## Supported PHP Versions
+
+- 8.0 / 8.1 / 8.2 / 8.3
+
 ## Run Website Using PHP and Composer
 
 Create project and install dependencies.
