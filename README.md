@@ -4,9 +4,9 @@
 
 # Website Kickstarter for Herbie CMS
 
-## Run Website Using PHP
+## Run Website Using PHP and Composer
 
-Create project and install dependencies by using Composer.
+Create project and install dependencies.
 
     composer create-project getherbie/start-website mywebsite
 
@@ -34,7 +34,7 @@ Create project and install dependencies.
 
     docker run --rm -v $PWD:/app composer create-project --ignore-platform-reqs getherbie/start-website mywebsite
 
-Go to the mywebsite directory and start website
+Go to the `mywebsite` directory and start website.
 
     cd mywebsite
     docker compose up website
