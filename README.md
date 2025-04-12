@@ -46,7 +46,7 @@ Start Herbie CMS website by using Composer.
 
 Go to the web directory
 
-    cd mywebsite/web
+    cd mywebsite
 
 And start website
 
