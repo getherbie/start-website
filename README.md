@@ -4,23 +4,24 @@
 
 # Website Kickstarter for Herbie CMS
 
+With the Kickstarter, you can create a new website in no time, install all dependencies and launch the website in your development environment.
+
 ## Supported PHP Versions
 
-- 8.0 / 8.1 / 8.2 / 8.3
+8.0 / 8.1 / 8.2 / 8.3
 
-## Run Website Using PHP and Composer
+## Launch Website Using PHP and Composer
 
 Create project and install dependencies.
 
     composer create-project getherbie/start-website mywebsite
 
-In your terminal go to the web directory and start the built-in web server.
+Go to the `web` directory and start PHPs built-in web server.
 
     cd mywebsite/web
     php -S localhost:8888 index.php
 
-Now, open <http://localhost:8888> with your browser.
-That’s all it takes!
+Open <http://localhost:8888> with your browser.
 
 If you need additional console output or logging information, set the debug environment variable.
 
@@ -32,7 +33,7 @@ If you want to debug using Xdebug (3.x), start the web server as follows.
 
 For this to work, Xdebug must of course be installed.
 
-## Run Website Using Docker and Docker Compose
+## Launch Website Using Docker and Docker Compose
 
 Create project and install dependencies.
 
