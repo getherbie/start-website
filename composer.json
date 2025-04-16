@@ -9,7 +9,7 @@
         "getherbie/herbie": "^2.0",
         "getherbie/plugin-simplecontact": "^2.0",
         "getherbie/plugin-simplesearch": "^2.0",
-        "laminas/laminas-diactoros": "^2.0"
+        "laminas/laminas-diactoros": "^3.5"
     },    
     "config": {
         "sort-packages": true
