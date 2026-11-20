@@ -1,4 +1,4 @@
-Copyright (c) 2014 - 2022, Thomas Breuss <https://herbie.tebe.ch>
+Copyright (c) 2014 - 2026, Thomas Breuss <https://herbie.tebe.ch>
 
 All rights reserved.
 
