@@ -1,8 +1,9 @@
-{% set author = query(site.page_list).where('type=author').where('author_id=' ~ post.author_id).one() %}
+{% set authorRoute = 'blog/author/' ~ post.author_id %}
+{% set author = site.data.authors[post.author_id] ?? null %}
 <article class="post-card">
     <p class="post-card__meta">
         <time datetime="{{ post.date|date('Y-m-d') }}">{{ post.date|date('M j, Y') }}</time>
-        {% if author %}<span class="post-card__sep">&middot;</span> by <a href="{{ url_rel(author.route) }}">{{ author.title }}</a>{% endif %}
+        {% if author %}<span class="post-card__sep">&middot;</span> by <a href="{{ url_rel(authorRoute) }}">{{ author.title }}</a>{% endif %}
     </p>
     <h3 class="post-card__title">{{ link_page(post.route, post.title) }}</h3>
     {% if post.abstract %}<p class="post-card__abstract">{{ post.abstract }}</p>{% endif %}

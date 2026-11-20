@@ -6,14 +6,15 @@
             {{ content.default|raw }}
 
             <div class="card-grid">
-                {% for author in query(site.page_list).where('type=author').order('title').all() %}
+                {% for id, author in site.data.authors %}
+                    {% set authorRoute = 'blog/author/' ~ id %}
                     <section class="card author-card">
                         <div class="author-card__avatar" aria-hidden="true">{{ author.initials }}</div>
                         <div>
-                            <h2>{{ link_page(author.route, author.title) }}</h2>
+                            <h2>{{ link_page(authorRoute, author.title) }}</h2>
                             <p class="eyebrow">{{ author.role }}</p>
                             <p>{{ author.bio }}</p>
-                            <p>{{ link_page(author.route, 'View posts by ' ~ author.title) }}</p>
+                            <p>{{ link_page(authorRoute, 'View posts by ' ~ author.title) }}</p>
                         </div>
                     </section>
                 {% endfor %}

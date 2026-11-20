@@ -69,13 +69,14 @@ with `layout: post`, `type: post`, `date`, `author_id`, `categories`, `tags` and
 `abstract`. New posts appear automatically in the index, archive, author pages,
 tag/category archives and the Atom feed.
 
-Authors are pages with `type: author` and a matching `author_id`. Every other blog
-route is generated at runtime: `site/config/main.php` rewrites `blog/tag/…`,
-`blog/category/…`, `blog/archive`, `blog/author`, `blog/tag` and `blog/category` to
-the blog index, and the local `blog` plugin in `site/extend/plugins/blog` supplies
-the matching virtual page. The Atom feed at `/blog/feed.xml` is produced by the
-same plugin. No placeholder files are needed for tags, categories, the archive or
-the feed.
+Authors are entries in `site/data/authors.json`, keyed by the `author_id` used in
+posts. Add an author there and the profile page plus all bylines appear without a
+new Markdown file. Every blog route is generated at runtime: `site/config/main.php`
+rewrites `blog/author/…`, `blog/tag/…`, `blog/category/…`, `blog/archive`,
+`blog/author`, `blog/tag` and `blog/category` to the blog index, and the local
+`blog` plugin in `site/extend/plugins/blog` supplies the matching virtual page. The
+Atom feed at `/blog/feed.xml` is produced by the same plugin. No placeholder files
+are needed for authors, tags, categories, the archive or the feed.
 
 The `blog_terms()` Twig function in `site/extend/twig_functions` supplies the tag
 and category lists in the sidebar.

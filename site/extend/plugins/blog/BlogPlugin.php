@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace HerbieKickstarter\Plugin\Blog;
 
 use herbie\AbstractPlugin;
+use herbie\HttpException;
 use herbie\Page;
 use herbie\PageRepositoryInterface;
 use herbie\Plugin;
@@ -67,6 +68,33 @@ final class BlogPlugin extends AbstractPlugin
      */
     private function createVirtualPage(array $params): ?Page
     {
+        if (isset($params['author'])) {
+            $id = $params['author'];
+            $authors = $this->authors();
+            if (!isset($authors[$id]) || !is_array($authors[$id])) {
+                throw HttpException::notFound('blog/author/' . $id);
+            }
+            $author = $authors[$id];
+            $title = (string)($author['title'] ?? $id);
+            return $this->page(
+                'blog/author/' . $id,
+                $title,
+                'author',
+                '# ' . $title . "\n\n" . (string)($author['about'] ?? '')
+                    . "\n\nBrowse the {{ link_page('blog', 'blog index') }} for articles by all authors.",
+                extra: [
+                    'type' => 'blog-author',
+                    'author_id' => $id,
+                    'role' => (string)($author['role'] ?? ''),
+                    'initials' => (string)($author['initials'] ?? ''),
+                    'bio' => (string)($author['bio'] ?? ''),
+                    'website' => (string)($author['website'] ?? ''),
+                    'email' => (string)($author['email'] ?? ''),
+                    'github' => (string)($author['github'] ?? ''),
+                ],
+            );
+        }
+
         if (isset($params['tag'])) {
             $tag = $this->resolveTerm('tags', $params['tag']);
             return $this->page(
@@ -146,6 +174,7 @@ final class BlogPlugin extends AbstractPlugin
         string $intro,
         ?string $filterField = null,
         ?string $filterValue = null,
+        array $extra = [],
     ): Page {
         $data = [
             'route' => $route,
@@ -160,7 +189,16 @@ final class BlogPlugin extends AbstractPlugin
             $data['filter_field'] = $filterField;
             $data['filter_value'] = $filterValue;
         }
-        return new Page($data, ['default' => $intro]);
+        return new Page(array_merge($data, $extra), ['default' => $intro]);
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function authors(): array
+    {
+        $data = $this->site->getData();
+        return is_array($data['authors'] ?? null) ? $data['authors'] : [];
     }
 
     private function createFeedResponse(): ResponseInterface

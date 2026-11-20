@@ -44,6 +44,7 @@ return [
             'niceUrls' => false,
             // Virtual blog routes are rendered by site/extend/plugins/blog.
             'rules' => [
+                ['blog/author/{author}', 'blog'],
                 ['blog/tag/{tag}', 'blog'],
                 ['blog/category/{category}', 'blog'],
                 ['blog/{section}', 'blog', ['section' => 'archive|author|tag|category']],

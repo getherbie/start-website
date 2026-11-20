@@ -1,0 +1,32 @@
+{
+  "alex-weber": {
+    "title": "Alex Weber",
+    "role": "template specialist",
+    "initials": "AW",
+    "bio": "A fictional writer focused on Twig templates, caching and the quiet details that keep small sites easy to maintain.",
+    "website": "https://example.com",
+    "email": "alex@example.com",
+    "github": "https://github.com",
+    "about": "Alex is an example author who writes about templates, performance and generated files. Posts refer to this profile with `author_id: alex-weber`."
+  },
+  "herbie-team": {
+    "title": "Herbie Team",
+    "role": "maintainers",
+    "initials": "HT",
+    "bio": "The people behind Herbie CMS. We write about flat-file websites, Twig templates and keeping small sites simple.",
+    "website": "https://herbie.tebe.ch",
+    "email": "hello@example.com",
+    "github": "https://github.com/getherbie",
+    "about": "This profile is generated from `site/data/authors.json`. Posts refer to it with `author_id: herbie-team`."
+  },
+  "jane-doe": {
+    "title": "Jane Doe",
+    "role": "example author",
+    "initials": "JD",
+    "bio": "A fictional writer who likes clean layouts, good documentation and websites that load quickly.",
+    "website": "https://example.com",
+    "email": "jane@example.com",
+    "github": "https://github.com",
+    "about": "Jane is an example author. Her profile demonstrates how a post byline links to a person instead of a plain name."
+  }
+}

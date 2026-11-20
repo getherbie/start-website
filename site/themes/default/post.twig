@@ -1,14 +1,15 @@
 {% extends "main.twig" %}
 
 {% block content %}
-    {% set author = query(site.page_list).where('type=author').where('author_id=' ~ page.author_id).one() %}
+    {% set authorRoute = 'blog/author/' ~ page.author_id %}
+    {% set author = site.data.authors[page.author_id] ?? null %}
     <div class="container page-section">
         <div class="layout-content layout-content--article">
             <article class="post content">
                 <header class="post__header">
                     <p class="post__meta">
                         <time datetime="{{ page.date|date('Y-m-d') }}">{{ page.date|date('F j, Y') }}</time>
-                        {% if author %}<span class="post-card__sep">&middot;</span> by <a href="{{ url_rel(author.route) }}">{{ author.title }}</a>{% endif %}
+                        {% if author %}<span class="post-card__sep">&middot;</span> by <a href="{{ url_rel(authorRoute) }}">{{ author.title }}</a>{% endif %}
                         {% for category in page.categories %}
                             <span class="post-card__sep">&middot;</span> <a href="{{ url_rel('blog/category/' ~ category|lower) }}">{{ category }}</a>
                         {% endfor %}
@@ -34,7 +35,7 @@
                         <section class="author-card">
                             <div class="author-card__avatar" aria-hidden="true">{{ author.initials }}</div>
                             <div>
-                                <h2 class="author-card__name">Written by {{ link_page(author.route, author.title) }}</h2>
+                                <h2 class="author-card__name">Written by {{ link_page(authorRoute, author.title) }}</h2>
                                 <p class="author-card__bio">{{ author.bio }}</p>
                                 <p class="author-card__links">
                                     {% if author.email %}<a href="mailto:{{ author.email }}">Email</a>{% endif %}
