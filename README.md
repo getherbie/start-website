@@ -62,6 +62,14 @@ All layouts live in `site/themes/default`. The config sets `themeParent` to
 Copy a Twig template into your theme folder if you need different markup; Herbie
 falls back to the parent theme for every template you do not override.
 
+The author portraits are original, hand-written SVG illustrations in
+`site/media/img/authors/`. Each author's `avatar` attribute in
+`site/data/authors.json` points to one of these files (for example
+`img/authors/alex-weber.svg`); the layouts render them as normal `<img>` elements via
+Herbie's `image()` function. `web/index.php` serves `site/media` at `/media/...`, so the
+files behave like ordinary static images. They are fictional characters, require no
+external assets and have no third-party license obligations.
+
 ## Blog
 
 The blog is made of normal pages in `site/pages/blog`. A post is a Markdown file

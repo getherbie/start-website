@@ -87,6 +87,7 @@ final class BlogPlugin extends AbstractPlugin
                     'author_id' => $id,
                     'role' => (string)($author['role'] ?? ''),
                     'initials' => (string)($author['initials'] ?? ''),
+                    'avatar' => (string)($author['avatar'] ?? ''),
                     'bio' => (string)($author['bio'] ?? ''),
                     'website' => (string)($author['website'] ?? ''),
                     'email' => (string)($author['email'] ?? ''),

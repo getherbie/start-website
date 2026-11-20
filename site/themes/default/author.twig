@@ -5,7 +5,7 @@
         <div class="layout-content layout-content--article">
             <div class="content">
                 <header class="author-hero">
-                    <div class="author-card__avatar author-card__avatar--large" aria-hidden="true">{{ page.initials }}</div>
+                    {{ image('media/' ~ page.avatar, {class: 'author-avatar author-avatar--large', alt: 'Illustrated portrait of ' ~ page.title}) }}
                     <div>
                         <p class="eyebrow">{{ page.role }}</p>
                         <h1>{{ page.title }}</h1>

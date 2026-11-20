@@ -9,7 +9,7 @@
                 {% for id, author in site.data.authors %}
                     {% set authorRoute = 'blog/author/' ~ id %}
                     <section class="card author-card">
-                        <div class="author-card__avatar" aria-hidden="true">{{ author.initials }}</div>
+                        {{ image('media/' ~ author.avatar, {class: 'author-avatar', alt: 'Illustrated portrait of ' ~ author.title}) }}
                         <div>
                             <h2>{{ link_page(authorRoute, author.title) }}</h2>
                             <p class="eyebrow">{{ author.role }}</p>

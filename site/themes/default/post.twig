@@ -33,7 +33,7 @@
 
                     {% if author %}
                         <section class="author-card">
-                            <div class="author-card__avatar" aria-hidden="true">{{ author.initials }}</div>
+                            {{ image('media/' ~ author.avatar, {class: 'author-avatar', alt: 'Illustrated portrait of ' ~ author.title}) }}
                             <div>
                                 <h2 class="author-card__name">Written by {{ link_page(authorRoute, author.title) }}</h2>
                                 <p class="author-card__bio">{{ author.bio }}</p>
