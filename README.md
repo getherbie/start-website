@@ -66,13 +66,19 @@ falls back to the parent theme for every template you do not override.
 
 The blog is made of normal pages in `site/pages/blog`. A post is a Markdown file
 with `layout: post`, `type: post`, `date`, `author_id`, `categories`, `tags` and an
-`abstract`. The index, archive, author and tag/category pages, as well as the
-[Atom feed](site/pages/blog/feed.xml), pick up new posts automatically.
+`abstract`. New posts appear automatically in the index, archive, author pages,
+tag/category archives and the Atom feed.
 
-Authors are pages with `type: author` and a matching `author_id`. Add a small page
-under `site/pages/blog/tag` or `site/pages/blog/category` when you introduce a new
-tag or category so its archive link resolves. The `blog_terms()` Twig function in
-`site/extend/twig_functions` supplies the tag and category lists in the sidebar.
+Authors are pages with `type: author` and a matching `author_id`. Every other blog
+route is generated at runtime: `site/config/main.php` rewrites `blog/tag/…`,
+`blog/category/…`, `blog/archive`, `blog/author`, `blog/tag` and `blog/category` to
+the blog index, and the local `blog` plugin in `site/extend/plugins/blog` supplies
+the matching virtual page. The Atom feed at `/blog/feed.xml` is produced by the
+same plugin. No placeholder files are needed for tags, categories, the archive or
+the feed.
+
+The `blog_terms()` Twig function in `site/extend/twig_functions` supplies the tag
+and category lists in the sidebar.
 
 ## Development
 

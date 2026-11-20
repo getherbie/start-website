@@ -27,7 +27,7 @@ return [
     'locale' => 'en_EN',
     'theme' => $theme,
     'themeParent' => 'default',
-    'enabledPlugins' => 'twig,markdown,imagine,search,contact',
+    'enabledPlugins' => 'twig,markdown,imagine,search,contact,blog',
     'plugins' => [
         'contact' => [
             'recipient' => getenv('HERBIE_CONTACT_RECIPIENT') ?: 'blackhole@example.com',
@@ -42,6 +42,12 @@ return [
     'components' => [
         'urlManager' => [
             'niceUrls' => false,
+            // Virtual blog routes are rendered by site/extend/plugins/blog.
+            'rules' => [
+                ['blog/tag/{tag}', 'blog'],
+                ['blog/category/{category}', 'blog'],
+                ['blog/{section}', 'blog', ['section' => 'archive|author|tag|category']],
+            ],
         ]
     ]
 ];
