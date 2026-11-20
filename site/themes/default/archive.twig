@@ -1,11 +1,13 @@
 {% extends "main.twig" %}
 
 {% block content %}
+    {% set posts = query(site.page_list).where('type=post') %}
     {% if page.filter_field and page.filter_value %}
-        {% set posts = query(site.page_list).where('type=post').where({(page.filter_field): page.filter_value}).order('-date').all() %}
-    {% else %}
-        {% set posts = query(site.page_list).where('type=post').order('-date').all() %}
+        {% set posts = posts.where({(page.filter_field): page.filter_value}) %}
     {% endif %}
+    {% set pagination = posts.order('-date').paginate(6) %}
+    {% do pagination.setCurrentPage(blog_page_number()) %}
+    {% set posts = pagination.items %}
 
     <div class="container page-section">
         <div class="layout-content">
@@ -31,6 +33,8 @@
                 {% else %}
                     <p>No posts found.</p>
                 {% endif %}
+
+                {{ include('includes/pagination.twig') }}
 
                 <p class="content__more">{{ link_page('blog', 'All posts') }} &middot; {{ link_page('blog/feed.xml', 'Atom feed') }}</p>
             </div>

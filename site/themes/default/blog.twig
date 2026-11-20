@@ -1,16 +1,22 @@
 {% extends "main.twig" %}
 
 {% block content %}
+    {% set pagination = query(site.page_list).where('type=post').order('-date').paginate(6) %}
+    {% do pagination.setCurrentPage(blog_page_number()) %}
+    {% set posts = pagination.items %}
+
     <div class="container page-section">
         <div class="layout-content">
             <div class="content">
                 {{ content.default|raw }}
 
                 <div class="post-list">
-                    {% for post in query(site.page_list).where('type=post').order('-date').all() %}
+                    {% for post in posts %}
                         {{ include('includes/post-card.twig', {post: post}) }}
                     {% endfor %}
                 </div>
+
+                {{ include('includes/pagination.twig') }}
 
                 <p class="content__more">{{ link_page('blog/archive', 'Browse the full archive') }} &middot; {{ link_page('blog/feed.xml', 'Subscribe to the Atom feed') }}</p>
             </div>

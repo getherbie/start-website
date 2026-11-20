@@ -67,7 +67,8 @@ falls back to the parent theme for every template you do not override.
 The blog is made of normal pages in `site/pages/blog`. A post is a Markdown file
 with `layout: post`, `type: post`, `date`, `author_id`, `categories`, `tags` and an
 `abstract`. New posts appear automatically in the index, archive, author pages,
-tag/category archives and the Atom feed.
+tag/category archives and the Atom feed. Longer lists are paginated with six posts
+per page (`?page=2`); the controls appear only when there is more than one page.
 
 Authors are entries in `site/data/authors.json`, keyed by the `author_id` used in
 posts. Add an author there and the profile page plus all bylines appear without a
