@@ -1,50 +1,91 @@
 [![Packagist](https://img.shields.io/packagist/dt/getherbie/start-website.svg)](https://packagist.org/packages/getherbie/start-website)
-[![GitHub](https://img.shields.io/github/release/getherbie/start-website/all.svg)](https://github.com/getherbie/start-website/releases)
+[![GitHub (pre-)release](https://img.shields.io/github/release/getherbie/start-website/all.svg)](https://github.com/getherbie/start-website/releases)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://github.com/getherbie/start-website/blob/master/LICENCE.md)
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/getherbie/start-website.svg)](https://packagist.org/packages/getherbie/start-website)
 
-# Website Kickstarter for Herbie CMS
+# Website Kickstarter
 
-With the Kickstarter, you can create a new website in no time, install all dependencies and launch the website in your development environment.
+> Bootstrap a Herbie website in no time – with Docker Compose or plain PHP 👌
 
-## Supported PHP Versions
+The kickstarter comes with a default theme, example pages, and the plugins needed for contact forms and search.
 
-8.0 / 8.1 / 8.2 / 8.3
+## What the Kickstarter Includes
 
-## Launch Website Using PHP and Composer
+* [Herbie CMS](https://github.com/getherbie/herbie) with Twig and Markdown
+* A Docker Compose setup with PHP 8.3 by default
+* A contact form with CSRF token and ALTCHA captcha
+* A site search with a sidebar form
+* `noindex, nofollow` by default so the site stays out of search results
 
-Create project and install dependencies.
+## Supported PHP Versions
 
-    composer create-project getherbie/start-website mywebsite
+8.3 / 8.4 / 8.5 / 8.6
 
-Go to the `web` directory and start PHPs built-in web server.
+## Quick Start
 
-    cd mywebsite/web
-    php -S localhost:8888 index.php
+Create your own Herbie website with Docker (recommended):
 
-Open <http://localhost:8888> with your browser.
-
-If you need additional console output or logging information, set the debug environment variable.
-
-    HERBIE_DEBUG=1 php -S localhost:8888 index.php
-
-If you want to debug using Xdebug (3.x), start the web server as follows.
-
-    XDEBUG_MODE=debug php -S localhost:8888 index.php
-
-For this to work, Xdebug must of course be installed.
-
-## Launch Website Using Docker and Docker Compose
-
-Create project and install dependencies.
-
-    docker run --rm -v $PWD:/app composer create-project --ignore-platform-reqs getherbie/start-website mywebsite
-
-Go to the `mywebsite` directory and start website.
-
+    docker run --rm -v "$PWD":/app composer create-project --ignore-platform-reqs getherbie/start-website mywebsite
     cd mywebsite
     docker compose up website
 
-Open <http://localhost:8888> with your browser.
+Open <http://localhost:8888>.
+
+<details>
+<summary>Without Docker (PHP & Composer required)</summary>
+
+    composer create-project getherbie/start-website mywebsite
+    cd mywebsite/web
+    php -S localhost:8888 index.php
+
+Optional: `HERBIE_DEBUG=1 php -S localhost:8888 index.php` for debug output, or `XDEBUG_MODE=debug php -S localhost:8888 index.php` for Xdebug.
+
+</details>
+
+## Development
+
+Work on this repository with Docker (recommended):
+
+    git clone https://github.com/getherbie/start-website.git
+    cd start-website
+    docker compose up website
+
+Open <http://localhost:8888>.
+
+Common tasks:
+
+    docker compose run --rm install    # install Composer dependencies
+    docker compose run --rm bash       # open a shell
+
+Use a different PHP version (default: 8.3):
+
+    PHP_VERSION=8.3 docker compose up website
+    PHP_VERSION=8.4 docker compose up website
+    PHP_VERSION=8.5 docker compose up website
+    PHP_VERSION=8.6 docker compose up website
+
+<details>
+<summary>Without Docker (PHP & Composer required)</summary>
+
+    git clone https://github.com/getherbie/start-website.git
+    cd start-website
+    composer install
+    cd web
+    php -S localhost:8888 index.php
+
+</details>
+
+## Contact Form Configuration
+
+The contact form requires a CSRF secret and an ALTCHA captcha secret. The defaults in `site/config/main.php` are enough for local development.
+
+For production, set `HERBIE_CONTACT_RECIPIENT`, `HERBIE_CONTACT_CSRF_SECRET` and `HERBIE_CONTACT_CAPTCHA_SECRET`, and configure SMTP under `plugins.contact.smtp`. When running with Docker Compose, pass these variables to the `website` container via `environment:` in `compose.yml`.
+
+## Search Engine Indexing
+
+This website is not intended to appear in search results. Every response is sent with `X-Robots-Tag: noindex, nofollow`, defined in `site/extend/middlewares_app/noindex.php`. This also covers non-HTML responses such as downloads.
+
+If the website should be indexed by search engines, remove `site/extend/middlewares_app/noindex.php`.
 
 ## More Information
 

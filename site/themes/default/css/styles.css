@@ -20,8 +20,7 @@ body {
 
 html, button, input, select, textarea,
 .pure-g [class *= "pure-u"] {
-    /* Set your content font stack here: */
-    font-family: 'Open Sans', sans-serif;
+    font-family:ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 /* Typo */
@@ -61,7 +60,7 @@ code {
 }
 pre {
     background: none repeat scroll 0 0 #e9e6e2;
-    font-family: "Courier 10 Pitch",Courier,monospace;
+    font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 0.9em;
     line-height: 1.3;
     margin-bottom: 2em;
@@ -112,6 +111,12 @@ table {
 }
 .brand-title a {
     color:#29251F;
+}
+.brand-title svg {
+    width:1.7em;
+    height:1.7em;
+    vertical-align:-0.42em;
+    margin-right:0.22em;
 }
 .brand-tagline {
     color:#ffffff;
@@ -275,14 +280,6 @@ div.highlight pre {
     padding-right:1em;
 }
 
-span.e {
-    color:#fff;
-    background:#bb4444;
-    padding:0px 10px;
-    display:inline-block;
-    margin:0;
-}
-
 .text-right {
     text-align:right;
 }
@@ -375,23 +372,23 @@ span.e {
     margin-bottom:2em;
 }
 
-/* Plugin Simplesearch */
-.plugin-simplesearch-form {
+/* Plugin Search */
+.plugin-search-form {
     margin-bottom:1.6em;
 }
-.plugin-simplesearch-results p {
+.plugin-search-results p {
     font-size: 0.9em;
     margin-bottom:0.8em;
 }
-.plugin-simplesearch-results .result {
+.plugin-search-results .result {
     margin-bottom: 0.8em;
 }
-.plugin-simplesearch-results .title {
+.plugin-search-results .title {
 }
-.plugin-simplesearch-results .url {
+.plugin-search-results .url {
     font-size: 0.9em;
 }
-.plugin-simplesearch-results .date {
+.plugin-search-results .date {
     font-size: 0.9em;
 }
 

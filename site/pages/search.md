@@ -6,6 +6,6 @@ hidden: true
 
 <h1>Search</h1>
 
-{{ simplesearch_form() }}
+{{ search_form() }}
 
-{{ simplesearch_results() }}
+{{ search_results() }}
