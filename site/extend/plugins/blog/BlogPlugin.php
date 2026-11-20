@@ -181,6 +181,7 @@ final class BlogPlugin extends AbstractPlugin
             'title' => $title,
             'layout' => $layout,
             'type' => 'blog-taxonomy',
+            'format' => 'markdown',
             'cached' => false,
             'hidden' => true,
             'no_search' => true,
