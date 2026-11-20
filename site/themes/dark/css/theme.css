@@ -1,0 +1,32 @@
+/* Dark theme: only the design tokens change, all layouts stay the same. */
+:root {
+    color-scheme: dark;
+
+    --page-bg: #16181d;
+    --surface: #1e2128;
+    --surface-alt: #262a33;
+    --text: #d5d8de;
+    --text-muted: #9aa1ad;
+    --heading: #ffffff;
+    --border: #383e49;
+
+    --accent: #ff8a75;
+    --accent-hover: #ffad9d;
+    --accent-contrast: #16181d;
+    --accent-button: #ff8a75;
+    --accent-button-text: #16181d;
+
+    --hero-bg: #1d3c42;
+    --hero-text: #eafcff;
+
+    --footer-bg: #101216;
+    --footer-text: #a8aebb;
+    --footer-heading: #ffffff;
+    --footer-border: rgba(255, 255, 255, 0.14);
+
+    --code-bg: #111318;
+    --code-text: #e8e9ec;
+    --error: #ff7b6b;
+
+    --shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+}

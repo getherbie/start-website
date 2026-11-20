@@ -1,21 +1,27 @@
 {% extends "main.twig" %}
 
 {% block content %}
-    <div class="content-container">
-        <div class="container">
-            <div class="pure-g">
-                <div class="pure-u-1 pure-u-md-2-3">
-                    <div class="content">
-                        {{ content.default|raw }}
+    <div class="container page-section">
+        <div class="layout-content">
+            <article class="content">
+                {{ content.default|raw }}
+            </article>
+            <aside class="sidebar">
+                {{ include('includes/simplesearch.twig') }}
+                <section class="widget">
+                    <h2 class="widget__title">Recent posts</h2>
+                    <div class="widget__posts">
+                        {% for post in query(site.page_list).where('type=post').order('-date').limit(3).all() %}
+                            <article class="post-card post-card--small">
+                                <h3 class="post-card__title">{{ link_page(post.route, post.title) }}</h3>
+                                <p class="post-card__meta"><time datetime="{{ post.date|date('Y-m-d') }}">{{ post.date|date('M j, Y') }}</time></p>
+                            </article>
+                        {% endfor %}
                     </div>
-                </div>
-                <div class="pure-u-1 pure-u-md-1-3">
-                    <div class="sidebar">
-                        {{ include('includes/simplesearch.twig') }}
-                        {{ content.sidebar|raw }}
-                    </div>
-                </div>
-            </div>
+                </section>
+                {{ include('includes/blog-nav.twig') }}
+                {{ content.sidebar|raw }}
+            </aside>
         </div>
     </div>
 {% endblock %}

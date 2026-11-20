@@ -1,0 +1,23 @@
+{% extends "main.twig" %}
+
+{% block content %}
+    <div class="container page-section">
+        <div class="layout-content">
+            <div class="content">
+                {{ content.default|raw }}
+
+                <div class="post-list">
+                    {% for post in query(site.page_list).where('type=post').order('-date').all() %}
+                        {{ include('includes/post-card.twig', {post: post}) }}
+                    {% endfor %}
+                </div>
+
+                <p class="content__more">{{ link_page('blog/archive', 'Browse the full archive') }} &middot; {{ link_page('blog/feed.xml', 'Subscribe to the Atom feed') }}</p>
+            </div>
+            <aside class="sidebar">
+                {{ include('includes/simplesearch.twig') }}
+                {{ include('includes/blog-nav.twig') }}
+            </aside>
+        </div>
+    </div>
+{% endblock %}

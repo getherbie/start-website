@@ -1,0 +1,10 @@
+{
+  "title": "Herbie Kickstarter",
+  "tagline": "A complete small website with a blog, themes and search — ready in minutes.",
+  "description": "A flat-file website kickstarter for Herbie CMS with example pages, a blog, selectable themes, contact form and search.",
+  "themes": [
+    "default",
+    "light",
+    "dark"
+  ]
+}

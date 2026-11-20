@@ -7,12 +7,15 @@
 
 > Bootstrap a Herbie website in no time – with Docker Compose or plain PHP 👌
 
-The kickstarter comes with a default theme, example pages, and the plugins needed for contact forms and search.
+The kickstarter comes with three themes, example pages, a small blog, and the plugins needed for contact forms and search.
 
 ## What the Kickstarter Includes
 
 * [Herbie CMS](https://github.com/getherbie/herbie) with Twig and Markdown
 * A Docker Compose setup with PHP 8.3 by default
+* Example pages with real content and a blog with posts, authors, categories, tags, archive and Atom feed
+* Three selectable themes (`default`, `light`, `dark`) with a theme switcher in the header
+* Dependency-free CSS with custom properties — no Pure CSS and no external icon font
 * A contact form with CSRF token and ALTCHA captcha
 * A site search with a sidebar form
 * `noindex, nofollow` by default so the site stays out of search results
@@ -41,6 +44,35 @@ Open <http://localhost:8888>.
 Optional: `HERBIE_DEBUG=1 php -S localhost:8888 index.php` for debug output, or `XDEBUG_MODE=debug php -S localhost:8888 index.php` for Xdebug.
 
 </details>
+
+## Themes
+
+The header contains a theme switcher with `default`, `light` and `dark`. The choice
+is stored in a cookie, so it survives navigation and reloads. The active theme is
+validated against the `themes` list in `site/data/site.json`; unknown values fall
+back to `default`.
+
+All layouts live in `site/themes/default`. The config sets `themeParent` to
+`default`, so the `light` and `dark` themes only override CSS custom properties in
+`css/theme.css`. To add your own theme:
+
+1. Create `site/themes/<name>/css/theme.css` with your variable overrides.
+2. Add `<name>` to the `themes` list in `site/data/site.json`.
+
+Copy a Twig template into your theme folder if you need different markup; Herbie
+falls back to the parent theme for every template you do not override.
+
+## Blog
+
+The blog is made of normal pages in `site/pages/blog`. A post is a Markdown file
+with `layout: post`, `type: post`, `date`, `author_id`, `categories`, `tags` and an
+`abstract`. The index, archive, author and tag/category pages, as well as the
+[Atom feed](site/pages/blog/feed.xml), pick up new posts automatically.
+
+Authors are pages with `type: author` and a matching `author_id`. Add a small page
+under `site/pages/blog/tag` or `site/pages/blog/category` when you introduce a new
+tag or category so its archive link resolves. The `blog_terms()` Twig function in
+`site/extend/twig_functions` supplies the tag and category lists in the sidebar.
 
 ## Development
 

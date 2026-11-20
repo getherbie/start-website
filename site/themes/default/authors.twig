@@ -1,0 +1,25 @@
+{% extends "main.twig" %}
+
+{% block content %}
+    <div class="container page-section">
+        <div class="content content--narrow">
+            {{ content.default|raw }}
+
+            <div class="card-grid">
+                {% for author in query(site.page_list).where('type=author').order('title').all() %}
+                    <section class="card author-card">
+                        <div class="author-card__avatar" aria-hidden="true">{{ author.initials }}</div>
+                        <div>
+                            <h2>{{ link_page(author.route, author.title) }}</h2>
+                            <p class="eyebrow">{{ author.role }}</p>
+                            <p>{{ author.bio }}</p>
+                            <p>{{ link_page(author.route, 'View posts by ' ~ author.title) }}</p>
+                        </div>
+                    </section>
+                {% endfor %}
+            </div>
+
+            <p class="content__more">{{ link_page('blog', 'Back to the blog') }}</p>
+        </div>
+    </div>
+{% endblock %}

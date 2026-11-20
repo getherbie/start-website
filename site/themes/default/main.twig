@@ -1,102 +1,99 @@
 {% apply spaceless %}
-    {{ css_add('@site/themes/default/css/purecss@3.0.0-pure.min.css') }}
-    {{ css_add('@site/themes/default/css/purecss@3.0.0-grids-responsive.min.css') }}
-    {{ css_add('@site/themes/default/css/styles.css') }}
-    {{ js_add('@site/themes/default/js/scripts.js') }}
+    {{ css_add('@theme/css/styles.css') }}
+    {{ css_add('@theme/css/theme.css') }}
+    {{ js_add('@theme/js/scripts.js') }}
 {% endapply %}
 <!DOCTYPE html>
 <html lang="{{ site.language }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ site.data.site.description }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" href="{{ (baseUrl ~ '/favicon.svg')|replace({'//': '/'}) }}" type="image/svg+xml">
-    <link rel="alternate icon" href="{{ (baseUrl ~ '/favicon.ico')|replace({'//': '/'}) }}" sizes="16x16">
-    <title>{{ page_title(delimiter=' / ', site_title='Herbie CMS', root_title='Herbie CMS - A simple Flat-File Content Management System', reverse=true) }}</title>
-    <base href="{{ baseUrl }}">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="icon" href="{{ (site.base_url ~ 'favicon.svg')|replace({'//': '/'}) }}" type="image/svg+xml">
+    <link rel="alternate icon" href="{{ (site.base_url ~ 'favicon.ico')|replace({'//': '/'}) }}" sizes="16x16">
+    <link rel="alternate" type="application/atom+xml" title="{{ site.data.site.title }} Blog" href="{{ url_rel('blog/feed.xml') }}">
+    <title>{{ page_title(delimiter=' / ', site_title=site.data.site.title, root_title=site.data.site.tagline, reverse=true) }}</title>
+    <base href="{{ site.base_url }}">
     {{ css_out() }}
 </head>
 <body class="{{ css_classes() }}">
-<div class="header">
-    <div class="container">
-        <div class="inner-container">
-            <div class="pure-hidden-tablet pure-hidden-desktop">
-                <a href="#menu" id="menuLink" class="menu-link">
-                    <!-- Hamburger icon -->
-                    <span></span>
-                </a>
+<a class="skip-link" href="#content">Skip to content</a>
+
+<header class="site-header">
+    <div class="container site-header__inner">
+        <a class="brand" href="{{ url_rel('index') }}">
+            <svg class="brand__mark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" aria-hidden="true">
+                <rect width="64" height="64" rx="11" fill="#bb4444"/>
+                <g fill="#ffffff"><rect x="14" y="14" width="36" height="9"/><rect x="14" y="27.5" width="23" height="9"/><rect x="14" y="41" width="36" height="9"/></g>
+            </svg>
+            <span>{{ site.data.site.title }}</span>
+        </a>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+            <ul class="site-nav__list">
+                {% for item in site.data.menu %}
+                    {% set isActive = (item.route == site.route) or (site.route == '' and item.route == 'index') %}
+                    <li>
+                        <a class="site-nav__link{% if isActive %} is-active{% endif %}" href="{{ url_rel(item.route) }}"{% if isActive %} aria-current="page"{% endif %}>{{ item.label }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="theme-switcher" role="group" aria-label="Choose a theme">
+                <span class="theme-switcher__label">Theme</span>
+                {% for theme in site.data.site.themes %}
+                    {% set isCurrent = (theme == site.theme) %}
+                    <a class="theme-switcher__link{% if isCurrent %} is-active{% endif %}" href="{{ url_rel(site.route) }}?theme={{ theme }}"{% if isCurrent %} aria-current="true"{% endif %}>{{ theme|title }}</a>
+                {% endfor %}
             </div>
-            <div class="pure-g">
-                <div class="pure-u-3-5 pure-u-md-1-5">
-                    <div class="brand-title">{{ link_page('index', '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 64 64"><rect width="64" height="64" rx="11" fill="#bb4444"/><g fill="#ffffff"><rect x="14" y="14.0" width="36" height="9"/><rect x="14" y="27.5" width="23" height="9"/><rect x="14" y="41.0" width="36" height="9"/></g></svg> Herbie CMS') }}</div>
-                </div>
-                <div class="pure-u-2-5 pure-u-md-4-5 text-right pure-hidden-phone">
-                    <div class="topmenu" id="topmenu">
-                        <div id="topmenu-inner">
-                            <div class="pure-menu pure-menu-horizontal">
-                                <ul class="pure-menu-list">
-                                    {% for item in site.data.menu %}
-                                        {% set active = (item.route == route) ? 'pure-menu-selected' : '' %}
-                                        <li class="pure-menu-item {{ active }}">
-                                            {{ link_page(item.route, item.label, {class:"pure-menu-link"}) }}
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </nav>
     </div>
-</div>
+</header>
 
-<div id="mobile-menu" class="pure-hidden-phone pure-hidden-tablet pure-hidden-desktop">
-    <div class="pure-menu">
-        <ul class="pure-menu-list">
-            {% for item in site.data.menu %}
-                <li class="pure-menu-item"><a class="pure-menu-link" href="{{ url_rel(item.route) }}">{{ item.label }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-</div>
+<main id="content">
+    {% block content %}{% endblock %}
+</main>
 
-{% block content %}{% endblock %}
-
-<div class="footer">
+<footer class="site-footer">
     <div class="container">
-        <div class="pure-g">
-            <div class="pure-u-1 pure-u-md-1-4 footer-about">
-                <h3>About Herbie CMS</h3>
-                <p>Herbie CMS is a simple Flat-File Content Management System based on human-readable text files.</p>
-            </div>
-            <div class="pure-u-1 pure-u-md-1-4">
-            </div>
-            <div class="pure-u-1 pure-u-md-1-4 footer-links">
-                <h3>Links</h3>
-                <ul>
-                    <li>{{ link_page('contact', 'Contact') }}</li>
+        <div class="footer-grid">
+            <section class="footer-col">
+                <h2>About this site</h2>
+                <p>{{ site.data.site.tagline }}</p>
+                <p>Built with Herbie CMS and plain CSS.</p>
+            </section>
+            <section class="footer-col">
+                <h2>Explore</h2>
+                <ul class="footer-links">
+                    <li>{{ link_page('blog', 'Blog') }}</li>
+                    <li>{{ link_page('blog/archive', 'Archive') }}</li>
+                    <li>{{ link_page('blog/author', 'Authors') }}</li>
+                    <li>{{ link_page('blog/category', 'Categories') }}</li>
+                    <li>{{ link_page('blog/tag', 'Tags') }}</li>
                     <li>{{ link_page('search', 'Search') }}</li>
                 </ul>
-            </div>
-            <div class="pure-u-1 pure-u-md-1-4">
-                <h3>Code</h3>
-                <ul>
-                    <li>{{ link_page('https://github.com/getherbie/herbie', 'Herbie CMS at GitHub', {target:"_blank"}) }}</li>
-                    <li>{{ link_page('https://packagist.org/packages/getherbie/herbie', 'Herbie CMS at Packagist', {target:"_blank"}) }}</li>
+            </section>
+            <section class="footer-col">
+                <h2>Project</h2>
+                <ul class="footer-links">
+                    <li>{{ link_page('https://github.com/getherbie/start-website', 'Kickstarter on GitHub', {target: '_blank'}) }}</li>
+                    <li>{{ link_page('https://github.com/getherbie/herbie', 'Herbie on GitHub', {target: '_blank'}) }}</li>
+                    <li>{{ link_page('https://herbie.tebe.ch', 'Herbie website', {target: '_blank'}) }}</li>
+                    <li>{{ link_page('blog/feed.xml', 'Atom feed') }}</li>
                 </ul>
-            </div>
+            </section>
         </div>
-        <hr>
-        <div class="pure-g">
-            <div class="pure-u-1 footer-copyright">
-                &copy; 2015 - {{ "now"|date("Y") }} Handmade with Herbie CMS
-            </div>
+        <div class="footer-bottom">
+            <p>&copy; {{ 'now'|date('Y') }} {{ site.data.site.title }} &middot; Theme: {{ site.theme }}</p>
+            <p>Made with Herbie CMS</p>
         </div>
     </div>
-</div>
+</footer>
+
 {{ js_out() }}
 </body>
 </html>

@@ -1,0 +1,27 @@
+<section class="widget">
+    <h2 class="widget__title">Categories</h2>
+    <ul class="widget__list">
+        {% for category in blog_terms(site.page_list, 'categories') %}
+            <li><a href="{{ url_rel('blog/category/' ~ category|lower) }}">{{ category }}</a></li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section class="widget">
+    <h2 class="widget__title">Tags</h2>
+    <ul class="widget__list widget__list--inline">
+        {% for tag in blog_terms(site.page_list, 'tags') %}
+            <li><a class="pill pill--tag" href="{{ url_rel('blog/tag/' ~ tag) }}">#{{ tag }}</a></li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section class="widget">
+    <h2 class="widget__title">More from the blog</h2>
+    <ul class="widget__list">
+        <li>{{ link_page('blog', 'All posts') }}</li>
+        <li>{{ link_page('blog/archive', 'Archive') }}</li>
+        <li>{{ link_page('blog/author', 'Authors') }}</li>
+        <li>{{ link_page('blog/feed.xml', 'Atom feed') }}</li>
+    </ul>
+</section>

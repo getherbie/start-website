@@ -1,8 +1,32 @@
 <?php
 
+// The active theme can be changed with the theme switcher in the site header.
+// The choice is stored in a cookie so it survives navigation and reloads.
+$siteData = json_decode((string)@file_get_contents(__DIR__ . '/../data/site.json'), true);
+$themes = is_array($siteData) && isset($siteData['themes']) && is_array($siteData['themes'])
+    ? array_values(array_filter($siteData['themes'], is_string(...)))
+    : ['default'];
+
+$theme = 'default';
+if (isset($_GET['theme']) && is_string($_GET['theme']) && in_array($_GET['theme'], $themes, true)) {
+    $theme = $_GET['theme'];
+    if (!headers_sent()) {
+        $cookiePath = dirname($_SERVER['SCRIPT_NAME'] ?? '/');
+        setcookie('herbie_theme', $theme, [
+            'expires' => time() + 60 * 60 * 24 * 365,
+            'path' => $cookiePath === '' || $cookiePath === '/' ? '/' : rtrim($cookiePath, '/'),
+            'samesite' => 'Lax',
+        ]);
+    }
+} elseif (isset($_COOKIE['herbie_theme']) && is_string($_COOKIE['herbie_theme']) && in_array($_COOKIE['herbie_theme'], $themes, true)) {
+    $theme = $_COOKIE['herbie_theme'];
+}
+
 return [
     'language' => 'en',
     'locale' => 'en_EN',
+    'theme' => $theme,
+    'themeParent' => 'default',
     'enabledPlugins' => 'twig,markdown,imagine,search,contact',
     'plugins' => [
         'contact' => [

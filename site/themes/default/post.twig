@@ -1,0 +1,66 @@
+{% extends "main.twig" %}
+
+{% block content %}
+    {% set author = query(site.page_list).where('type=author').where('author_id=' ~ page.author_id).one() %}
+    <div class="container page-section">
+        <div class="layout-content layout-content--article">
+            <article class="post content">
+                <header class="post__header">
+                    <p class="post__meta">
+                        <time datetime="{{ page.date|date('Y-m-d') }}">{{ page.date|date('F j, Y') }}</time>
+                        {% if author %}<span class="post-card__sep">&middot;</span> by <a href="{{ url_rel(author.route) }}">{{ author.title }}</a>{% endif %}
+                        {% for category in page.categories %}
+                            <span class="post-card__sep">&middot;</span> <a href="{{ url_rel('blog/category/' ~ category|lower) }}">{{ category }}</a>
+                        {% endfor %}
+                    </p>
+                    <h1>{{ page.title }}</h1>
+                    {% if page.abstract %}<p class="post__abstract">{{ page.abstract }}</p>{% endif %}
+                </header>
+
+                <div class="post__body">
+                    {{ content.default|raw }}
+                </div>
+
+                <footer class="post__footer">
+                    {% if page.tags %}
+                        <ul class="tag-list">
+                            {% for tag in page.tags %}
+                                <li><a class="pill pill--tag" href="{{ url_rel('blog/tag/' ~ tag) }}">#{{ tag }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    {% if author %}
+                        <section class="author-card">
+                            <div class="author-card__avatar" aria-hidden="true">{{ author.initials }}</div>
+                            <div>
+                                <h2 class="author-card__name">Written by {{ link_page(author.route, author.title) }}</h2>
+                                <p class="author-card__bio">{{ author.bio }}</p>
+                                <p class="author-card__links">
+                                    {% if author.email %}<a href="mailto:{{ author.email }}">Email</a>{% endif %}
+                                    {% if author.website %}<a href="{{ author.website }}" target="_blank" rel="noopener">Website</a>{% endif %}
+                                    {{ link_page('blog/author', 'All authors') }}
+                                </p>
+                            </div>
+                        </section>
+                    {% endif %}
+                </footer>
+            </article>
+
+            <aside class="sidebar">
+                {{ include('includes/blog-nav.twig') }}
+                <section class="widget">
+                    <h2 class="widget__title">More posts</h2>
+                    <div class="widget__posts">
+                        {% for item in query(site.page_list).where('type=post').where('route!=' ~ page.route).order('-date').limit(4).all() %}
+                            <article class="post-card post-card--small">
+                                <h3 class="post-card__title">{{ link_page(item.route, item.title) }}</h3>
+                                <p class="post-card__meta"><time datetime="{{ item.date|date('Y-m-d') }}">{{ item.date|date('M j, Y') }}</time></p>
+                            </article>
+                        {% endfor %}
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </div>
+{% endblock %}
