@@ -79,10 +79,15 @@
 }
 
 .theme-fab__panel .theme-switcher__link {
-    flex: 1;
+    flex: 0 1 auto;
     padding: 0.15rem 0;
-    border-radius: var(--radius);
+    border-radius: 999px;
     text-align: left;
+}
+
+.theme-fab__panel .theme-switcher__link.is-active {
+    padding-inline: 0.5rem;
+    margin-inline-start: -0.5rem;
 }
 
 .theme-switcher__download {
@@ -97,9 +102,11 @@
     text-decoration: none;
 }
 
-.theme-switcher__download:hover {
+.theme-switcher__download:hover,
+.theme-switcher__download:focus-visible {
     color: var(--accent);
     border-color: var(--accent);
+    text-decoration: none;
 }
 
 .theme-switcher__description {

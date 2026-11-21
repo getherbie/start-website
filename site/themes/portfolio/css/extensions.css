@@ -59,8 +59,8 @@
 }
 
 .hero--portfolio .hero__inner {
-    max-width: 100%;
-    margin: 0;
+    max-width: var(--max-width);
+    margin: 0 auto;
     text-align: left;
 }
 
@@ -68,6 +68,11 @@
     max-width: 14ch;
     font-size: clamp(2.5rem, 7vw, 4.5rem);
     font-weight: 800;
+}
+
+/* The base stylesheet centres this paragraph; the portfolio hero is left-aligned. */
+.hero--portfolio .hero__text {
+    margin-inline: 0;
 }
 
 .hero--portfolio .hero__actions {
