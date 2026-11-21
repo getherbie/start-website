@@ -1,0 +1,35 @@
+---
+title: Atom feed
+content_type: application/atom+xml
+keep_extension: true
+layout: ''
+cached: false
+hidden: true
+no_search: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>{{ site.data.site.title }} Blog</title>
+    <subtitle>{{ site.data.site.description }}</subtitle>
+    <link href="{{ url_abs('blog/feed.xml') }}" rel="self" />
+    <link href="{{ url_abs('blog') }}" />
+    <id>{{ url_abs('blog') }}</id>
+    <updated>{{ 'now'|date('c') }}</updated>
+{% for post in query(site.page_list).where('type=post').order('-date').all() %}
+    <entry>
+        <title>{{ post.title }}</title>
+        <link href="{{ url_abs(post.route) }}" />
+        <id>{{ url_abs(post.route) }}</id>
+        <published>{{ post.date|date('c') }}</published>
+        <updated>{{ post.date|date('c') }}</updated>
+        <summary>{{ post.abstract }}</summary>
+        <author><name>{{ post.authors|first }}</name></author>
+{% for term in post.categories %}
+        <category term="{{ term }}" />
+{% endfor %}
+{% for term in post.tags %}
+        <category term="{{ term }}" />
+{% endfor %}
+    </entry>
+{% endfor %}
+</feed>

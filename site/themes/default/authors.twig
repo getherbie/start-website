@@ -1,0 +1,26 @@
+{% extends "main.twig" %}
+
+{% block content %}
+    <div class="container page-section">
+        <div class="content content--narrow">
+            {{ content.default|raw }}
+
+            <div class="card-grid">
+                {% for id, author in site.data.authors %}
+                    {% set authorRoute = 'blog/author/' ~ id %}
+                    <section class="card author-card">
+                        {{ image('media/' ~ author.avatar, {class: 'author-avatar', alt: 'Illustrated portrait of ' ~ author.title}) }}
+                        <div>
+                            <h2>{{ link_page(authorRoute, author.title) }}</h2>
+                            <p class="eyebrow">{{ author.role }}</p>
+                            <p>{{ author.bio }}</p>
+                            <p>{{ link_page(authorRoute, 'View posts by ' ~ author.title) }}</p>
+                        </div>
+                    </section>
+                {% endfor %}
+            </div>
+
+            <p class="content__more">{{ link_page('blog', 'Back to the blog') }}</p>
+        </div>
+    </div>
+{% endblock %}

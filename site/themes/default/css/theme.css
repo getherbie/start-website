@@ -1,0 +1,7 @@
+/* Default theme. The design tokens live in styles.css; child themes override
+   them in their own css/theme.css file. */
+
+/* A calmer hero than the bright turquoise in the shared stylesheet. */
+:root {
+    --hero-bg: #0f766e;
+}

@@ -1,0 +1,28 @@
+{
+  "explore": [
+    { "route": "blog", "label": "Blog" },
+    { "route": "blog/archive", "label": "Archive" },
+    { "route": "blog/author", "label": "Authors" },
+    { "route": "blog/category", "label": "Categories" },
+    { "route": "blog/tag", "label": "Tags" },
+    { "route": "search", "label": "Search" }
+  ],
+  "project": [
+    { "route": "https://github.com/getherbie/start-website", "label": "Herbie Website Starter on GitHub", "target": "_blank" },
+    { "route": "https://github.com/getherbie/herbie", "label": "Herbie on GitHub", "target": "_blank" },
+    { "route": "https://herbie.tebe.ch", "label": "Herbie website", "target": "_blank" },
+    { "route": "blog/feed.xml", "label": "Atom feed" }
+  ],
+  "docsMore": [
+    { "route": "blog/archive", "label": "Archive" },
+    { "route": "blog/category", "label": "Categories" },
+    { "route": "blog/tag", "label": "Tags" },
+    { "route": "blog/feed.xml", "label": "Atom feed" }
+  ],
+  "blogMore": [
+    { "route": "blog", "label": "All posts" },
+    { "route": "blog/archive", "label": "Archive" },
+    { "route": "blog/author", "label": "Authors" },
+    { "route": "blog/feed.xml", "label": "Atom feed" }
+  ]
+}

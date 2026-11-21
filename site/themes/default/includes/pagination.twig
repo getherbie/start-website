@@ -1,0 +1,25 @@
+{% if pagination.lastPage > 1 %}
+    <nav class="pagination" aria-label="Blog pagination">
+        {% if pagination.currentPage > pagination.firstPage %}
+            <a class="pagination__link" href="{{ url_rel(page.route) }}?page={{ pagination.previousPage }}" rel="prev">&larr; Previous</a>
+        {% else %}
+            <span class="pagination__link is-disabled">&larr; Previous</span>
+        {% endif %}
+
+        <span class="pagination__pages">
+            {% for number in range(pagination.firstPage, pagination.lastPage) %}
+                {% if number == pagination.currentPage %}
+                    <span class="pagination__page is-current" aria-current="page">{{ number }}</span>
+                {% else %}
+                    <a class="pagination__page" href="{{ url_rel(page.route) }}?page={{ number }}">{{ number }}</a>
+                {% endif %}
+            {% endfor %}
+        </span>
+
+        {% if pagination.currentPage < pagination.lastPage %}
+            <a class="pagination__link" href="{{ url_rel(page.route) }}?page={{ pagination.nextPage }}" rel="next">Next &rarr;</a>
+        {% else %}
+            <span class="pagination__link is-disabled">Next &rarr;</span>
+        {% endif %}
+    </nav>
+{% endif %}

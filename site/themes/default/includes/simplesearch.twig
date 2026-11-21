@@ -1,27 +1,8 @@
-<div class="sidebar-simplesearch">
-    <form class="pure-form" action="{{ url_rel('search') }}" method="get">
-        <input class="pure-input-1" type="text" name="query" value="" placeholder="Search website...">
-        <button type="submit"><i class="fa fa-search"></i></button>
+<section class="widget widget--search">
+    <h2 class="widget__title">Search this site</h2>
+    <form class="simplesearch" action="{{ url_rel('search') }}" method="get" role="search">
+        <label class="visually-hidden" for="sidebar-search">Search term</label>
+        <input id="sidebar-search" type="search" name="query" placeholder="Search website...">
+        <button type="submit" aria-label="Search">Search</button>
     </form>
-</div>
-<style>
-    .sidebar-simplesearch {
-        position: relative;
-        margin-bottom: 2.5em;
-        white-space: nowrap;
-    }
-
-    .sidebar-simplesearch input[type=text] {
-        padding: 0.25em 0.3em;
-        color: #666;
-    }
-
-    .sidebar-simplesearch button {
-        padding: 0.25em 0.3em;
-        border: none;
-        background: none;
-        position: absolute;
-        right: 0.25em;
-        color: #666;
-    }
-</style>
+</section>

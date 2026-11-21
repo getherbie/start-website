@@ -1,5 +1,5 @@
 name: CI
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 jobs:
   install:
     name: Install project
@@ -33,3 +33,99 @@ jobs:
 
       - name: Install dependencies
         run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+  smoke:
+    name: Smoke tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, gd
+
+      - name: Install dependencies
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+      - name: Prepare test config
+        run: |
+          sed -e "s|<plugin_contact_recipient>|test@example.com|g" \
+              -e "s|<plugin_contact_csrf_secret>|test-csrf-secret|g" \
+              -e "s|<plugin_contact_captcha_secret>|test-captcha-secret|g" \
+              -e "s|<plugin_contact_smtp_host>|localhost|g" \
+              -e "s|<plugin_contact_smtp_username>||g" \
+              -e "s|<plugin_contact_smtp_password>||g" \
+              site/config/main.dist.php > site/config/main.php
+
+      - name: Start web server
+        working-directory: web
+        run: |
+          php -S 127.0.0.1:8888 index.php > /tmp/herbie-smoke-server.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -fsS -o /dev/null http://127.0.0.1:8888/index.php/; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/herbie-smoke-server.log
+          exit 1
+
+      - name: Run smoke tests
+        run: php tests/smoke.php
+
+  publish:
+    name: CD - Push to server
+    needs: [install, smoke]
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP and Composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer:v2
+          ini-values: register_argc_argv=On
+
+      - name: Install PHP dependencies
+        run: composer install --no-dev --prefer-dist --no-progress --optimize-autoloader
+
+      - name: Configure SMTP secrets
+        run: |
+          sed -i "s|<plugin_contact_smtp_host>|${{ secrets.SMTP_HOST }}|g" site/config/main.dist.php
+          sed -i "s|<plugin_contact_smtp_username>|${{ secrets.SMTP_USERNAME }}|g" site/config/main.dist.php
+          sed -i "s|<plugin_contact_smtp_password>|${{ secrets.SMTP_PASSWORD }}|g" site/config/main.dist.php
+          sed -i "s|<plugin_contact_recipient>|${{ secrets.SMTP_RECIPIENT }}|g" site/config/main.dist.php
+          sed -i "s|<plugin_contact_csrf_secret>|$(openssl rand -hex 32)|g" site/config/main.dist.php
+          sed -i "s|<plugin_contact_captcha_secret>|$(openssl rand -hex 32)|g" site/config/main.dist.php
+
+      - name: Deploy main.php to site config
+        run: cp site/config/main.dist.php site/config/main.php
+
+      # The project root is the deploy root: no `website/` subfolder to strip,
+      # and web/index.php works on Apache as-is (the built-in-server helper
+      # returns early outside the CLI server). main.php is generated above so
+      # the uploaded site/ directory contains the final configuration.
+      #
+      # Required: variables SSH_HOST and SSH_TARGET; secrets SSH_USERNAME and
+      # SSH_PRIVATE_KEY (the private key; its public half goes into
+      # ~/.ssh/authorized_keys). Optional secrets: SSH_KEY_PASSPHRASE,
+      # SSH_FINGERPRINT.
+      - name: Deploy to server via SSH key
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ vars.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          # passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
+          # fingerprint: ${{ secrets.SSH_FINGERPRINT }}
+          port: 22
+          source: "composer.json,composer.lock,site,vendor,web"
+          target: ${{ vars.SSH_TARGET }}
+          rm: true
+          strip_components: 0

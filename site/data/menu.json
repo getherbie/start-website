@@ -1,11 +1,15 @@
 [
   {
-    "route": "services",
-    "label": "Services"
+    "route": "features",
+    "label": "Features"
   },
   {
-    "route": "products",
-    "label": "Products"
+    "route": "getting-started",
+    "label": "Getting Started"
+  },
+  {
+    "route": "blog",
+    "label": "Blog"
   },
   {
     "route": "about",

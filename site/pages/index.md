@@ -3,14 +3,40 @@ title: Home
 layout: home
 ---
 
+Herbie Website Starter gives you a working [Herbie CMS](https://github.com/getherbie/herbie)
+website from the first minute: example pages, a small blog, a contact form, search and
+seven themes you can switch right in the browser. All content lives in plain Markdown
+files, so you can edit it with any text editor — no database required.
+
 --- left ---
 
-## Vestibulum ut eros id diam viverra malesuada
+## Ready out of the box
 
-In mollis luctus libero nec euismod. Proin pellentesque rutrum tortor id venenatis. Integer eu lorem quis odio lacinia sollicitudin. Aenean leo urna, dictum at adipiscing et, posuere eget ipsum. Cras id dolor est. Curabitur at lorem eget neque gravida imperdiet nec quis lacus. Proin et facilisis justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse ut mauris vel est cursus ornare non id nisl. Aenean porttitor fringilla lectus, vitae lobortis nisi interdum id. Nullam semper, ante id dictum consectetur, elit velit accumsan urna, eu faucibus lectus justo id nibh.
+You get more than an empty skeleton. The site ships with a home page, feature and
+getting-started guides, an about page, a contact form with CSRF protection and an
+ALTCHA captcha, a site search and a complete example blog with posts, authors,
+categories and tags.
+
+Use the theme switcher in the bottom-right corner to see how the same content looks in the
+`default`, `dark`, `journal`, `spotlight`, `docs`, `portfolio` and `high-contrast` themes. Your choice is remembered
+in a cookie.
 
 --- right ---
 
-## Pellentesque mi mi, pretium in scelerisque nec, facilisis id massa
+## Made for editing
 
-Vestibulum ut eros id diam viverra malesuada. Praesent vel odio odio. Nulla molestie, lectus ut vulputate posuere, sapien felis pretium magna, feugiat laoreet arcu mauris a nibh. Etiam sed tellus metus. Nam vehicula justo in odio venenatis lobortis et vel ipsum. Fusce facilisis sem non sem dictum eu congue diam euismod. Aenean at lectus nulla, nec dignissim elit. Donec viverra nunc sed tortor vehicula eu feugiat dui varius. Aenean orci tellus, adipiscing consequat bibendum placerat, molestie eu lectus. Nulla quis nunc orci.
+Pages are Markdown files with a small YAML header. Add a file to `site/pages` and it
+becomes a page; add a dated file to `site/pages/blog` and it becomes a blog post.
+Layouts are Twig templates in `site/themes`, assets are published automatically to
+`web/assets`.
+
+The styling is plain, dependency-free CSS using custom properties. There is no Pure
+CSS, no framework and no external icon font to load.
+
+--- footer ---
+
+### Start with the basics
+
+Read {{ link_page('getting-started', 'Getting Started') }} to learn where things live,
+then browse {{ link_page('blog', 'the blog') }} for longer examples. The
+{{ link_page('contact', 'contact page') }} shows the form and captcha in action.

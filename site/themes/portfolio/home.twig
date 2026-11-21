@@ -1,0 +1,43 @@
+{% extends "main.twig" %}
+
+{# Example projects for the demo. In a real portfolio these would come from
+   Markdown files or site data; keeping them here makes the theme self-contained. #}
+{% set projects = [
+    {title: 'Northwind', category: 'Identity', text: 'A calm visual system for a coastal research lab.'},
+    {title: 'Fieldnotes', category: 'Editorial', text: 'An offline-first journal for careful observers.'},
+    {title: 'Kite', category: 'Product', text: 'A focused dashboard for small delivery teams.'},
+    {title: 'Meridian', category: 'Web', text: 'A quiet portfolio for a collective of makers.'}
+] %}
+
+{% block content %}
+    <section class="hero hero--portfolio">
+        <div class="container hero__inner">
+            <p class="hero__eyebrow">Selected work</p>
+            <h1 class="hero__title">Things we have made.</h1>
+            <p class="hero__text">A small collection of projects — identities, products and pages — built with the same care we put into this starter.</p>
+        </div>
+    </section>
+
+    <div class="container page-section">
+        <div class="lead content">
+            {{ content.default|raw }}
+        </div>
+
+        <div class="project-grid">
+            {% for project in projects %}
+                <article class="project-card">
+                    <div class="project-card__thumb" aria-hidden="true"></div>
+                    <div class="project-card__body">
+                        <p class="project-card__category">{{ project.category }}</p>
+                        <h2 class="project-card__title">{{ project.title }}</h2>
+                        <p class="project-card__text">{{ project.text }}</p>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+
+        <section class="content callout">
+            {{ content.footer|raw }}
+        </section>
+    </div>
+{% endblock %}

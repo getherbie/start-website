@@ -1,0 +1,43 @@
+{% extends "main.twig" %}
+
+{% block content %}
+    <div class="container page-section">
+        <div class="layout-content">
+            <div class="content">
+                <header class="author-hero">
+                    {{ image('media/' ~ page.avatar, {class: 'author-avatar author-avatar--large', alt: 'Illustrated portrait of ' ~ page.title}) }}
+                    <div>
+                        <p class="eyebrow">{{ page.role }}</p>
+                        <h1>{{ page.title }}</h1>
+                        <p class="author-hero__bio">{{ page.bio }}</p>
+                        <p class="author-card__links">
+                            {% if page.email %}<a href="mailto:{{ page.email }}">Email {{ page.title }}</a>{% endif %}
+                            {% if page.website %}<a href="{{ page.website }}" target="_blank" rel="noopener">Website</a>{% endif %}
+                            {% if page.github %}<a href="{{ page.github }}" target="_blank" rel="noopener">GitHub</a>{% endif %}
+                        </p>
+                    </div>
+                </header>
+
+                {{ content.default|raw }}
+
+                {% set pagination = query(site.page_list).where('type=post').where('author_id=' ~ page.author_id).order('-date').paginate(6) %}
+                {% do pagination.setCurrentPage(blog_page_number()) %}
+                {% set posts = pagination.items %}
+
+                <h2>Posts by {{ page.title }}</h2>
+                <div class="post-list">
+                    {% for post in posts %}
+                        {{ include('includes/post-card.twig', {post: post}) }}
+                    {% endfor %}
+                </div>
+
+                {{ include('includes/pagination.twig') }}
+
+                <p class="content__more">{{ link_page('blog/author', 'All authors') }} &middot; {{ link_page('blog', 'All posts') }}</p>
+            </div>
+            <aside class="sidebar">
+                {{ include('includes/blog-nav.twig') }}
+            </aside>
+        </div>
+    </div>
+{% endblock %}

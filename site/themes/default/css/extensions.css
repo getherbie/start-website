@@ -1,0 +1,26 @@
+/* Extension hook. Child themes place their differences from css/styles.css
+   here; themes without this file inherit this one from the parent theme. */
+
+/* Slightly smaller menu button with clear space around it and between the bars. */
+.nav-toggle {
+    gap: 4px;
+    width: 2.4rem;
+    height: 2.2rem;
+    min-height: 2.4rem;
+    margin: 0.5rem 0;
+    padding: 0.65rem 0.5rem;
+}
+
+/* The generic button hover paints the surface with --accent-hover, so the bars
+   need the token meant for content on accent surfaces. */
+.nav-toggle:hover span {
+    background: var(--accent-button-text);
+}
+
+/* Drop the first word of the wordmark on tiny screens so brand and menu button
+   fit on one line. */
+@media (max-width: 400px) {
+    .brand__prefix {
+        display: none;
+    }
+}
