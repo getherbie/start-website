@@ -1,0 +1,32 @@
+/* High contrast theme: a black/white/yellow palette on top of the shared
+   stylesheet. Layouts and templates are inherited from `default`. */
+:root {
+    color-scheme: dark;
+
+    --page-bg: #000000;
+    --surface: #000000;
+    --surface-alt: #0a0a0a;
+    --text: #ffffff;
+    --text-muted: #ffffff;
+    --heading: #ffffff;
+    --border: #ffffff;
+
+    --accent: #ffeb00;
+    --accent-hover: #ffffff;
+    --accent-contrast: #000000;
+    --accent-button: #ffeb00;
+    --accent-button-text: #000000;
+
+    --hero-bg: #000000;
+    --hero-text: #ffffff;
+    --footer-bg: #000000;
+    --footer-text: #ffffff;
+    --footer-heading: #ffeb00;
+    --footer-border: #ffffff;
+
+    --code-bg: #000000;
+    --code-text: #ffffff;
+    --error: #ff9d9d;
+
+    --shadow: none;
+}

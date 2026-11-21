@@ -12,7 +12,7 @@ abstract: A quick tour of what you get when you create a site from Herbie Websit
 
 Welcome! This site is more than an empty skeleton. It is a small, working website
 that you can use as the starting point for your own project. You get example pages,
-a contact form, site search, six themes and a blog — all built with Herbie CMS and
+a contact form, site search, seven themes and a blog — all built with Herbie CMS and
 plain text files.
 
 ## No database, no build step

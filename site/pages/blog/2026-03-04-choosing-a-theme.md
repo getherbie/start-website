@@ -7,17 +7,17 @@ author_id: jane-doe
 authors: [Jane Doe]
 categories: [Design]
 tags: [themes, design]
-abstract: How the six bundled themes work, what theme inheritance means in Herbie and how to add your own colour scheme or a complete new design.
+abstract: How the seven bundled themes work, what theme inheritance means in Herbie and how to add your own colour scheme or a complete new design.
 ---
 
 A starter should look decent on the first launch and still be easy to change
-later. This site ships with six themes: `default`, `dark`, `journal`,
-`spotlight`, `docs` and `portfolio`. Use the switcher in the bottom-right corner to compare
+later. This site ships with seven themes: `default`, `dark`, `journal`,
+`spotlight`, `docs`, `portfolio` and `high-contrast`. Use the switcher in the bottom-right corner to compare
 them without touching any code.
 
 ## One set of templates
 
-Four of the six themes share the same Twig layouts. Every child theme has `default` as its
+Five of the seven themes share the same Twig layouts. Every child theme has `default` as its
 `themeParent`, so Herbie looks for a template in the active theme first and falls
 back to the default theme when it is not there. The result is that a child theme can
 be as small as a single CSS file — or as large as a whole new design.
@@ -38,7 +38,10 @@ the values it wants to change:
 ```
 
 That is the whole dark theme. Layouts, spacing and typography stay in the parent
-stylesheet, so the themes cannot drift apart.
+stylesheet, so the themes cannot drift apart. `high-contrast` goes the same way:
+its palette is tokens, with a few extra rules for underlined links, strong borders
+and thick focus rings. It changes no markup, so accessibility stays a variant and
+not a second design.
 
 ## A theme with its own design
 
