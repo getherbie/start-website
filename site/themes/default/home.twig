@@ -1,50 +1,34 @@
 {% extends "main.twig" %}
 
 {% block content %}
-
-    <div class="pure-g slider">
-        <div class="container">
-            <div class="pure-g">
-                <div class="pure-u-1">
-                    <h2 class="brand-tagline"><strong>Congrats!</strong> Your Herbie CMS website is running.</h2>
-                </div>
+    <section class="hero">
+        <div class="container hero__inner">
+            <p class="hero__eyebrow">Herbie Website Starter</p>
+            <h1 class="hero__title">Your next site starts here.</h1>
+            <p class="hero__text">Pages, a blog, seven themes, search and a contact form — all in plain Markdown and Twig.</p>
+            <div class="hero__actions">
+                <a class="button" href="{{ url_rel('getting-started') }}">Get started</a>
+                <a class="button button--outline" href="{{ url_rel('blog') }}">Read the blog</a>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="content-container">
-        <div class="container">
-            <div class="pure-g content">
-                <div class="pure-u-1 content lead">
-                    {{ content.default|raw }}
-                </div>
-            </div>
-
-            <div class="pure-g content two-col">
-                <div class="pure-u-1-2">
-                    <div class="box box-l">{{ content.left|raw }}</div>
-                </div>
-                <div class="pure-u-1-2">
-                    <div class="box box-r">{{ content.right|raw }}</div>
-                </div>
-            </div>
-
-            <div class="pure-g">
-                <div class="pure-u-1 content">
-                    {{ content.footer|raw }}
-                </div>
-            </div>
+    <div class="container page-section">
+        <div class="lead content">
+            {{ content.default|raw }}
         </div>
+
+        <div class="card-grid">
+            <section class="card">
+                {{ content.left|raw }}
+            </section>
+            <section class="card">
+                {{ content.right|raw }}
+            </section>
+        </div>
+
+        <section class="content callout">
+            {{ content.footer|raw }}
+        </section>
     </div>
-
-    <style>
-        .box-l {
-            padding-right: 1em;
-        }
-
-        .box-r {
-            padding-left: 1em
-        }
-    </style>
-
 {% endblock %}

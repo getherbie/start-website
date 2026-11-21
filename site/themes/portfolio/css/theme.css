@@ -1,0 +1,40 @@
+/* Portfolio theme: a warm, gallery-like palette for showing off work.
+   Layouts and scripts are inherited from the default theme; this file supplies
+   the visual tokens, home.twig supplies the project grid. */
+:root {
+    color-scheme: light;
+
+    --page-bg: #faf8f5;
+    --surface: #ffffff;
+    --surface-alt: #f0ece6;
+    --text: #2c2a28;
+    --text-muted: #6c665f;
+    --heading: #171512;
+    --border: #e3ddd5;
+
+    --accent: #c2502f;
+    --accent-hover: #9c3d22;
+    --accent-contrast: #ffffff;
+    --accent-button: #c2502f;
+    --accent-button-text: #ffffff;
+
+    --hero-bg: #171512;
+    --hero-text: #faf8f5;
+
+    --footer-bg: #171512;
+    --footer-text: #c9c2b9;
+    --footer-heading: #ffffff;
+    --footer-border: rgba(255, 255, 255, 0.16);
+
+    --code-bg: #f0ece6;
+    --code-text: #2c2a28;
+    --error: #b23b3b;
+
+    --radius: 0.75rem;
+    --shadow: 0 10px 30px rgba(23, 21, 18, 0.08);
+    --max-width: 1180px;
+    --gap: 1.5rem;
+
+    --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --reading-width: 48rem;
+}

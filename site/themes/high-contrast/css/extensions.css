@@ -1,0 +1,84 @@
+/* High contrast theme: rules the token file cannot express. The shared menu
+   button rules are repeated here because a child theme replaces this hook. */
+
+.nav-toggle {
+    gap: 4px;
+    width: 2.4rem;
+    height: 2.2rem;
+    min-height: 2.4rem;
+    margin: 0.5rem 0;
+    padding: 0.65rem 0.5rem;
+    border-width: 2px;
+}
+
+.nav-toggle:hover span {
+    background: var(--accent-button-text);
+}
+
+@media (max-width: 400px) {
+    .brand__prefix {
+        display: none;
+    }
+}
+
+/* Links stay underlined so colour is never the only cue. */
+a {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+}
+
+a:hover,
+a:focus-visible {
+    text-decoration-thickness: 2px;
+}
+
+.button,
+.brand,
+.site-nav__link,
+.pill,
+.theme-switcher__link,
+a.pagination__link {
+    text-decoration: none;
+}
+
+.button--outline:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-contrast);
+}
+
+:focus-visible,
+.theme-fab__button:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.brand__mark > rect {
+    fill: var(--accent);
+}
+
+.brand__mark g {
+    fill: var(--accent-contrast);
+}
+
+.site-header {
+    border-bottom: 2px solid var(--accent);
+}
+
+.hero {
+    border-block: 3px solid var(--accent);
+}
+
+.hero__eyebrow {
+    opacity: 1;
+}
+
+.card,
+.callout,
+.pill {
+    border-width: 2px;
+}
+
+.site-footer {
+    border-top: 3px solid var(--accent);
+}

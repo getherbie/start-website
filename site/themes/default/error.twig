@@ -1,54 +1,27 @@
 {% extends "main.twig" %}
 
 {% block content %}
-    <div class="content-container">
-        <div class="container">
-            <div class="pure-g">
-                <div class="pure-u-1 content">
+    <div class="container page-section">
+        <div class="content content--narrow">
+            {% if error.code == 404 %}
+                <h1>Page not found</h1>
+                <p>Oops, something got wrong! The page or resource could not be found.</p>
+            {% else %}
+                <h1>Server Error</h1>
+                <p>An error occurred.</p>
+            {% endif %}
 
-                    {# render error according error code #}
-                    {% if error.code == 404 %}
+            <p>{{ link_page('index', 'Back to the home page') }} &middot; {{ link_page('search', 'Search this site') }}</p>
 
-                        <h1>Page not found</h1>
-                        <p>Oops, something got wrong! The page or resource could not be found.</p>
-
-                    {% else %}
-
-                        <h1>Server Error</h1>
-                        <p>An error occurred.</p>
-
-                    {% endif %}
-
-                    {# render error details in debug mode only #}
-
-                    {% if herbie_debug() %}
-
-                        <table class="pure-table pure-table-horizontal" width="100%" style="table-layout: fixed;">
-                            <tr>
-                                <td width="10%">Code</td>
-                                <td width="90%">{{ error.code }}</td>
-                            </tr>
-                            <tr>
-                                <td>Message</td>
-                                <td>{{ error.message }}</td>
-                            </tr>
-                            <tr>
-                                <td>File</td>
-                                <td>{{ error.file }}</td>
-                            </tr>
-                            <tr>
-                                <td>Line</td>
-                                <td>{{ error.line }}</td>
-                            </tr>
-                            <tr>
-                                <td>Trace</td>
-                                <td><div style="white-space: pre;overflow:auto">{{ error.traceAsString }}</div></td>
-                            </tr>
-                        </table>
-
-                    {% endif %}
-                </div>
-            </div>
+            {% if herbie_debug() %}
+                <table class="error-table">
+                    <tr><th>Code</th><td>{{ error.code }}</td></tr>
+                    <tr><th>Message</th><td>{{ error.message }}</td></tr>
+                    <tr><th>File</th><td>{{ error.file }}</td></tr>
+                    <tr><th>Line</th><td>{{ error.line }}</td></tr>
+                    <tr><th>Trace</th><td><pre>{{ error.traceAsString }}</pre></td></tr>
+                </table>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

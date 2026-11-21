@@ -7,11 +7,14 @@ nbproject
 # composer itself
 composer.phar
 
-# composer lock files
-composer.lock
-
 # composer vendor
 vendor/
 
 # mac DS_Store files
 .DS_Store
+
+# generated standalone theme exports
+/dist/
+
+# generated site configuration (see site/config/main.dist.php)
+/site/config/main.php

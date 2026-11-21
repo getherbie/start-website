@@ -1,0 +1,39 @@
+/* Journal theme: a warm, print-inspired palette. Layouts and scripts are
+   inherited from the default theme; this file supplies the visual tokens. */
+:root {
+    color-scheme: light;
+
+    --page-bg: #f7f4ed;
+    --surface: #fffdf8;
+    --surface-alt: #efe9dc;
+    --text: #2e2822;
+    --text-muted: #6d6459;
+    --heading: #17130f;
+    --border: #c9bfae;
+
+    --accent: #8a2b26;
+    --accent-hover: #5d1c18;
+    --accent-contrast: #fffdf8;
+    --accent-button: #8a2b26;
+    --accent-button-text: #fffdf8;
+
+    --hero-bg: transparent;
+    --hero-text: #17130f;
+
+    --footer-bg: #17130f;
+    --footer-text: #cfc6b8;
+    --footer-heading: #f7f4ed;
+    --footer-border: rgba(247, 244, 237, 0.22);
+
+    --code-bg: #efe9dc;
+    --code-text: #2e2822;
+    --error: #8a2b26;
+
+    --radius: 0;
+    --shadow: none;
+    --max-width: 1080px;
+    --gap: 2rem;
+
+    --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --reading-width: 46rem;
+}

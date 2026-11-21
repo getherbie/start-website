@@ -4,7 +4,9 @@ cached: false
 hidden: true
 ---
 
-<h1>Search</h1>
+# Search
+
+Search all pages and blog posts of this site. Try "theme", "Markdown" or "Herbie".
 
 {{ search_form() }}
 

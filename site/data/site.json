@@ -1,0 +1,23 @@
+{
+  "title": "Herbie Website Starter",
+  "tagline": "A complete small website with a blog, themes and search — ready in minutes.",
+  "description": "A starter website for Herbie CMS with example pages, a blog, selectable themes, contact form and search.",
+  "themes": [
+    "default",
+    "dark",
+    "journal",
+    "spotlight",
+    "docs",
+    "portfolio",
+    "high-contrast"
+  ],
+  "themeDescriptions": {
+    "default": "Light baseline with the shared layouts and styles.",
+    "dark": "Dark palette made from a single colour token file.",
+    "journal": "Serif reading column with hairline rules and editorial details.",
+    "spotlight": "Magazine-style cover hero and card grid.",
+    "docs": "Documentation shell with a top bar and fixed side navigation.",
+    "portfolio": "Dark project gallery with its own home grid.",
+    "high-contrast": "White and yellow on black, strong borders and focus rings."
+  }
+}
