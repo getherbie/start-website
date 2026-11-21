@@ -5,28 +5,22 @@
 
 # Herbie Website Starter
 
-> Bootstrap a Herbie website in no time – with Docker Compose or plain PHP 👌
+> Set up a Herbie website in minutes 👌
 
-Herbie Website Starter comes with seven themes, example pages, a small blog, and the plugins needed for contact forms and search.
+Seven themes, example pages, a small blog, contact form and site search.
 
-## What Herbie Website Starter Includes
+## What's Included
 
 * [Herbie CMS](https://github.com/getherbie/herbie) with Twig and Markdown
-* A Docker Compose setup with PHP 8.3 by default
-* Example pages with real content and a blog with posts, authors, categories, tags, archive and Atom feed
-* Seven selectable themes (`default`, `dark`, `journal`, `spotlight`, `docs`, `portfolio`, `high-contrast`) with a floating theme switcher in the bottom-right corner
-* Dependency-free CSS with custom properties — no Pure CSS and no external icon font
-* A contact form with CSRF token and ALTCHA captcha
-* A site search with a sidebar form
-* `noindex, nofollow` by default so the site stays out of search results
-
-## Supported PHP Versions
-
-8.3 / 8.4 / 8.5 / 8.6
+* Docker Compose with PHP 8.3 by default (8.3–8.6 supported)
+* Example pages and a blog with posts, authors, categories, tags, archive and Atom feed
+* Seven themes and a floating switcher: `default`, `dark`, `journal`, `spotlight`, `docs`, `portfolio`, `high-contrast`
+* Dependency-free CSS with custom properties — no framework, no icon font
+* Contact form with CSRF token and ALTCHA captcha
+* Site search with a sidebar form
+* `noindex, nofollow` by default
 
 ## Quick Start
-
-Create your own Herbie website with Docker (recommended):
 
     docker run --rm -v "$PWD":/app composer create-project --ignore-platform-reqs getherbie/start-website mywebsite
     cd mywebsite
@@ -41,22 +35,12 @@ Open <http://localhost:8888>.
     cd mywebsite/web
     php -S localhost:8888 index.php
 
-Optional: `HERBIE_DEBUG=1 php -S localhost:8888 index.php` for debug output, or `XDEBUG_MODE=debug php -S localhost:8888 index.php` for Xdebug.
+Optional: `HERBIE_DEBUG=1 php -S localhost:8888 index.php` for debug output, or
+`XDEBUG_MODE=debug php -S localhost:8888 index.php` for Xdebug.
 
 </details>
 
 ## Themes
-
-A small button in the bottom-right corner opens the theme switcher with `default`,
-`dark`, `journal`, `spotlight`, `docs`, `portfolio` and `high-contrast`. It is a plain `<details>` element, so it
-works without JavaScript and takes no space in any design. It keeps the current
-page and query parameters such as pagination and search terms when switching;
-the choice is stored in a cookie, so it survives navigation and reloads.
-The active theme is validated against the `themes` list in `site/data/site.json`;
-unknown values fall back to `default`.
-
-<details>
-<summary>Theme screenshots</summary>
 
 | | | |
 |:---:|:---:|:---:|
@@ -66,148 +50,89 @@ unknown values fall back to `default`.
 
 Click a screenshot to open the full-size version.
 
-</details>
+The bottom-right switcher is a plain `<details>` element: no JavaScript, no space
+in any design. It keeps the current URL and query parameters, stores the choice in
+a cookie, and validates it against `site/data/site.json` (unknown values fall back
+to `default`).
 
-Each switcher entry shows a short description from `themeDescriptions` in the same
-file and a `ZIP` link. The download serves the same self-contained folder as
-`php vendor/bin/herbie export-theme <name>`: the child theme overlaid on `default`,
-with no parent theme needed. The archive is created on the fly without a PHP zip
-extension.
+* `dark` — colour scheme; one `css/theme.css`.
+* `journal` — serif typography and a centred reading column.
+* `spotlight` — gradient hero and a card grid.
+* `docs` — top bar and fixed navigation rail via a `main.twig` override.
+* `portfolio` — dark gallery shell and a `home.twig` project grid.
+* `high-contrast` — white or yellow on black, strong borders and focus rings.
 
-All shared layouts, JavaScript and the base stylesheet live in
-`site/themes/default`. The config sets `themeParent` to `default`, so a child
-theme only supplies what differs. Assets are loaded in this order:
+Shared assets live in `site/themes/default`; children set `themeParent: default`
+and load `css/theme.css`, then `css/extensions.css`. To add a theme, create those
+CSS files and add the name to `site/data/site.json`. Copy a Twig template only if
+you need different markup.
 
-1. `css/styles.css` — the shared base, inherited by every theme
-2. `css/theme.css` — the theme's design tokens
-3. `css/extensions.css` — extra rules for that theme
-
-Themes without extra rules inherit `default/css/extensions.css`. The
-floating switcher has its own `default/css/switcher.css`, which children inherit the
-same way, so `css/styles.css` stays untouched.
-
-* `dark` is a colour scheme: one short `css/theme.css`.
-* `journal` adds serif typography, hairline rules and a centred reading column.
-* `spotlight`, inspired by Ghost's Casper theme, adds a gradient cover hero and a
-  card grid with CSS-only cover panels.
-* `docs`, inspired by Doks, also overrides `main.twig` with a top bar and a fixed
-  navigation rail; the page layouts still come from `default`.
-* `portfolio` pairs a dark gallery shell — sticky header, framed cards, gradient
-  covers — with its own `home.twig` project grid; all layouts stay inherited.
-* `high-contrast` puts white or yellow on black, with underlined links, strong
-  borders and thick focus rings; only CSS changes.
-
-`docs` shows an overridden site shell, `portfolio` an overridden page layout —
-together they cover both levels of template inheritance. No theme needs external
-images or fonts.
-
-To add your own theme:
-
-1. Create `site/themes/<name>/css/theme.css` with your token overrides.
-2. Add `css/extensions.css` for extra rules; leave it out to inherit the parent hook.
-3. Add `<name>` to the `themes` list in `site/data/site.json`.
-
-Copy a Twig template into your theme folder only if you need different markup;
-Herbie falls back to the parent theme for everything you do not override.
+Each switcher entry shows a description from `themeDescriptions` and a `ZIP` link
+with the same self-contained folder as the export command — created on the fly
+without a PHP zip extension.
 
 ### Exporting a standalone theme
-
-The source themes share files through `themeParent`. To get a folder that can be
-copied 1:1 into another project, materialise it:
 
 ```sh
 php vendor/bin/herbie export-theme journal    # or --all
 ```
 
-The result is written to `dist/themes/<name>/` (git-ignored). It contains every
-template, the script and all four CSS files, so no parent theme is needed. The
-export refuses to overwrite an existing folder; delete it first to refresh.
+The result is `dist/themes/<name>/`, a full copy with no parent theme needed.
+Delete an existing folder to refresh it.
 
-The author portraits are original, hand-written SVG illustrations in
-`site/media/img/authors/`. Each author's `avatar` attribute in
-`site/data/authors.json` points to one of these files (for example
-`img/authors/alex-example.svg`); the layouts render them as normal `<img>` elements via
-Herbie's `image()` function. `web/index.php` serves `site/media` at `/media/...`, so the
-files behave like ordinary static images. They are fictional characters, require no
-external assets and have no third-party license obligations.
-
-The link lists in `site/data/footer.json` feed the site footer, the docs sidebar's
-"More" section and the blog sidebar's "More from the blog" widget. Edit routes and
-labels there instead of in the Twig templates.
+Author portraits are hand-written SVGs in `site/media/img/authors/`, referenced by
+`avatar` in `site/data/authors.json`. Link lists for the footer and sidebars live
+in `site/data/footer.json`.
 
 ## Blog
 
-The blog is made of normal pages in `site/pages/blog`. A post is a Markdown file
-with `layout: post`, `type: post`, `date`, `author_id`, `categories`, `tags` and an
-`abstract`. New posts appear automatically in the index, archive, author pages,
-tag/category archives and the Atom feed. Longer lists are paginated with six posts
-per page (`?page=2`); the controls appear only when there is more than one page.
+Posts are Markdown files in `site/pages/blog` with `layout: post`, `type: post`,
+`date`, `author_id`, `categories`, `tags` and `abstract`. The index, archive,
+author, tag and category pages and the Atom feed are generated automatically;
+lists are paginated with six posts per page.
 
-Authors are entries in `site/data/authors.json`, keyed by the `author_id` used in
-posts. Add an author there and the profile page plus all bylines appear without a
-new Markdown file. Every blog route is generated at runtime: `site/config/main.php`
-rewrites `blog/author/…`, `blog/tag/…`, `blog/category/…`, `blog/archive`,
-`blog/author`, `blog/tag` and `blog/category` to the blog index, and the local
-`blog` plugin in `site/extend/plugins/blog` supplies the matching virtual page. The
-Atom feed is a normal page at `site/pages/blog/feed.xml`. No placeholder files are
-needed for authors, tags, categories or the archive.
-
-The `blog_terms()` Twig function in `site/extend/twig_functions` supplies the tag
-and category lists in the sidebar.
+Authors come from `site/data/authors.json` (keyed by `author_id`). Routes are
+provided by the local `blog` plugin and the URL rules in `site/config/main.php`;
+`blog_terms()` supplies the sidebar lists. The feed is a normal page at
+`site/pages/blog/feed.xml`.
 
 ## Reducing the starter
 
-The full example is the easiest way to see how the pieces fit together. If you only
-need part of it, remove files rather than wiring around them:
-
-**Blog only.** Delete the static pages `2-features.md`, `3-getting-started.md`,
-`4-about.md` and `9-contact.md` from `site/pages`, then remove their entries from
-`site/data/menu.json` and the link lists in `site/data/footer.json`.
-Replace `site/pages/index.md` with a short intro that links to the blog.
-
-**One page.** Delete `site/pages/blog/`, remove `blog` from `enabledPlugins` and the
-`components.urlManager.rules` in `site/config/main.php`, and drop the blog links
-from `site/data/menu.json` and `site/data/footer.json`. `site/pages/index.md` can then hold all
-your content; remove `layout: home` to use the plain layout instead of hero and
-cards.
+* **Blog only.** Delete the static pages `2-features.md`, `3-getting-started.md`,
+  `4-about.md` and `9-contact.md`, their menu entries in `site/data/menu.json` and
+  their link lists in `site/data/footer.json`. Replace `index.md` with a short
+  intro linking to the blog.
+* **One page.** Delete `site/pages/blog/`, remove `blog` from `enabledPlugins` and
+  `components.urlManager.rules` in `site/config/main.php`, and drop the blog links
+  from `site/data/menu.json` and `site/data/footer.json`. Remove `layout: home`
+  from `index.md` for the plain layout.
 
 Themes, CSS and the contact form stay the same in both variants.
 
 ## Deployment
 
-Pushes to `master` and `develop` run the smoke tests and then deploy over SSH
+Pushes to `master` and `develop` run the smoke tests, then deploy over SSH
 (see `.github/workflows/ci.yml`).
 
-**Repository variables**
+* **Variables:** `SSH_HOST`, `SSH_TARGET` — use a dedicated target directory; its
+  contents are replaced.
+* **Secrets:** `SSH_USERNAME`, `SSH_PRIVATE_KEY` (optionally `SSH_KEY_PASSPHRASE`,
+  `SSH_FINGERPRINT`), `SMTP_RECIPIENT`, `SMTP_HOST`, `SMTP_USERNAME`, `SMTP_PASSWORD`.
 
-- `SSH_HOST`, `SSH_TARGET` — server and target directory. Point `SSH_TARGET` at
-  a dedicated directory; the deploy replaces its contents.
-
-**Repository secrets**
-
-- `SSH_USERNAME`, `SSH_PRIVATE_KEY` — login and private half of a deploy key.
-  Optional: `SSH_KEY_PASSPHRASE` and `SSH_FINGERPRINT` for host verification.
-- `SMTP_RECIPIENT`, `SMTP_HOST`, `SMTP_USERNAME`, `SMTP_PASSWORD` — contact form
-  and mail delivery.
-
-**Deploy key**
+Create the deploy key outside the repository:
 
     ssh-keygen -t ed25519 -a 200 -C "github-actions@getherbie/start-website" -f ~/.ssh/start-website-deploy
 
-Add `~/.ssh/start-website-deploy.pub` to `~/.ssh/authorized_keys` on the hosting
-account and store the contents of `~/.ssh/start-website-deploy` in the
-`SSH_PRIVATE_KEY` secret. Keep the key outside the repository. The private key
-stays at GitHub, the public key goes to the server — no SSH password needed.
+Add `~/.ssh/start-website-deploy.pub` to the hosting account's
+`~/.ssh/authorized_keys` and store the private key in `SSH_PRIVATE_KEY`. No SSH
+password is needed.
 
-CI installs the dependencies with `--no-dev`, generates `site/config/main.php`
-from `main.dist.php` (including fresh CSRF and captcha secrets) and uploads only
-`composer.json`, `composer.lock`, `site`, `vendor` and `web`. Set the document
-root to `web/`. The PHP user needs write access to `site/runtime/cache`,
-`site/runtime/log` and `web/cache`.
+CI installs with `--no-dev`, generates `site/config/main.php` from
+`main.dist.php` (fresh CSRF/captcha secrets) and uploads `composer.json`,
+`composer.lock`, `site`, `vendor` and `web`. Document root: `web/`. Writable:
+`site/runtime/cache`, `site/runtime/log` and `web/cache`.
 
 ## Development
-
-Work on this repository with Docker (recommended):
 
     git clone https://github.com/getherbie/start-website.git
     cd start-website
@@ -216,17 +141,11 @@ Work on this repository with Docker (recommended):
 
 Open <http://localhost:8888>.
 
-Common tasks:
-
     docker compose run --rm install    # install Composer dependencies
     docker compose run --rm bash       # open a shell
 
-Use a different PHP version (default: 8.3):
-
-    PHP_VERSION=8.3 docker compose up website
-    PHP_VERSION=8.4 docker compose up website
-    PHP_VERSION=8.5 docker compose up website
-    PHP_VERSION=8.6 docker compose up website
+Set `PHP_VERSION` to 8.3–8.6 (default 8.3), e.g.
+`PHP_VERSION=8.6 docker compose up website`.
 
 <details>
 <summary>Without Docker (PHP & Composer required)</summary>
@@ -242,30 +161,23 @@ Use a different PHP version (default: 8.3):
 
 ## Smoke Tests
 
-With the site running locally, `php tests/smoke.php` checks every theme and route, the
-theme switcher, the imagine image cache and the standalone theme exports. Set
-`SMOKE_BASE_URL` if the site runs at another address. A local
-`site/config/main.php` must exist; CI creates it from `main.dist.php` with test
-values. The same checks run in CI.
+With the site running, `php tests/smoke.php` checks all themes and routes, the
+switcher, the image cache and the exports. Set `SMOKE_BASE_URL` for another
+address. A local `site/config/main.php` must exist; CI creates one from
+`main.dist.php` with test values. The same checks run in CI.
 
 ## Contact Form Configuration
 
 `site/config/main.dist.php` is the versioned template; `site/config/main.php` is
-generated and git-ignored. Copy the template before running the site locally and
-fill in the values you want to use during development.
-
-On deployment the workflow replaces the placeholders `<plugin_contact_recipient>`,
-`<plugin_contact_csrf_secret>`, `<plugin_contact_captcha_secret>`,
-`<plugin_contact_smtp_host>`, `<plugin_contact_smtp_username>` and
-`<plugin_contact_smtp_password>` from the repository secrets listed under
-Deployment. CSRF and captcha secrets are generated fresh on every deploy; SMTP
-uses port 587 with STARTTLS. No credentials are stored in Git.
+generated and git-ignored. Copy the template locally and fill in your values.
+Deployment replaces the six `<plugin_contact_*>` placeholders from the secrets
+above, generates fresh CSRF/captcha secrets and uses SMTP port 587 with STARTTLS.
+No credentials are stored in Git.
 
 ## Search Engine Indexing
 
-This website is not intended to appear in search results. Every response is sent with `X-Robots-Tag: noindex, nofollow`, defined in `site/extend/middlewares_app/noindex.php`. This also covers non-HTML responses such as downloads.
-
-If the website should be indexed by search engines, remove `site/extend/middlewares_app/noindex.php`.
+`site/extend/middlewares_app/noindex.php` sends `X-Robots-Tag: noindex, nofollow`
+for every response, including downloads. Delete it to allow indexing.
 
 ## More Information
 
