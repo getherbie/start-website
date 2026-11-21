@@ -49,8 +49,9 @@ Optional: `HERBIE_DEBUG=1 php -S localhost:8888 index.php` for debug output, or 
 
 A small button in the bottom-right corner opens the theme switcher with `default`,
 `dark`, `journal`, `spotlight`, `docs` and `portfolio`. It is a plain `<details>` element, so it
-works without JavaScript and takes no space in any design. The choice is stored in
-a cookie, so it survives navigation and reloads.
+works without JavaScript and takes no space in any design. It keeps the current
+page and query parameters such as pagination and search terms when switching;
+the choice is stored in a cookie, so it survives navigation and reloads.
 The active theme is validated against the `themes` list in `site/data/site.json`;
 unknown values fall back to `default`.
 

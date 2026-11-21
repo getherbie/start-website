@@ -101,7 +101,7 @@
         <span class="theme-switcher__label">Theme</span>
         {% for theme in site.data.site.themes %}
             {% set isCurrent = (theme == site.theme) %}
-            <a class="theme-switcher__link{% if isCurrent %} is-active{% endif %}" href="{{ url_rel(site.route) }}?theme={{ theme }}"{% if isCurrent %} aria-current="true"{% endif %}>{{ theme|title }}</a>
+            <a class="theme-switcher__link{% if isCurrent %} is-active{% endif %}" href="{{ theme_switch_url(theme) }}"{% if isCurrent %} aria-current="true"{% endif %}>{{ theme|title }}</a>
         {% endfor %}
     </div>
 </details>
