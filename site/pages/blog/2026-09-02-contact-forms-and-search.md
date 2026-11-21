@@ -21,17 +21,19 @@ plugin renders the fields, adds a CSRF token and a time check, and includes an
 ALTCHA captcha widget. Failed and successful submissions are handled by the same
 template.
 
-Before deploying, set these environment variables:
+Before deploying, add these repository secrets:
 
 ```text
-HERBIE_CONTACT_RECIPIENT
-HERBIE_CONTACT_CSRF_SECRET
-HERBIE_CONTACT_CAPTCHA_SECRET
+SMTP_RECIPIENT
+SMTP_HOST
+SMTP_USERNAME
+SMTP_PASSWORD
 ```
 
-SMTP credentials belong under `plugins.contact.smtp` in the config file. The
-`cached: false` property on the contact page makes sure the form is never served
-from the page cache.
+The CI workflow substitutes them into `site/config/main.php` from
+`site/config/main.dist.php` and generates fresh CSRF/captcha secrets. SMTP uses port
+587 with STARTTLS. The `cached: false` property on the contact page makes sure the
+form is never served from the page cache.
 
 ## The site search
 

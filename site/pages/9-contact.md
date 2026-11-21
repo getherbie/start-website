@@ -9,9 +9,9 @@ Use the form below to send a message. It is protected by a CSRF token and an ALT
 captcha; submissions are sent by email to the address configured in
 `site/config/main.php`.
 
-For local development the recipient is `blackhole@example.com` and the secrets are
-placeholders. Set `HERBIE_CONTACT_RECIPIENT`, `HERBIE_CONTACT_CSRF_SECRET` and
-`HERBIE_CONTACT_CAPTCHA_SECRET` before deploying.
+The contact values live in `site/config/main.php`, which is generated from
+`site/config/main.dist.php`. On deployment the CI workflow fills in the recipient,
+SMTP credentials and fresh CSRF/captcha secrets from repository secrets.
 
 {{ contact() }}
 

@@ -160,12 +160,45 @@ cards.
 
 Themes, CSS and the contact form stay the same in both variants.
 
+## Deployment
+
+Pushes to `master` and `develop` run the smoke tests and then deploy over SSH
+(see `.github/workflows/ci.yml`).
+
+**Repository variables**
+
+- `SSH_HOST`, `SSH_TARGET` — server and target directory. Point `SSH_TARGET` at
+  a dedicated directory; the deploy replaces its contents.
+
+**Repository secrets**
+
+- `SSH_USERNAME`, `SSH_PRIVATE_KEY` — login and private half of a deploy key.
+  Optional: `SSH_KEY_PASSPHRASE` and `SSH_FINGERPRINT` for host verification.
+- `SMTP_RECIPIENT`, `SMTP_HOST`, `SMTP_USERNAME`, `SMTP_PASSWORD` — contact form
+  and mail delivery.
+
+**Deploy key**
+
+    ssh-keygen -t ed25519 -a 200 -C "github-actions@getherbie/start-website" -f ~/.ssh/start-website-deploy
+
+Add `~/.ssh/start-website-deploy.pub` to `~/.ssh/authorized_keys` on the hosting
+account and store the contents of `~/.ssh/start-website-deploy` in the
+`SSH_PRIVATE_KEY` secret. Keep the key outside the repository. The private key
+stays at GitHub, the public key goes to the server — no SSH password needed.
+
+CI installs the dependencies with `--no-dev`, generates `site/config/main.php`
+from `main.dist.php` (including fresh CSRF and captcha secrets) and uploads only
+`composer.json`, `composer.lock`, `site`, `vendor` and `web`. Set the document
+root to `web/`. The PHP user needs write access to `site/runtime/cache`,
+`site/runtime/log` and `web/cache`.
+
 ## Development
 
 Work on this repository with Docker (recommended):
 
     git clone https://github.com/getherbie/start-website.git
     cd start-website
+    cp site/config/main.dist.php site/config/main.php
     docker compose up website
 
 Open <http://localhost:8888>.
@@ -187,6 +220,7 @@ Use a different PHP version (default: 8.3):
 
     git clone https://github.com/getherbie/start-website.git
     cd start-website
+    cp site/config/main.dist.php site/config/main.php
     composer install
     cd web
     php -S localhost:8888 index.php
@@ -197,13 +231,22 @@ Use a different PHP version (default: 8.3):
 
 With the site running locally, `php tests/smoke.php` checks every theme and route, the
 theme switcher, the imagine image cache and the standalone theme exports. Set
-`SMOKE_BASE_URL` if the site runs at another address. The same checks run in CI.
+`SMOKE_BASE_URL` if the site runs at another address. A local
+`site/config/main.php` must exist; CI creates it from `main.dist.php` with test
+values. The same checks run in CI.
 
 ## Contact Form Configuration
 
-The contact form requires a CSRF secret and an ALTCHA captcha secret. The defaults in `site/config/main.php` are enough for local development.
+`site/config/main.dist.php` is the versioned template; `site/config/main.php` is
+generated and git-ignored. Copy the template before running the site locally and
+fill in the values you want to use during development.
 
-For production, set `HERBIE_CONTACT_RECIPIENT`, `HERBIE_CONTACT_CSRF_SECRET` and `HERBIE_CONTACT_CAPTCHA_SECRET`, and configure SMTP under `plugins.contact.smtp`. When running with Docker Compose, pass these variables to the `website` container via `environment:` in `compose.yml`.
+On deployment the workflow replaces the placeholders `<plugin_contact_recipient>`,
+`<plugin_contact_csrf_secret>`, `<plugin_contact_captcha_secret>`,
+`<plugin_contact_smtp_host>`, `<plugin_contact_smtp_username>` and
+`<plugin_contact_smtp_password>` from the repository secrets listed under
+Deployment. CSRF and captcha secrets are generated fresh on every deploy; SMTP
+uses port 587 with STARTTLS. No credentials are stored in Git.
 
 ## Search Engine Indexing
 

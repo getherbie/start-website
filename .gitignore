@@ -18,3 +18,6 @@ vendor/
 
 # generated standalone theme exports
 /dist/
+
+# generated site configuration (see site/config/main.dist.php)
+/site/config/main.php

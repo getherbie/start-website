@@ -1,5 +1,9 @@
 <?php
 
+// Template for site/config/main.php. The CD workflow replaces the contact
+// placeholders below with repository secrets and writes the result to main.php.
+// Keep this file in version control; main.php is generated and git-ignored.
+
 // The active theme can be changed with the theme switcher in the bottom-right corner.
 // The choice is stored in a cookie so it survives navigation and reloads.
 $siteData = json_decode((string)@file_get_contents(__DIR__ . '/../data/site.json'), true);
@@ -36,12 +40,20 @@ return [
             'flavor' => 'gfm',
         ],
         'contact' => [
-            'recipient' => getenv('HERBIE_CONTACT_RECIPIENT') ?: 'blackhole@example.com',
+            'recipient' => '<plugin_contact_recipient>',
             'csrf' => [
-                'secret' => getenv('HERBIE_CONTACT_CSRF_SECRET') ?: 'start-website-csrf-secret-change-me',
+                'secret' => '<plugin_contact_csrf_secret>',
             ],
             'captcha' => [
-                'secret' => getenv('HERBIE_CONTACT_CAPTCHA_SECRET') ?: 'start-website-captcha-secret-change-me',
+                'secret' => '<plugin_contact_captcha_secret>',
+            ],
+            'smtp' => [
+                'host' => '<plugin_contact_smtp_host>',
+                'port' => 587,
+                'auth' => true,
+                'username' => '<plugin_contact_smtp_username>',
+                'password' => '<plugin_contact_smtp_password>',
+                'encryption' => 'tls',
             ],
         ],
     ],

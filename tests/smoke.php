@@ -92,6 +92,14 @@ function removeTree(string $dir): void
     rmdir($dir);
 }
 
+$configTemplate = (string)file_get_contents($root . '/site/config/main.dist.php');
+$configLocal = (string)file_get_contents($root . '/site/config/main.php');
+preg_match_all('/<plugin_contact_[a-z_]+>/', $configTemplate, $placeholders);
+$check(count($placeholders[0]) > 0, 'config template defines contact placeholders');
+foreach ($placeholders[0] as $placeholder) {
+    $check(!str_contains($configLocal, $placeholder), "local config replaces $placeholder");
+}
+
 $routes = [
     '/index.php/',
     '/index.php/getting-started',

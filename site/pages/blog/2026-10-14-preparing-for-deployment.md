@@ -15,21 +15,23 @@ attention before the site goes live.
 
 ## Replace placeholder secrets
 
-`site/config/main.php` reads three environment variables for the contact plugin:
+`site/config/main.dist.php` is the versioned template; `site/config/main.php` is
+generated at deploy time. The workflow fills these repository secrets into it:
 
 ```text
-HERBIE_CONTACT_RECIPIENT
-HERBIE_CONTACT_CSRF_SECRET
-HERBIE_CONTACT_CAPTCHA_SECRET
+SMTP_RECIPIENT
+SMTP_HOST
+SMTP_USERNAME
+SMTP_PASSWORD
 ```
 
-The defaults are `blackhole@example.com` and obvious placeholder strings. Set real
-values in your deployment environment and use long random strings for the secrets.
-Without them, the form looks fine but submissions go nowhere.
+CSRF and captcha secrets are generated fresh with every deploy. Without the SMTP
+secrets, the form looks fine but submissions go nowhere.
 
 ## Configure mail delivery
 
-Add SMTP credentials under `plugins.contact.smtp` in the config file. The
+The generated config sets `plugins.contact.smtp` from `SMTP_HOST`, `SMTP_USERNAME`
+and `SMTP_PASSWORD` (port 587, STARTTLS). The
 {{ link_page('contact', 'contact page') }} then sends messages through your provider.
 Test the form once after deploying — a working page render does not prove that mail
 delivery works.
