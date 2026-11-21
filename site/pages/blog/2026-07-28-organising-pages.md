@@ -3,8 +3,8 @@ title: Organising Pages and Front Matter
 layout: post
 type: post
 date: 2026-07-28
-author_id: jane-doe
-authors: [Jane Doe]
+author_id: jane-sample
+authors: [Jane Sample]
 categories: [Tutorials]
 tags: [markdown, content]
 abstract: Practical tips for naming page files, using numeric prefixes for ordering and choosing the front matter fields that matter.
@@ -20,8 +20,8 @@ order. Herbie strips the prefix when building the route, so `2-features.md` is
 served at `/features`. Leave gaps in the numbering — adding a page later should not
 require renumbering everything.
 
-Subfolders become route segments: `site/pages/blog/author/jane-doe.md` is reachable
-at `/blog/author/jane-doe`.
+Subfolders become route segments: `site/pages/blog/author/jane-sample.md` is reachable
+at `/blog/author/jane-sample`.
 
 ## Fields you will use often
 

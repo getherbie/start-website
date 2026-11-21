@@ -60,7 +60,7 @@ title: My first post
 layout: post
 type: post
 date: 2026-11-20
-author_id: herbie-team
+author_id: robin-starter
 categories: [News]
 tags: [herbie]
 abstract: A short summary shown on list pages.

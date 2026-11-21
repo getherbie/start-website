@@ -3,8 +3,8 @@ title: Preparing the Site for Deployment
 layout: post
 type: post
 date: 2026-10-14
-author_id: herbie-team
-authors: [Herbie Team]
+author_id: robin-starter
+authors: [Robin Starter]
 categories: [Tutorials]
 tags: [deployment]
 abstract: "The checklist before going live: replace placeholder secrets, configure SMTP, remove the noindex middleware and check the generated feed."

@@ -113,7 +113,7 @@ export refuses to overwrite an existing folder; delete it first to refresh.
 The author portraits are original, hand-written SVG illustrations in
 `site/media/img/authors/`. Each author's `avatar` attribute in
 `site/data/authors.json` points to one of these files (for example
-`img/authors/alex-weber.svg`); the layouts render them as normal `<img>` elements via
+`img/authors/alex-example.svg`); the layouts render them as normal `<img>` elements via
 Herbie's `image()` function. `web/index.php` serves `site/media` at `/media/...`, so the
 files behave like ordinary static images. They are fictional characters, require no
 external assets and have no third-party license obligations.

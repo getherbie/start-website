@@ -3,8 +3,8 @@ title: Contact Forms and Search
 layout: post
 type: post
 date: 2026-09-02
-author_id: jane-doe
-authors: [Jane Doe]
+author_id: jane-sample
+authors: [Jane Sample]
 categories: [Tutorials]
 tags: [plugins, forms]
 abstract: How the contact form and the site search are wired into the starter and which settings matter before you deploy.

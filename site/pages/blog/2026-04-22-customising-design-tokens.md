@@ -3,8 +3,8 @@ title: Customising Design Tokens
 layout: post
 type: post
 date: 2026-04-22
-author_id: jane-doe
-authors: [Jane Doe]
+author_id: jane-sample
+authors: [Jane Sample]
 categories: [Design]
 tags: [themes, design]
 abstract: A hands-on guide to changing colours, spacing and typography across all themes by editing a handful of CSS custom properties.

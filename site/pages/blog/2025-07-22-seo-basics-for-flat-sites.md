@@ -3,8 +3,8 @@ title: SEO Basics for Flat Sites
 layout: post
 type: post
 date: 2025-07-22
-author_id: jane-doe
-authors: [Jane Doe]
+author_id: jane-sample
+authors: [Jane Sample]
 categories: [Performance]
 tags: [seo, performance, content]
 abstract: "The metadata, feed and URL choices already built into this starter, plus the few things you should set before a site goes live."

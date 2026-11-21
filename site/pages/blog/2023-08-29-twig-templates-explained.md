@@ -3,8 +3,8 @@ title: Twig Templates Explained
 layout: post
 type: post
 date: 2023-08-29
-author_id: alex-weber
-authors: [Alex Weber]
+author_id: alex-example
+authors: [Alex Example]
 categories: [Tutorials]
 tags: [twig, templates, themes]
 abstract: "A guided tour of the Twig layouts in this starter, from the base template to reusable includes and theme inheritance."

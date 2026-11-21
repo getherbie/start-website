@@ -3,8 +3,8 @@ title: Why a Flat-File CMS Works for Small Sites
 layout: post
 type: post
 date: 2026-02-15
-author_id: herbie-team
-authors: [Herbie Team]
+author_id: robin-starter
+authors: [Robin Starter]
 categories: [News]
 tags: [herbie, content]
 abstract: A look at why this starter uses a flat-file CMS instead of a database, and what that means for editing, version control and backups.

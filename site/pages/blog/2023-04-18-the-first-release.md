@@ -3,8 +3,8 @@ title: The First Release
 layout: post
 type: post
 date: 2023-04-18
-author_id: herbie-team
-authors: [Herbie Team]
+author_id: robin-starter
+authors: [Robin Starter]
 categories: [News]
 tags: [starter, herbie, updates]
 abstract: "A short history of this starter and what the first release set out to solve for small Herbie sites."

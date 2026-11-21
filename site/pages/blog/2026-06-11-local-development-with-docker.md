@@ -3,8 +3,8 @@ title: Local Development with Docker
 layout: post
 type: post
 date: 2026-06-11
-author_id: herbie-team
-authors: [Herbie Team]
+author_id: robin-starter
+authors: [Robin Starter]
 categories: [Tutorials]
 tags: [docker, development]
 abstract: How to run the starter with Docker Compose, where to find the generated assets and how to reset a local installation.

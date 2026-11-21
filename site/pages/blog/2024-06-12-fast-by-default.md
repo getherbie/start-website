@@ -3,8 +3,8 @@ title: Fast by Default
 layout: post
 type: post
 date: 2024-06-12
-author_id: alex-weber
-authors: [Alex Weber]
+author_id: alex-example
+authors: [Alex Example]
 categories: [Performance]
 tags: [performance, assets, themes]
 abstract: "How this starter keeps requests small without a build step, and which generated files you can safely delete when testing."

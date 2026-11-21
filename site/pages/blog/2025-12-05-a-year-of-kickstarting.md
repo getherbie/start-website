@@ -3,8 +3,8 @@ title: A Year of Kickstarting
 layout: post
 type: post
 date: 2025-12-05
-author_id: herbie-team
-authors: [Herbie Team]
+author_id: robin-starter
+authors: [Robin Starter]
 categories: [Community]
 tags: [starter, community, updates]
 abstract: "What the example site gained in its first full year, and the principles that kept it small while the blog and theme system grew."

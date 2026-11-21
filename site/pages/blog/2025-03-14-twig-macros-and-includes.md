@@ -3,8 +3,8 @@ title: Twig Macros and Includes
 layout: post
 type: post
 date: 2025-03-14
-author_id: alex-weber
-authors: [Alex Weber]
+author_id: alex-example
+authors: [Alex Example]
 categories: [Tutorials]
 tags: [twig, templates, content]
 abstract: "When to use an include, when a macro is worth it, and how the blog layouts in this starter combine both to avoid duplicated markup."

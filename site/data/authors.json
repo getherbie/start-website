@@ -1,31 +1,31 @@
 {
-  "alex-weber": {
-    "title": "Alex Weber",
+  "alex-example": {
+    "title": "Alex Example",
     "role": "template specialist",
-    "initials": "AW",
-    "avatar": "img/authors/alex-weber.svg",
+    "initials": "AX",
+    "avatar": "img/authors/alex-example.svg",
     "bio": "A fictional writer focused on Twig templates, caching and the quiet details that keep small sites easy to maintain.",
     "website": "https://example.com",
     "email": "alex@example.com",
     "github": "https://github.com",
-    "about": "Alex is an example author who writes about templates, performance and generated files. Posts refer to this profile with `author_id: alex-weber`."
+    "about": "Alex is an example author who writes about templates, performance and generated files. Posts refer to this profile with `author_id: alex-example`."
   },
-  "herbie-team": {
-    "title": "Herbie Team",
-    "role": "maintainers",
-    "initials": "HT",
-    "avatar": "img/authors/herbie-team.svg",
-    "bio": "The people behind Herbie CMS. We write about flat-file websites, Twig templates and keeping small sites simple.",
-    "website": "https://herbie.tebe.ch",
-    "email": "hello@example.com",
-    "github": "https://github.com/getherbie",
-    "about": "This profile is generated from `site/data/authors.json`. Posts refer to it with `author_id: herbie-team`."
-  },
-  "jane-doe": {
-    "title": "Jane Doe",
+  "robin-starter": {
+    "title": "Robin Starter",
     "role": "example author",
-    "initials": "JD",
-    "avatar": "img/authors/jane-doe.svg",
+    "initials": "RS",
+    "avatar": "img/authors/robin-starter.svg",
+    "bio": "A fictional writer who covers starter topics such as flat files, Docker and deployment.",
+    "website": "https://example.com",
+    "email": "robin@example.com",
+    "github": "https://github.com",
+    "about": "Robin is an example author for this starter. Posts refer to this profile with `author_id: robin-starter`."
+  },
+  "jane-sample": {
+    "title": "Jane Sample",
+    "role": "example author",
+    "initials": "JS",
+    "avatar": "img/authors/jane-sample.svg",
     "bio": "A fictional writer who likes clean layouts, good documentation and websites that load quickly.",
     "website": "https://example.com",
     "email": "jane@example.com",

@@ -3,8 +3,8 @@ title: Writing Posts in Markdown
 layout: post
 type: post
 date: 2026-05-19
-author_id: herbie-team
-authors: [Herbie Team]
+author_id: robin-starter
+authors: [Robin Starter]
 categories: [Tutorials]
 tags: [markdown, content]
 abstract: A practical guide to the front matter fields used by the blog, from dates and abstracts to authors, categories and tags.
@@ -23,8 +23,8 @@ title: Writing Posts in Markdown
 layout: post
 type: post
 date: 2026-05-19
-author_id: herbie-team
-authors: [Herbie Team]
+author_id: robin-starter
+authors: [Robin Starter]
 categories: [Tutorials]
 tags: [markdown, content]
 abstract: A short summary shown on list pages.

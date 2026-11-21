@@ -3,8 +3,8 @@ title: Welcome to Herbie Website Starter
 layout: post
 type: post
 date: 2026-01-12
-author_id: herbie-team
-authors: [Herbie Team]
+author_id: robin-starter
+authors: [Robin Starter]
 categories: [News]
 tags: [starter, herbie]
 abstract: A quick tour of what you get when you create a site from Herbie Website Starter and how the example content is organised.
@@ -35,7 +35,7 @@ title: My first post
 layout: post
 type: post
 date: 2026-01-12
-author_id: herbie-team
+author_id: robin-starter
 categories: [News]
 tags: [herbie]
 abstract: A short summary for list pages.

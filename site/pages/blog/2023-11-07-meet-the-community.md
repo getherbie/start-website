@@ -3,8 +3,8 @@ title: Meet the Community
 layout: post
 type: post
 date: 2023-11-07
-author_id: jane-doe
-authors: [Jane Doe]
+author_id: jane-sample
+authors: [Jane Sample]
 categories: [Community]
 tags: [herbie, community]
 abstract: "Where to find help, examples and conversation about Herbie CMS, and how this starter fits into the wider project."

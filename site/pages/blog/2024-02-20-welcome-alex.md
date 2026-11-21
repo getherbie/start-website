@@ -3,14 +3,14 @@ title: Welcome to the Team
 layout: post
 type: post
 date: 2024-02-20
-author_id: herbie-team
-authors: [Herbie Team]
+author_id: robin-starter
+authors: [Robin Starter]
 categories: [News]
 tags: [starter, community, updates]
-abstract: "Alex Weber joins the example authors, bringing a focus on templates, caching and keeping generated files out of the way."
+abstract: "Alex Example joins the example authors, bringing a focus on templates, caching and keeping generated files out of the way."
 ---
 
-We are adding a third voice to this blog. Alex Weber has been working with Twig and
+We are adding a third voice to this blog. Alex Example has been working with Twig and
 static-site workflows for years and will write about templates, caching and the small
 details that make a site pleasant to maintain.
 

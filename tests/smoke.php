@@ -99,7 +99,9 @@ $routes = [
     '/index.php/about',
     '/index.php/blog',
     '/index.php/blog?page=2',
-    '/index.php/blog/author/alex-weber',
+    '/index.php/blog/author/alex-example',
+    '/index.php/blog/author/jane-sample',
+    '/index.php/blog/author/robin-starter',
     '/index.php/blog/category/herbie',
     '/index.php/blog/tag/twig',
     '/index.php/blog/archive',
@@ -124,7 +126,8 @@ $check(str_starts_with(ltrim($feedBody), '<?xml'), 'feed body starts with XML de
 
 $switchRoutes = [
     '/index.php/blog?page=2' => ['page' => '2'],
-    '/index.php/blog/author/alex-weber' => [],
+    '/index.php/blog/author/alex-example' => [],
+    '/index.php/blog/author/robin-starter' => [],
     '/index.php/search?q=theme' => ['q' => 'theme'],
 ];
 foreach ($themes as $theme) {

@@ -3,8 +3,8 @@ title: Choosing a Theme
 layout: post
 type: post
 date: 2026-03-04
-author_id: jane-doe
-authors: [Jane Doe]
+author_id: jane-sample
+authors: [Jane Sample]
 categories: [Design]
 tags: [themes, design]
 abstract: How the seven bundled themes work, what theme inheritance means in Herbie and how to add your own colour scheme or a complete new design.
