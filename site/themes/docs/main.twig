@@ -93,7 +93,13 @@
         <span class="theme-switcher__label">Theme</span>
         {% for theme in site.data.site.themes %}
             {% set isCurrent = (theme == site.theme) %}
-            <a class="theme-switcher__link{% if isCurrent %} is-active{% endif %}" href="{{ theme_switch_url(theme) }}"{% if isCurrent %} aria-current="true"{% endif %}>{{ theme|title }}</a>
+            <div class="theme-switcher__item{% if isCurrent %} is-active{% endif %}">
+                <div class="theme-switcher__row">
+                    <a class="theme-switcher__link{% if isCurrent %} is-active{% endif %}" href="{{ theme_switch_url(theme) }}"{% if isCurrent %} aria-current="true"{% endif %}>{{ theme|title }}</a>
+                    <a class="theme-switcher__download" href="{{ url_rel('theme-download/' ~ theme) }}" download="herbie-theme-{{ theme }}.zip" aria-label="Download {{ theme|title }} theme as ZIP" title="Download ZIP">ZIP</a>
+                </div>
+                <span class="theme-switcher__description">{{ site.data.site.themeDescriptions[theme]|default('') }}</span>
+            </div>
         {% endfor %}
     </div>
 </details>

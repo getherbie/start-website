@@ -10,5 +10,14 @@
     "docs",
     "portfolio",
     "high-contrast"
-  ]
+  ],
+  "themeDescriptions": {
+    "default": "Light baseline with the shared layouts and styles.",
+    "dark": "Dark palette made from a single colour token file.",
+    "journal": "Serif reading column with hairline rules and editorial details.",
+    "spotlight": "Magazine-style cover hero and card grid.",
+    "docs": "Documentation shell with a top bar and fixed side navigation.",
+    "portfolio": "Dark project gallery with its own home grid.",
+    "high-contrast": "White and yellow on black, strong borders and focus rings."
+  }
 }

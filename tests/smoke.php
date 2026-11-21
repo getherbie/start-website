@@ -154,6 +154,37 @@ foreach ($themes as $theme) {
     }
 }
 
+foreach ($themes as $theme) {
+    [, $html] = fetch(siteUrl($base, '/index.php/', $theme));
+    preg_match_all('/class="theme-switcher__description">([^<]+)</', $html, $descriptions);
+    $check(count($descriptions[1]) === count($themes), "$theme: switcher describes every theme");
+    $check(
+        !array_filter($descriptions[1], static fn(string $text): bool => trim($text) === ''),
+        "$theme: switcher descriptions are not empty",
+    );
+
+    preg_match_all('/class="theme-switcher__download" href="([^"]+)"/', $html, $downloads);
+    $downloadPaths = array_map(
+        static fn(string $href): string => (string)parse_url(html_entity_decode($href, ENT_QUOTES | ENT_HTML5), PHP_URL_PATH),
+        $downloads[1],
+    );
+    sort($downloadPaths);
+    $expectedPaths = array_map(static fn(string $name): string => '/index.php/theme-download/' . $name, $themes);
+    sort($expectedPaths);
+    $check($downloadPaths === $expectedPaths, "$theme: switcher offers a download for every theme");
+}
+
+foreach ($themes as $theme) {
+    [$status, $body, $contentType] = fetch($base . '/index.php/theme-download/' . $theme);
+    $check($status === 200, "theme download $theme: HTTP $status");
+    $check(str_contains($contentType, 'application/zip'), "theme download $theme: content type $contentType");
+    $check(str_starts_with($body, "PK\x03\x04"), "theme download $theme: ZIP signature");
+    $check(str_contains($body, $theme . '/css/theme.css'), "theme download $theme: contains theme.css");
+    $check(str_contains($body, $theme . '/css/extensions.css'), "theme download $theme: contains extensions.css");
+}
+[$unknownStatus] = fetch($base . '/index.php/theme-download/not-a-theme');
+$check($unknownStatus === 404, "theme download rejects unknown theme: HTTP $unknownStatus");
+
 [, $gettingStarted] = fetch(siteUrl($base, '/index.php/getting-started', $themes[0]));
 preg_match('~<img[^>]+src="([^"]*tulpen[^"]*)"~', $gettingStarted, $image);
 $check(isset($image[1]), 'getting-started renders an imagine image');

@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace startWebsite\Commands;
 
 use herbie\Config;
+use startWebsite\ThemeFiles;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+
+require_once dirname(__DIR__) . '/theme_files.php';
 
 /**
  * Materialises a theme as a standalone folder. The source themes share files
@@ -72,8 +75,24 @@ final class ExportThemeCommand extends Command
                 return Command::FAILURE;
             }
 
-            if (!$this->copyTree($sourceDir . '/default', $target)
-                || ($name !== 'default' && !$this->copyTree($sourceDir . '/' . $name, $target))) {
+            if (!mkdir($target, 0777, true) && !is_dir($target)) {
+                $output->writeln(sprintf('<error>Could not export theme: %s</error>', $name));
+                return Command::FAILURE;
+            }
+
+            $failed = false;
+            foreach (ThemeFiles::collect($sourceDir, $name) as $relative => $source) {
+                $destination = $target . '/' . $relative;
+                if (!is_dir(dirname($destination)) && !mkdir(dirname($destination), 0777, true) && !is_dir(dirname($destination))) {
+                    $failed = true;
+                    break;
+                }
+                if (!copy($source, $destination)) {
+                    $failed = true;
+                    break;
+                }
+            }
+            if ($failed) {
                 $output->writeln(sprintf('<error>Could not export theme: %s</error>', $name));
                 return Command::FAILURE;
             }
@@ -82,32 +101,6 @@ final class ExportThemeCommand extends Command
         }
 
         return Command::SUCCESS;
-    }
-
-    private function copyTree(string $from, string $to): bool
-    {
-        if (!is_dir($to) && !mkdir($to, 0777, true) && !is_dir($to)) {
-            return false;
-        }
-
-        foreach (scandir($from) as $entry) {
-            if ($entry === '.' || $entry === '..') {
-                continue;
-            }
-
-            $source = $from . '/' . $entry;
-            $target = $to . '/' . $entry;
-
-            if (is_dir($source)) {
-                if (!$this->copyTree($source, $target)) {
-                    return false;
-                }
-            } elseif (!copy($source, $target)) {
-                return false;
-            }
-        }
-
-        return true;
     }
 }
 

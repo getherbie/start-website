@@ -55,6 +55,12 @@ the choice is stored in a cookie, so it survives navigation and reloads.
 The active theme is validated against the `themes` list in `site/data/site.json`;
 unknown values fall back to `default`.
 
+Each switcher entry shows a short description from `themeDescriptions` in the same
+file and a `ZIP` link. The download serves the same self-contained folder as
+`php vendor/bin/herbie export-theme <name>`: the child theme overlaid on `default`,
+with no parent theme needed. The archive is created on the fly without a PHP zip
+extension.
+
 All shared layouts, JavaScript and the base stylesheet live in
 `site/themes/default`. The config sets `themeParent` to `default`, so a child
 theme only supplies what differs. Assets are loaded in this order:
