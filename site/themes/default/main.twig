@@ -65,21 +65,17 @@
             <section class="footer-col">
                 <h2>Explore</h2>
                 <ul class="footer-links">
-                    <li>{{ link_page('blog', 'Blog') }}</li>
-                    <li>{{ link_page('blog/archive', 'Archive') }}</li>
-                    <li>{{ link_page('blog/author', 'Authors') }}</li>
-                    <li>{{ link_page('blog/category', 'Categories') }}</li>
-                    <li>{{ link_page('blog/tag', 'Tags') }}</li>
-                    <li>{{ link_page('search', 'Search') }}</li>
+                    {% for item in site.data.footer.explore %}
+                        <li>{{ link_page(item.route, item.label) }}</li>
+                    {% endfor %}
                 </ul>
             </section>
             <section class="footer-col">
                 <h2>Project</h2>
                 <ul class="footer-links">
-                    <li>{{ link_page('https://github.com/getherbie/start-website', 'Herbie Website Starter on GitHub', {target: '_blank'}) }}</li>
-                    <li>{{ link_page('https://github.com/getherbie/herbie', 'Herbie on GitHub', {target: '_blank'}) }}</li>
-                    <li>{{ link_page('https://herbie.tebe.ch', 'Herbie website', {target: '_blank'}) }}</li>
-                    <li>{{ link_page('blog/feed.xml', 'Atom feed') }}</li>
+                    {% for item in site.data.footer.project %}
+                        <li>{{ link_page(item.route, item.label, {target: item.target|default(null)}) }}</li>
+                    {% endfor %}
                 </ul>
             </section>
         </div>

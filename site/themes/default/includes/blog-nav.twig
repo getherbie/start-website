@@ -19,9 +19,8 @@
 <section class="widget">
     <h2 class="widget__title">More from the blog</h2>
     <ul class="widget__list">
-        <li>{{ link_page('blog', 'All posts') }}</li>
-        <li>{{ link_page('blog/archive', 'Archive') }}</li>
-        <li>{{ link_page('blog/author', 'Authors') }}</li>
-        <li>{{ link_page('blog/feed.xml', 'Atom feed') }}</li>
+        {% for item in site.data.footer.blogMore %}
+            <li>{{ link_page(item.route, item.label) }}</li>
+        {% endfor %}
     </ul>
 </section>

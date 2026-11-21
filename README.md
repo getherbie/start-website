@@ -118,6 +118,10 @@ Herbie's `image()` function. `web/index.php` serves `site/media` at `/media/...`
 files behave like ordinary static images. They are fictional characters, require no
 external assets and have no third-party license obligations.
 
+The link lists in `site/data/footer.json` feed the site footer, the docs sidebar's
+"More" section and the blog sidebar's "More from the blog" widget. Edit routes and
+labels there instead of in the Twig templates.
+
 ## Blog
 
 The blog is made of normal pages in `site/pages/blog`. A post is a Markdown file
@@ -145,12 +149,12 @@ need part of it, remove files rather than wiring around them:
 
 **Blog only.** Delete the static pages `2-features.md`, `3-getting-started.md`,
 `4-about.md` and `9-contact.md` from `site/pages`, then remove their entries from
-`site/data/menu.json` and the footer links in `site/themes/default/main.twig`.
+`site/data/menu.json` and the link lists in `site/data/footer.json`.
 Replace `site/pages/index.md` with a short intro that links to the blog.
 
 **One page.** Delete `site/pages/blog/`, remove `blog` from `enabledPlugins` and the
 `components.urlManager.rules` in `site/config/main.php`, and drop the blog links
-from `site/data/menu.json` and the footer. `site/pages/index.md` can then hold all
+from `site/data/menu.json` and `site/data/footer.json`. `site/pages/index.md` can then hold all
 your content; remove `layout: home` to use the plain layout instead of hero and
 cards.
 

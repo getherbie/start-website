@@ -177,6 +177,45 @@ foreach ($themes as $theme) {
     $check($downloadPaths === $expectedPaths, "$theme: switcher offers a download for every theme");
 }
 
+$footerData = json_decode((string)file_get_contents($root . '/site/data/footer.json'), true);
+foreach (['explore', 'project', 'docsMore', 'blogMore'] as $group) {
+    $check(is_array($footerData[$group] ?? null), "footer data has a $group list");
+}
+$externalTargets = count(array_filter(
+    $footerData['project'] ?? [],
+    static fn(array $item): bool => ($item['target'] ?? null) === '_blank',
+));
+
+foreach ($themes as $theme) {
+    [, $html] = fetch(siteUrl($base, '/index.php/', $theme));
+    if ($theme === 'docs') {
+        preg_match('/docs-sidebar__title">More<\/p>\s*<ul class="site-nav__list">(.*?)<\/ul>/s', $html, $block);
+        $check(isset($block[1]), "$theme: docs sidebar More list renders");
+        foreach ($footerData['docsMore'] ?? [] as $item) {
+            $check(str_contains($block[1] ?? '', '>' . $item['label'] . '</a>'), "$theme: docs sidebar has {$item['label']}");
+        }
+        continue;
+    }
+
+    preg_match('/<h2>Explore<\/h2>\s*<ul class="footer-links">(.*?)<\/ul>/s', $html, $explore);
+    preg_match('/<h2>Project<\/h2>\s*<ul class="footer-links">(.*?)<\/ul>/s', $html, $project);
+    $check(isset($explore[1]), "$theme: footer Explore list renders");
+    $check(isset($project[1]), "$theme: footer Project list renders");
+    foreach (['explore' => $explore[1] ?? '', 'project' => $project[1] ?? ''] as $group => $links) {
+        foreach ($footerData[$group] ?? [] as $item) {
+            $check(str_contains($links, '>' . $item['label'] . '</a>'), "$theme: footer $group has {$item['label']}");
+        }
+    }
+    $check(substr_count($project[1] ?? '', 'target="_blank"') === $externalTargets, "$theme: external footer links open in a new tab");
+}
+
+[, $blogHtml] = fetch(siteUrl($base, '/index.php/blog', $themes[0]));
+preg_match('/More from the blog<\/h2>\s*<ul class="widget__list">(.*?)<\/ul>/s', $blogHtml, $blogMore);
+$check(isset($blogMore[1]), 'blog sidebar More from the blog list renders');
+foreach ($footerData['blogMore'] ?? [] as $item) {
+    $check(str_contains($blogMore[1] ?? '', '>' . $item['label'] . '</a>'), "blog sidebar has {$item['label']}");
+}
+
 foreach ($themes as $theme) {
     [$status, $body, $contentType] = fetch($base . '/index.php/theme-download/' . $theme);
     $check($status === 200, "theme download $theme: HTTP $status");

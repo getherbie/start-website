@@ -62,10 +62,9 @@
         <div class="docs-sidebar__links">
             <p class="docs-sidebar__title">More</p>
             <ul class="site-nav__list">
-                <li><a class="site-nav__link" href="{{ url_rel('blog/archive') }}">Archive</a></li>
-                <li><a class="site-nav__link" href="{{ url_rel('blog/category') }}">Categories</a></li>
-                <li><a class="site-nav__link" href="{{ url_rel('blog/tag') }}">Tags</a></li>
-                <li><a class="site-nav__link" href="{{ url_rel('blog/feed.xml') }}">Atom feed</a></li>
+                {% for item in site.data.footer.docsMore %}
+                    <li><a class="site-nav__link" href="{{ url_rel(item.route) }}">{{ item.label }}</a></li>
+                {% endfor %}
             </ul>
         </div>
     </aside>
