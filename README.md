@@ -55,6 +55,19 @@ the choice is stored in a cookie, so it survives navigation and reloads.
 The active theme is validated against the `themes` list in `site/data/site.json`;
 unknown values fall back to `default`.
 
+<details>
+<summary>Theme screenshots</summary>
+
+| | | |
+|:---:|:---:|:---:|
+| [<img loading="lazy" src="docs/screenshots/default.jpg" alt="Default" width="260">](docs/screenshots/default.jpg)<br>`default` | [<img loading="lazy" src="docs/screenshots/dark.jpg" alt="Dark" width="260">](docs/screenshots/dark.jpg)<br>`dark` | [<img loading="lazy" src="docs/screenshots/journal.jpg" alt="Journal" width="260">](docs/screenshots/journal.jpg)<br>`journal` |
+| [<img loading="lazy" src="docs/screenshots/spotlight.jpg" alt="Spotlight" width="260">](docs/screenshots/spotlight.jpg)<br>`spotlight` | [<img loading="lazy" src="docs/screenshots/docs.jpg" alt="Docs" width="260">](docs/screenshots/docs.jpg)<br>`docs` | [<img loading="lazy" src="docs/screenshots/portfolio.jpg" alt="Portfolio" width="260">](docs/screenshots/portfolio.jpg)<br>`portfolio` |
+| [<img loading="lazy" src="docs/screenshots/high-contrast.jpg" alt="High contrast" width="260">](docs/screenshots/high-contrast.jpg)<br>`high-contrast` | | |
+
+Click a screenshot to open the full-size version.
+
+</details>
+
 Each switcher entry shows a short description from `themeDescriptions` in the same
 file and a `ZIP` link. The download serves the same self-contained folder as
 `php vendor/bin/herbie export-theme <name>`: the child theme overlaid on `default`,
