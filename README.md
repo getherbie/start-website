@@ -7,14 +7,14 @@
 
 > Bootstrap a Herbie website in no time – with Docker Compose or plain PHP 👌
 
-Herbie Website Starter comes with five themes, example pages, a small blog, and the plugins needed for contact forms and search.
+Herbie Website Starter comes with six themes, example pages, a small blog, and the plugins needed for contact forms and search.
 
 ## What Herbie Website Starter Includes
 
 * [Herbie CMS](https://github.com/getherbie/herbie) with Twig and Markdown
 * A Docker Compose setup with PHP 8.3 by default
 * Example pages with real content and a blog with posts, authors, categories, tags, archive and Atom feed
-* Five selectable themes (`default`, `dark`, `journal`, `spotlight`, `docs`) with a floating theme switcher in the bottom-right corner
+* Six selectable themes (`default`, `dark`, `journal`, `spotlight`, `docs`, `portfolio`) with a floating theme switcher in the bottom-right corner
 * Dependency-free CSS with custom properties — no Pure CSS and no external icon font
 * A contact form with CSRF token and ALTCHA captcha
 * A site search with a sidebar form
@@ -48,7 +48,7 @@ Optional: `HERBIE_DEBUG=1 php -S localhost:8888 index.php` for debug output, or 
 ## Themes
 
 A small button in the bottom-right corner opens the theme switcher with `default`,
-`dark`, `journal`, `spotlight` and `docs`. It is a plain `<details>` element, so it
+`dark`, `journal`, `spotlight`, `docs` and `portfolio`. It is a plain `<details>` element, so it
 works without JavaScript and takes no space in any design. The choice is stored in
 a cookie, so it survives navigation and reloads.
 The active theme is validated against the `themes` list in `site/data/site.json`;
@@ -72,8 +72,12 @@ same way, so `css/styles.css` stays untouched.
   card grid with CSS-only cover panels.
 * `docs`, inspired by Doks, also overrides `main.twig` with a top bar and a fixed
   navigation rail; the page layouts still come from `default`.
+* `portfolio` pairs a dark gallery shell — sticky header, framed cards, gradient
+  covers — with its own `home.twig` project grid; all layouts stay inherited.
 
-No theme needs external images or fonts.
+`docs` shows an overridden site shell, `portfolio` an overridden page layout —
+together they cover both levels of template inheritance. No theme needs external
+images or fonts.
 
 To add your own theme:
 

@@ -16,7 +16,7 @@ change or remove — there is no hidden configuration layer and no database.
 
 ## Design
 
-* Five selectable themes: `default`, `dark`, `journal`, `spotlight` and `docs`.
+* Six selectable themes: `default`, `dark`, `journal`, `spotlight`, `docs` and `portfolio`.
 * A floating theme switcher in the bottom-right corner; the selection is stored in a cookie.
 * Responsive layouts written with CSS Grid and Flexbox — no Pure CSS, no icon font and
   no JavaScript framework.

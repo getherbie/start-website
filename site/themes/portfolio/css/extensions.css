@@ -1,0 +1,231 @@
+/* portfolio theme: rules added on top of the shared base stylesheet.
+   Tokens live in css/theme.css; home.twig supplies the project grid markup. */
+
+/* Dark gallery shell, visible on every page — not just the home page. */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: #171512;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.brand,
+.brand:hover {
+    color: #ffffff;
+}
+
+.brand__mark > rect {
+    fill: var(--accent);
+}
+
+.site-nav__link {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom-color: transparent;
+}
+
+.site-nav__link:hover,
+.site-nav__link.is-active {
+    color: #ffffff;
+    border-bottom-color: var(--accent);
+}
+
+.nav-toggle {
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.nav-toggle span {
+    background: #ffffff;
+}
+
+.site-footer {
+    border-top: 4px solid var(--accent);
+}
+
+/* A left-aligned hero with an image-free gallery backdrop. */
+.hero--portfolio {
+    position: relative;
+    overflow: hidden;
+    padding: 5rem 0 4rem;
+    background-color: #171512;
+    background-image:
+        radial-gradient(circle at 85% 20%, rgba(194, 80, 47, 0.5), transparent 42%),
+        repeating-linear-gradient(135deg, transparent 0 22px, rgba(255, 255, 255, 0.025) 22px 23px);
+}
+
+.hero--portfolio .hero__inner {
+    max-width: 100%;
+    margin: 0;
+    text-align: left;
+}
+
+.hero--portfolio .hero__title {
+    max-width: 14ch;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    font-weight: 800;
+}
+
+.hero--portfolio .hero__actions {
+    justify-content: flex-start;
+}
+
+/* Project grid ------------------------------------------------------------ */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    gap: var(--gap);
+    margin: 2.5rem 0;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(23, 21, 18, 0.14);
+}
+
+/* Image-free cover panels: one gradient per card, plus a soft highlight. */
+.project-card__thumb {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(135deg, #c2502f, #e8a06a);
+}
+
+.project-card__thumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 78% 24%, rgba(255, 255, 255, 0.4), transparent 48%);
+}
+
+.project-card:nth-child(2) .project-card__thumb {
+    background: linear-gradient(135deg, #1f4e5f, #4a90a4);
+}
+
+.project-card:nth-child(3) .project-card__thumb {
+    background: linear-gradient(135deg, #5a4b8a, #9b8ec4);
+}
+
+.project-card:nth-child(4) .project-card__thumb {
+    background: linear-gradient(135deg, #2f6b4f, #7fb069);
+}
+
+.project-card__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.project-card__category {
+    margin: 0 0 0.5rem;
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.project-card__title {
+    margin: 0 0 0.5rem;
+    font-size: 1.35rem;
+}
+
+.project-card__text {
+    margin: 0;
+    color: var(--text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-card {
+        transition: none;
+    }
+
+    .project-card:hover {
+        transform: none;
+    }
+}
+
+/* Blog entries and feature cards become framed gallery tiles. */
+.post-card,
+.card {
+    position: relative;
+    overflow: hidden;
+}
+
+.post-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.post-card::before,
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), #e8a06a);
+}
+
+.card {
+    padding-top: 2rem;
+}
+
+/* Recent-post widgets keep their compact list, with a slim accent rule. */
+.post-card--small {
+    padding: 0.25rem 0 0.25rem 1rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    margin-bottom: 0.75rem;
+}
+
+.post-card--small::before {
+    top: 0;
+    right: auto;
+    bottom: 0;
+    width: 3px;
+    height: auto;
+    background: linear-gradient(var(--accent), #e8a06a);
+}
+
+/* Smaller menu button, matching the shared default override. */
+.nav-toggle {
+    gap: 4px;
+    width: 2.4rem;
+    height: 2.2rem;
+    min-height: 2.4rem;
+    margin: 0.5rem 0;
+    padding: 0.65rem 0.5rem;
+}
+
+.nav-toggle:hover span {
+    background: var(--accent-button-text);
+}
+
+/* Drop the first word of the wordmark on tiny screens so brand and menu button
+   fit on one line. */
+@media (max-width: 400px) {
+    .brand__prefix {
+        display: none;
+    }
+}

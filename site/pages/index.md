@@ -5,7 +5,7 @@ layout: home
 
 Herbie Website Starter gives you a working [Herbie CMS](https://github.com/getherbie/herbie)
 website from the first minute: example pages, a small blog, a contact form, search and
-five themes you can switch right in the browser. All content lives in plain Markdown
+six themes you can switch right in the browser. All content lives in plain Markdown
 files, so you can edit it with any text editor — no database required.
 
 --- left ---
@@ -18,7 +18,7 @@ ALTCHA captcha, a site search and a complete example blog with posts, authors,
 categories and tags.
 
 Use the theme switcher in the bottom-right corner to see how the same content looks in the
-`default`, `dark`, `journal`, `spotlight` and `docs` themes. Your choice is remembered
+`default`, `dark`, `journal`, `spotlight`, `docs` and `portfolio` themes. Your choice is remembered
 in a cookie.
 
 --- right ---

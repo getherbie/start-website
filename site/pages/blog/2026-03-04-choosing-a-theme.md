@@ -7,17 +7,17 @@ author_id: jane-doe
 authors: [Jane Doe]
 categories: [Design]
 tags: [themes, design]
-abstract: How the five bundled themes work, what theme inheritance means in Herbie and how to add your own colour scheme or a complete new design.
+abstract: How the six bundled themes work, what theme inheritance means in Herbie and how to add your own colour scheme or a complete new design.
 ---
 
 A starter should look decent on the first launch and still be easy to change
-later. This site ships with five themes: `default`, `dark`, `journal`,
-`spotlight` and `docs`. Use the switcher in the bottom-right corner to compare them without
-touching any code.
+later. This site ships with six themes: `default`, `dark`, `journal`,
+`spotlight`, `docs` and `portfolio`. Use the switcher in the bottom-right corner to compare
+them without touching any code.
 
 ## One set of templates
 
-Four of the five themes share the same Twig layouts. Every child theme has `default` as its
+Four of the six themes share the same Twig layouts. Every child theme has `default` as its
 `themeParent`, so Herbie looks for a template in the active theme first and falls
 back to the default theme when it is not there. The result is that a child theme can
 be as small as a single CSS file — or as large as a whole new design.
@@ -57,7 +57,13 @@ column.
 
 `docs` goes one step further and overrides `main.twig` as well. Inspired by Doks,
 it adds a top bar and a fixed navigation rail; the individual page layouts are
-still inherited. This is the full theme mechanism: tokens, extensions, markup.
+still inherited. That covers the site shell.
+
+`portfolio` covers the other level. It overrides `home.twig` with a project grid
+and restyles the shared header, hero and cards in `css/extensions.css`, so every
+page gets a dark gallery look while the navigation and footer markup still come
+from `default`. Together, `docs` and `portfolio` show the full theme mechanism:
+tokens, extensions, shell markup and page markup.
 
 So "theme" can mean two things here: a colour scheme over the shared design, or a
 design of its own that merely extends the markup.
