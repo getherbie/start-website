@@ -1,3 +1,18 @@
+/* spotlight theme: rules added on top of the default stylesheet.
+
+   Generated from the previous full stylesheet. Only declarations the old
+   sheet did not define are reverted; the old rules follow verbatim. */
+
+    .brand { text-transform: revert; }
+    .site-nav__link { border-bottom: revert; }
+    .site-nav__link:hover { border-bottom-color: revert; }
+    .site-nav__link.is-active { border-bottom-color: revert; }
+    .hero__eyebrow { opacity: revert; }
+    .widget { border-bottom: revert; margin-bottom: revert; padding-bottom: revert; }
+    .widget:last-child { border-bottom: revert; }
+    .post-card { border-bottom: revert; padding-bottom: revert; }
+    .post-card--small .post-card__title { font-size: 1.3rem; }
+
 /* ---------------------------------------------------------------------------
    Spotlight theme. A bold publication look: large sans typography, a dark hero,
    image-free cover panels made from CSS gradients and a card grid of posts.
@@ -233,6 +248,12 @@ hr {
     height: 2rem;
     flex: none;
     border-radius: 0.35rem;
+}
+
+/* The shared markup carries the default red as an SVG presentation attribute;
+   CSS overrides it so Spotlight uses its own accent. */
+.brand__mark > rect {
+    fill: var(--accent);
 }
 
 .site-nav {
@@ -1262,5 +1283,27 @@ input::placeholder {
     .button:hover,
     .post-card:hover {
         transform: none;
+    }
+}
+
+/* Smaller menu button, matching the shared default override. */
+.nav-toggle {
+    gap: 4px;
+    width: 2.4rem;
+    height: 2.2rem;
+    min-height: 2.4rem;
+    margin: 0.5rem 0;
+    padding: 0.65rem 0.5rem;
+}
+
+.nav-toggle:hover span {
+    background: var(--accent-button-text);
+}
+
+/* Drop the first word of the wordmark on tiny screens so brand and menu button
+   fit on one line. */
+@media (max-width: 400px) {
+    .brand__prefix {
+        display: none;
     }
 }

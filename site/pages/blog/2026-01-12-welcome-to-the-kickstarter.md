@@ -12,7 +12,7 @@ abstract: A quick tour of what you get when you create a site from Herbie Websit
 
 Welcome! This site is more than an empty skeleton. It is a small, working website
 that you can use as the starting point for your own project. You get example pages,
-a contact form, site search, six themes and a blog — all built with Herbie CMS and
+a contact form, site search, five themes and a blog — all built with Herbie CMS and
 plain text files.
 
 ## No database, no build step
@@ -50,6 +50,6 @@ shows the full file layout.
 ## Make it yours
 
 Start by changing the text in `site/pages/index.md` and the navigation in
-`site/data/menu.json`. Then try the theme switcher in the header: `light` and `dark`
-are small child themes that only override CSS custom properties, while `journal`,
-`spotlight` and `docs` replace the stylesheet for completely different looks.
+`site/data/menu.json`. Then try the theme switcher in the bottom-right corner: `dark` is a small
+child theme that only overrides CSS custom properties, while `journal`, `spotlight`
+and `docs` add their own styles for completely different looks.

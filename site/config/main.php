@@ -1,6 +1,6 @@
 <?php
 
-// The active theme can be changed with the theme switcher in the site header.
+// The active theme can be changed with the theme switcher in the bottom-right corner.
 // The choice is stored in a cookie so it survives navigation and reloads.
 $siteData = json_decode((string)@file_get_contents(__DIR__ . '/../data/site.json'), true);
 $themes = is_array($siteData) && isset($siteData['themes']) && is_array($siteData['themes'])
@@ -26,6 +26,9 @@ return [
     'language' => 'en',
     'locale' => 'en_EN',
     'theme' => $theme,
+    // `default` is the shared source theme: layouts, JavaScript and the base
+    // stylesheet live here, child themes add only what differs.
+    // The export-theme Herbie command materialises a standalone copy for 1:1 reuse.
     'themeParent' => 'default',
     'enabledPlugins' => 'twig,markdown,imagine,search,contact,blog',
     'plugins' => [

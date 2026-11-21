@@ -19,7 +19,7 @@ Without Docker:
     cd web
     php -S localhost:8888 index.php
 
-Open <http://localhost:8888> and use the theme switcher in the header.
+Open <http://localhost:8888> and use the theme switcher in the bottom-right corner.
 
 ## Where things live
 
@@ -29,7 +29,7 @@ Open <http://localhost:8888> and use the theme switcher in the header.
 | `site/data/menu.json` | The main navigation |
 | `site/data/site.json` | Site title, description and available themes |
 | `site/themes/default` | Default layouts, CSS and JavaScript |
-| `site/themes/light`, `site/themes/dark` | Small themes that override CSS variables |
+| `site/themes/dark` | Small theme that overrides CSS variables |
 | `site/media` | Images and downloads |
 | `site/config/main.php` | CMS configuration, plugins and cookie settings |
 

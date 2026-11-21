@@ -44,8 +44,8 @@ from several layouts means a change to a link or class happens in one place:
 ## Theme inheritance
 
 Herbie looks for a template in the active theme first, then falls back to the parent
-listed in `themeParent`. The `light` and `dark` themes contain no Twig at all — they
-only override CSS variables. Copy a template into your theme folder when you need
+listed in `themeParent`. The `dark` theme contains no Twig at all — it
+only overrides CSS variables. Copy a template into your theme folder when you need
 different markup; everything you leave behind still comes from the parent.
 
 For a hands-on example, read

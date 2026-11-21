@@ -1,6 +1,8 @@
 {% apply spaceless %}
     {{ css_add('@theme/css/styles.css') }}
     {{ css_add('@theme/css/theme.css') }}
+    {{ css_add('@theme/css/extensions.css') }}
+    {{ css_add('@theme/css/switcher.css') }}
     {{ js_add('@theme/js/scripts.js') }}
 {% endapply %}
 <!DOCTYPE html>
@@ -22,15 +24,13 @@
 <div class="docs-shell">
     <header class="docs-topbar">
         <div class="docs-topbar__inner">
-            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
-                <span></span><span></span><span></span>
-            </button>
+            {% set brand_words = site.data.site.title|split(' ') %}
             <a class="brand" href="{{ url_rel('index') }}">
                 <svg class="brand__mark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" aria-hidden="true">
                     <rect width="64" height="64" rx="11" fill="#3456d8"/>
                     <g fill="#ffffff"><rect x="14" y="14" width="36" height="9"/><rect x="14" y="27.5" width="23" height="9"/><rect x="14" y="41" width="36" height="9"/></g>
                 </svg>
-                <span>{{ site.data.site.title }}</span>
+                <span><span class="brand__prefix">{{ brand_words[0] }}</span> {{ brand_words|slice(1)|join(' ') }}</span>
             </a>
             <div class="docs-topbar__right">
                 <a class="docs-search-link" href="{{ url_rel('search') }}">
@@ -40,14 +40,10 @@
                     </svg>
                     <span>Search</span>
                 </a>
-                <div class="theme-switcher" role="group" aria-label="Choose a theme">
-                    <span class="theme-switcher__label">Theme</span>
-                    {% for theme in site.data.site.themes %}
-                        {% set isCurrent = (theme == site.theme) %}
-                        <a class="theme-switcher__link{% if isCurrent %} is-active{% endif %}" href="{{ url_rel(site.route) }}?theme={{ theme }}"{% if isCurrent %} aria-current="true"{% endif %}>{{ theme|title }}</a>
-                    {% endfor %}
-                </div>
             </div>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
 
@@ -85,6 +81,23 @@
         </div>
     </footer>
 </div>
+
+<details class="theme-fab">
+    <summary class="theme-fab__button" aria-label="Choose a theme" title="Choose a theme">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/>
+        </svg>
+    </summary>
+    <div class="theme-fab__panel" role="group" aria-label="Choose a theme">
+        <span class="theme-switcher__label">Theme</span>
+        {% for theme in site.data.site.themes %}
+            {% set isCurrent = (theme == site.theme) %}
+            <a class="theme-switcher__link{% if isCurrent %} is-active{% endif %}" href="{{ url_rel(site.route) }}?theme={{ theme }}"{% if isCurrent %} aria-current="true"{% endif %}>{{ theme|title }}</a>
+        {% endfor %}
+    </div>
+</details>
+
 {{ js_out() }}
 </body>
 </html>

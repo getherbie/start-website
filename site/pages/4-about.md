@@ -20,7 +20,7 @@ change more often than they grow.
 * Markdown front matter with custom fields such as `type`, `author_id`, `tags` and
   `abstract`.
 * Twig layouts that query pages with Herbie's `query()` function.
-* Theme inheritance: `light` and `dark` contain only CSS variable overrides.
+* Theme inheritance: `dark` contains only CSS variable overrides.
 * A cookie-based theme switcher that works without reloading page content.
 * A contact form with CSRF token and ALTCHA captcha and a site-wide search.
 

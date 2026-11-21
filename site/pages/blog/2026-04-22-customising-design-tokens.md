@@ -12,7 +12,7 @@ abstract: A hands-on guide to changing colours, spacing and typography across al
 
 The stylesheet in `site/themes/default/css/styles.css` defines the visual language
 once, as CSS custom properties. Change a value there and every layout picks it up.
-The bundled `light` and `dark` themes do exactly that in their own `css/theme.css`.
+The bundled `dark` theme does exactly that in its own `css/theme.css`.
 
 ## Find the token you need
 
@@ -47,7 +47,7 @@ Create `site/themes/mytheme/css/theme.css` with only the values you want to chan
 ```
 
 Add `mytheme` to the `themes` list in `site/data/site.json` and it appears in the
-header switcher immediately. Layouts, spacing and typography stay in the parent
+theme switcher immediately. Layouts, spacing and typography stay in the parent
 stylesheet, so your theme cannot drift away from the others.
 
 ## Tokens used by plugins
@@ -59,6 +59,6 @@ and needs no extra tokens.
 
 ## Check the result
 
-Switch between themes in the header and look at a page with a form, a code block and
+Switch between themes with the button in the bottom-right corner and look at a page with a form, a code block and
 a blog post. The {{ link_page('contact', 'contact page') }} and any
 {{ link_page('blog', 'article') }} are good places to spot a token you missed.

@@ -16,7 +16,7 @@
     --accent-button: #ff8a75;
     --accent-button-text: #16181d;
 
-    --hero-bg: #1d3c42;
+    --hero-bg: linear-gradient(135deg, #0b1f24, #163d44);
     --hero-text: #eafcff;
 
     --footer-bg: #101216;

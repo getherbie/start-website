@@ -16,8 +16,8 @@ change or remove — there is no hidden configuration layer and no database.
 
 ## Design
 
-* Three selectable themes: `default`, `light` and `dark`.
-* A theme switcher in the header; the selection is stored in a cookie.
+* Five selectable themes: `default`, `dark`, `journal`, `spotlight` and `docs`.
+* A floating theme switcher in the bottom-right corner; the selection is stored in a cookie.
 * Responsive layouts written with CSS Grid and Flexbox — no Pure CSS, no icon font and
   no JavaScript framework.
 * Child themes inherit templates and assets from the `default` theme.
@@ -30,6 +30,6 @@ change or remove — there is no hidden configuration layer and no database.
 
 ## Try it out
 
-Switch themes in the header, search for a term such as "theme", open a
+Switch themes with the button in the bottom-right corner, search for a term such as "theme", open a
 {{ link_page('blog', 'blog post') }} and follow the author and tag links, or send a
 message through {{ link_page('contact', 'the contact form') }}.

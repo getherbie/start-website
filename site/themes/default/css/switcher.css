@@ -1,0 +1,70 @@
+/* ---------------------------------------------------------------------------
+   Floating theme picker. It sits outside the page flow so none of the theme
+   designs have to reserve space for it. <details> makes it usable without JS.
+   --------------------------------------------------------------------------- */
+.theme-fab {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 50;
+}
+
+.theme-fab__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text-muted);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    list-style: none;
+}
+
+.theme-fab__button::-webkit-details-marker {
+    display: none;
+}
+
+.theme-fab__button:hover,
+.theme-fab[open] .theme-fab__button {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.theme-fab__button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.theme-fab__panel {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 0.5rem);
+    display: flex;
+    flex-direction: column;
+    min-width: 9rem;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.theme-fab:not([open]) .theme-fab__panel {
+    display: none;
+}
+
+.theme-fab__panel .theme-switcher__label {
+    display: block;
+    padding: 0.1rem 0.5rem 0.3rem;
+}
+
+.theme-fab__panel .theme-switcher__link {
+    display: block;
+    padding: 0.35rem 0.5rem;
+    border-radius: var(--radius);
+    text-align: left;
+}

@@ -4,7 +4,6 @@
   "description": "A starter website for Herbie CMS with example pages, a blog, selectable themes, contact form and search.",
   "themes": [
     "default",
-    "light",
     "dark",
     "journal",
     "spotlight",

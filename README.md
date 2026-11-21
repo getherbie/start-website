@@ -7,14 +7,14 @@
 
 > Bootstrap a Herbie website in no time – with Docker Compose or plain PHP 👌
 
-Herbie Website Starter comes with six themes, example pages, a small blog, and the plugins needed for contact forms and search.
+Herbie Website Starter comes with five themes, example pages, a small blog, and the plugins needed for contact forms and search.
 
 ## What Herbie Website Starter Includes
 
 * [Herbie CMS](https://github.com/getherbie/herbie) with Twig and Markdown
 * A Docker Compose setup with PHP 8.3 by default
 * Example pages with real content and a blog with posts, authors, categories, tags, archive and Atom feed
-* Six selectable themes (`default`, `light`, `dark`, `journal`, `spotlight`, `docs`) with a theme switcher in the header
+* Five selectable themes (`default`, `dark`, `journal`, `spotlight`, `docs`) with a floating theme switcher in the bottom-right corner
 * Dependency-free CSS with custom properties — no Pure CSS and no external icon font
 * A contact form with CSRF token and ALTCHA captcha
 * A site search with a sidebar form
@@ -47,38 +47,55 @@ Optional: `HERBIE_DEBUG=1 php -S localhost:8888 index.php` for debug output, or 
 
 ## Themes
 
-The header contains a theme switcher with `default`, `light`, `dark`, `journal`,
-`spotlight` and `docs`. The choice is stored in a cookie, so it survives navigation
-and reloads.
+A small button in the bottom-right corner opens the theme switcher with `default`,
+`dark`, `journal`, `spotlight` and `docs`. It is a plain `<details>` element, so it
+works without JavaScript and takes no space in any design. The choice is stored in
+a cookie, so it survives navigation and reloads.
 The active theme is validated against the `themes` list in `site/data/site.json`;
 unknown values fall back to `default`.
 
-All layouts live in `site/themes/default`. The config sets `themeParent` to
-`default`, so a child theme only needs to supply what differs:
+All shared layouts, JavaScript and the base stylesheet live in
+`site/themes/default`. The config sets `themeParent` to `default`, so a child
+theme only supplies what differs. Assets are loaded in this order:
 
-* `light` and `dark` are colour schemes: they override CSS custom properties in
-  `css/theme.css` and inherit the full stylesheet and all templates.
-* `journal` is a complete alternative theme: it ships its own `css/styles.css`
-  (serif typography, a single reading column instead of a sidebar) plus its own
-  tokens in `css/theme.css`.
-* `spotlight` is a second full design inspired by Ghost's Casper theme: bold sans
-  typography, a dark gradient hero and a card grid with CSS-only cover panels.
-* `docs` is a documentation-style theme inspired by Doks. It is the only theme with
-  its own `main.twig`, which adds a top bar and a fixed navigation rail; the page
-  layouts still come from `default`.
+1. `css/styles.css` — the shared base, inherited by every theme
+2. `css/theme.css` — the theme's design tokens
+3. `css/extensions.css` — extra rules for that theme
 
-`journal` and `spotlight` use their own tokens in `css/theme.css`; templates and
-JavaScript fall back to `default` unless a theme overrides them. No theme needs
-external images or fonts.
+Themes without extra rules inherit `default/css/extensions.css`. The
+floating switcher has its own `default/css/switcher.css`, which children inherit the
+same way, so `css/styles.css` stays untouched.
+
+* `dark` is a colour scheme: one short `css/theme.css`.
+* `journal` adds serif typography, hairline rules and a centred reading column.
+* `spotlight`, inspired by Ghost's Casper theme, adds a gradient cover hero and a
+  card grid with CSS-only cover panels.
+* `docs`, inspired by Doks, also overrides `main.twig` with a top bar and a fixed
+  navigation rail; the page layouts still come from `default`.
+
+No theme needs external images or fonts.
 
 To add your own theme:
 
-1. Create `site/themes/<name>/css/theme.css` with your variable overrides. Add a
-   `css/styles.css` as well if you want a genuinely different design.
-2. Add `<name>` to the `themes` list in `site/data/site.json`.
+1. Create `site/themes/<name>/css/theme.css` with your token overrides.
+2. Add `css/extensions.css` for extra rules; leave it out to inherit the parent hook.
+3. Add `<name>` to the `themes` list in `site/data/site.json`.
 
-Copy a Twig template into your theme folder if you need different markup; Herbie
-falls back to the parent theme for every template you do not override.
+Copy a Twig template into your theme folder only if you need different markup;
+Herbie falls back to the parent theme for everything you do not override.
+
+### Exporting a standalone theme
+
+The source themes share files through `themeParent`. To get a folder that can be
+copied 1:1 into another project, materialise it:
+
+```sh
+php vendor/bin/herbie export-theme journal    # or --all
+```
+
+The result is written to `dist/themes/<name>/` (git-ignored). It contains every
+template, the script and all four CSS files, so no parent theme is needed. The
+export refuses to overwrite an existing folder; delete it first to refresh.
 
 The author portraits are original, hand-written SVG illustrations in
 `site/media/img/authors/`. Each author's `avatar` attribute in
