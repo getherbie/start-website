@@ -7,9 +7,6 @@ nbproject
 # composer itself
 composer.phar
 
-# composer lock files
-composer.lock
-
 # composer vendor
 vendor/
 
