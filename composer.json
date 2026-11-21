@@ -1,7 +1,7 @@
 {
     "name": "getherbie/start-website",
     "homepage": "https://github.com/getherbie",
-    "description": "The website kickstarter for Herbie CMS",
+    "description": "A starter website for Herbie CMS",
     "type": "project",
     "license":"BSD-3-Clause",
     "require": {

@@ -6,7 +6,7 @@ date: 2024-02-20
 author_id: herbie-team
 authors: [Herbie Team]
 categories: [News]
-tags: [kickstarter, community, updates]
+tags: [starter, community, updates]
 abstract: "Alex Weber joins the example authors, bringing a focus on templates, caching and keeping generated files out of the way."
 ---
 
@@ -18,7 +18,7 @@ details that make a site pleasant to maintain.
 
 Expect posts about template structure, reusable includes and the generated directories
 that Herbie manages for you. The aim is practical guidance you can apply to this
-kickstarter without installing anything extra.
+starter without installing anything extra.
 
 ## A growing example
 

@@ -6,12 +6,12 @@ date: 2023-04-18
 author_id: herbie-team
 authors: [Herbie Team]
 categories: [News]
-tags: [kickstarter, herbie, updates]
-abstract: "A short history of this kickstarter and what the first release set out to solve for small Herbie sites."
+tags: [starter, herbie, updates]
+abstract: "A short history of this starter and what the first release set out to solve for small Herbie sites."
 ---
 
 It started with a repeated task: every time we built a small website with Herbie CMS,
-we copied the same pages, layouts and plugins into a new repository. This kickstarter
+we copied the same pages, layouts and plugins into a new repository. This starter
 is the result of that repetition — a working site you can fork and edit instead of an
 empty folder.
 

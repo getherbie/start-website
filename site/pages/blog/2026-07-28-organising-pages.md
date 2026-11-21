@@ -10,7 +10,7 @@ tags: [markdown, content]
 abstract: Practical tips for naming page files, using numeric prefixes for ordering and choosing the front matter fields that matter.
 ---
 
-A page in this kickstarter is one Markdown file. A few conventions make a growing
+A page in this starter is one Markdown file. A few conventions make a growing
 `site/pages` folder easy to navigate.
 
 ## Numeric prefixes control order

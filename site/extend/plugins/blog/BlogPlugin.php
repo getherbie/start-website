@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HerbieKickstarter\Plugin\Blog;
+namespace HerbieWebsiteStarter\Plugin\Blog;
 
 use herbie\AbstractPlugin;
 use herbie\HttpException;

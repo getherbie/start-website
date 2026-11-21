@@ -7,7 +7,7 @@ author_id: alex-weber
 authors: [Alex Weber]
 categories: [Tutorials]
 tags: [twig, templates, content]
-abstract: "When to use an include, when a macro is worth it, and how the blog layouts in this kickstarter combine both to avoid duplicated markup."
+abstract: "When to use an include, when a macro is worth it, and how the blog layouts in this starter combine both to avoid duplicated markup."
 ---
 
 Reuse in Twig is simple, but it helps to pick the right tool. This site uses both
@@ -39,7 +39,7 @@ belongs in an include or macro.
 
 ## Keep templates boring
 
-The layouts in this kickstarter are intentionally plain: a few queries, a few includes
+The layouts in this starter are intentionally plain: a few queries, a few includes
 and no clever abstractions. When a template gets hard to read, split it rather than
 adding another layer. Read
 {{ link_page('blog/2023-08-29-twig-templates-explained', 'Twig Templates Explained') }}

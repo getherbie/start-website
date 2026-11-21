@@ -7,7 +7,7 @@ author_id: jane-doe
 authors: [Jane Doe]
 categories: [Tutorials]
 tags: [plugins, forms]
-abstract: How the contact form and the site search are wired into the kickstarter and which settings matter before you deploy.
+abstract: How the contact form and the site search are wired into the starter and which settings matter before you deploy.
 ---
 
 Two plugins turn this static-looking site into something interactive: `contact` and

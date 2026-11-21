@@ -7,7 +7,7 @@ author_id: herbie-team
 authors: [Herbie Team]
 categories: [Tutorials]
 tags: [docker, development]
-abstract: How to run the kickstarter with Docker Compose, where to find the generated assets and how to reset a local installation.
+abstract: How to run the starter with Docker Compose, where to find the generated assets and how to reset a local installation.
 ---
 
 The repository ships with a Docker Compose setup so you can start the site without

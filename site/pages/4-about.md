@@ -2,7 +2,7 @@
 title: About
 ---
 
-# About this kickstarter
+# About Herbie Website Starter
 
 This site is the starting point for small Herbie CMS websites. It is intentionally
 modest: a handful of pages, a blog and a few plugins, all wired together so you can
@@ -28,7 +28,7 @@ change more often than they grow.
 
 * {{ link_page('https://github.com/getherbie/herbie', 'Herbie CMS on GitHub', {target: '_blank'}) }}
 * {{ link_page('https://herbie.tebe.ch', 'Herbie CMS website', {target: '_blank'}) }}
-* {{ link_page('https://github.com/getherbie/start-website', 'This kickstarter on GitHub', {target: '_blank'}) }}
+* {{ link_page('https://github.com/getherbie/start-website', 'Herbie Website Starter on GitHub', {target: '_blank'}) }}
 
 If you want to meet the people behind the example posts, have a look at the
 {{ link_page('blog/author', 'author profiles') }}.

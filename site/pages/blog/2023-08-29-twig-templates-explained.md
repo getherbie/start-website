@@ -7,7 +7,7 @@ author_id: alex-weber
 authors: [Alex Weber]
 categories: [Tutorials]
 tags: [twig, templates, themes]
-abstract: "A guided tour of the Twig layouts in this kickstarter, from the base template to reusable includes and theme inheritance."
+abstract: "A guided tour of the Twig layouts in this starter, from the base template to reusable includes and theme inheritance."
 ---
 
 Templates decide how content looks; Markdown decides what it says. This site keeps

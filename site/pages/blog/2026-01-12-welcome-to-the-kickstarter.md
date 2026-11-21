@@ -1,13 +1,13 @@
 ---
-title: Welcome to the Website Kickstarter
+title: Welcome to Herbie Website Starter
 layout: post
 type: post
 date: 2026-01-12
 author_id: herbie-team
 authors: [Herbie Team]
 categories: [News]
-tags: [kickstarter, herbie]
-abstract: A quick tour of what you get when you create a site from this kickstarter and how the example content is organised.
+tags: [starter, herbie]
+abstract: A quick tour of what you get when you create a site from Herbie Website Starter and how the example content is organised.
 ---
 
 Welcome! This site is more than an empty skeleton. It is a small, working website

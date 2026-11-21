@@ -7,7 +7,7 @@ author_id: alex-weber
 authors: [Alex Weber]
 categories: [Performance]
 tags: [performance, assets, themes]
-abstract: "How this kickstarter keeps requests small without a build step, and which generated files you can safely delete when testing."
+abstract: "How this starter keeps requests small without a build step, and which generated files you can safely delete when testing."
 ---
 
 There is no bundler in this project. That is a deliberate performance choice: fewer

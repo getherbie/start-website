@@ -15,5 +15,5 @@ placeholders. Set `HERBIE_CONTACT_RECIPIENT`, `HERBIE_CONTACT_CSRF_SECRET` and
 
 {{ contact() }}
 
-Questions about the kickstarter itself? Browse {{ link_page('features', 'the feature list') }}
+Questions about Herbie Website Starter itself? Browse {{ link_page('features', 'the feature list') }}
 or {{ link_page('getting-started', 'the getting-started guide') }} first.

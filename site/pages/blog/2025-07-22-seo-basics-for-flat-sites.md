@@ -7,7 +7,7 @@ author_id: jane-doe
 authors: [Jane Doe]
 categories: [Performance]
 tags: [seo, performance, content]
-abstract: "The metadata, feed and URL choices already built into this kickstarter, plus the few things you should set before a site goes live."
+abstract: "The metadata, feed and URL choices already built into this starter, plus the few things you should set before a site goes live."
 ---
 
 A flat-file site can be perfectly searchable without a plugin. Most of the work is in

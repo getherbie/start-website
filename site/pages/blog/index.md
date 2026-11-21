@@ -3,7 +3,7 @@ title: Blog
 layout: blog
 ---
 
-# Notes from the kickstarter
+# Notes from Herbie Website Starter
 
 Short articles about building small sites with Herbie CMS, choosing a theme and
 writing content in Markdown. Every post links to its author, category and tags, and

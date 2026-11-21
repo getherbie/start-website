@@ -10,7 +10,7 @@ tags: [themes, design]
 abstract: How the three bundled themes work, what theme inheritance means in Herbie and how to add your own colour scheme in a few lines.
 ---
 
-A kickstarter should look decent on the first launch and still be easy to change
+A starter should look decent on the first launch and still be easy to change
 later. This site ships with three themes: `default`, `light` and `dark`. Use the
 switcher in the header to compare them without touching any code.
 

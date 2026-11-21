@@ -7,7 +7,7 @@ author_id: jane-doe
 authors: [Jane Doe]
 categories: [Design]
 tags: [accessibility, design, content]
-abstract: "The small template decisions in this kickstarter that help keyboard and screen-reader users, and what to keep in mind when editing content."
+abstract: "The small template decisions in this starter that help keyboard and screen-reader users, and what to keep in mind when editing content."
 ---
 
 Accessibility is easier when it is part of the default layout rather than an

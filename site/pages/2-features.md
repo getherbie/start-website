@@ -4,7 +4,7 @@ title: Features
 
 # What is included
 
-The kickstarter is a small but complete website. Every part is a normal file you can
+Herbie Website Starter is a small but complete website. Every part is a normal file you can
 change or remove — there is no hidden configuration layer and no database.
 
 ## Content and structure

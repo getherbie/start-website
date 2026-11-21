@@ -6,11 +6,11 @@ date: 2025-12-05
 author_id: herbie-team
 authors: [Herbie Team]
 categories: [Community]
-tags: [kickstarter, community, updates]
+tags: [starter, community, updates]
 abstract: "What the example site gained in its first full year, and the principles that kept it small while the blog and theme system grew."
 ---
 
-Looking back at the last twelve months, the kickstarter changed more than we expected
+Looking back at the last twelve months, the starter changed more than we expected
 — and less than a typical website project.
 
 ## What grew
@@ -35,6 +35,6 @@ property mattered more than any feature we added.
 
 ## Thanks
 
-To everyone who tried the kickstarter and sent a note: the practical questions were
+To everyone who tried the starter and sent a note: the practical questions were
 the best guide for what to write here. More examples are on the way; see the
 {{ link_page('blog/archive', 'archive') }} for everything published so far.

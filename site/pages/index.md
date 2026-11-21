@@ -3,7 +3,7 @@ title: Home
 layout: home
 ---
 
-This kickstarter gives you a working [Herbie CMS](https://github.com/getherbie/herbie)
+Herbie Website Starter gives you a working [Herbie CMS](https://github.com/getherbie/herbie)
 website from the first minute: example pages, a small blog, a contact form, search and
 three themes you can switch right in the browser. All content lives in plain Markdown
 files, so you can edit it with any text editor — no database required.

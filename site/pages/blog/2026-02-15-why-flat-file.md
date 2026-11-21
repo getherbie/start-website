@@ -7,10 +7,10 @@ author_id: herbie-team
 authors: [Herbie Team]
 categories: [News]
 tags: [herbie, content]
-abstract: A look at why this kickstarter uses a flat-file CMS instead of a database, and what that means for editing, version control and backups.
+abstract: A look at why this starter uses a flat-file CMS instead of a database, and what that means for editing, version control and backups.
 ---
 
-Most content management systems store pages in a database. This kickstarter takes a
+Most content management systems store pages in a database. This starter takes a
 different route: every page is a Markdown file in `site/pages`. Here is why that
 choice shapes the whole project.
 

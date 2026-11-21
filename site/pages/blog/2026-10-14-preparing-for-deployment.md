@@ -10,7 +10,7 @@ tags: [deployment]
 abstract: "The checklist before going live: replace placeholder secrets, configure SMTP, remove the noindex middleware and check the generated feed."
 ---
 
-The kickstarter is safe for local development by default. A few settings need your
+The starter is safe for local development by default. A few settings need your
 attention before the site goes live.
 
 ## Replace placeholder secrets

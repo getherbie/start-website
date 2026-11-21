@@ -7,10 +7,10 @@ author_id: jane-doe
 authors: [Jane Doe]
 categories: [Community]
 tags: [herbie, community]
-abstract: "Where to find help, examples and conversation about Herbie CMS, and how this kickstarter fits into the wider project."
+abstract: "Where to find help, examples and conversation about Herbie CMS, and how this starter fits into the wider project."
 ---
 
-A kickstarter is easier to use when you know where to turn for help. Herbie is a small
+A starter is easier to use when you know where to turn for help. Herbie is a small
 project, but there are a few good places to look.
 
 ## The documentation
@@ -25,7 +25,7 @@ Everything is on {{ link_page('https://github.com/getherbie/herbie', 'GitHub', {
 Reading the bundled example site is often faster than searching for an answer: it shows
 real templates, plugins and local extensions.
 
-## This kickstarter
+## This starter
 
 The {{ link_page('https://github.com/getherbie/start-website', 'start-website repository', {target: '_blank'}) }}
 is where this example lives. Issues and pull requests are welcome — especially if you
