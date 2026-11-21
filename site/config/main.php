@@ -29,6 +29,9 @@ return [
     'themeParent' => 'default',
     'enabledPlugins' => 'twig,markdown,imagine,search,contact,blog',
     'plugins' => [
+        'markdown' => [
+            'flavor' => 'gfm',
+        ],
         'contact' => [
             'recipient' => getenv('HERBIE_CONTACT_RECIPIENT') ?: 'blackhole@example.com',
             'csrf' => [

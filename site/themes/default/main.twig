@@ -37,7 +37,7 @@
         <nav class="site-nav" id="site-nav" aria-label="Main navigation">
             <ul class="site-nav__list">
                 {% for item in site.data.menu %}
-                    {% set isActive = (item.route == site.route) or (site.route == '' and item.route == 'index') %}
+                    {% set isActive = item.route == site.route or site.route starts with item.route ~ '/' %}
                     <li>
                         <a class="site-nav__link{% if isActive %} is-active{% endif %}" href="{{ url_rel(item.route) }}"{% if isActive %} aria-current="page"{% endif %}>{{ item.label }}</a>
                     </li>

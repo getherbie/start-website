@@ -1,9 +1,5 @@
 [
   {
-    "route": "index",
-    "label": "Home"
-  },
-  {
     "route": "features",
     "label": "Features"
   },
