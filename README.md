@@ -181,6 +181,12 @@ Use a different PHP version (default: 8.3):
 
 </details>
 
+## Smoke Tests
+
+With the site running locally, `php tests/smoke.php` checks every theme and route, the
+theme switcher, the imagine image cache and the standalone theme exports. Set
+`SMOKE_BASE_URL` if the site runs at another address. The same checks run in CI.
+
 ## Contact Form Configuration
 
 The contact form requires a CSRF secret and an ALTCHA captcha secret. The defaults in `site/config/main.php` are enough for local development.

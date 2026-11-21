@@ -33,3 +33,35 @@ jobs:
 
       - name: Install dependencies
         run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+  smoke:
+    name: Smoke tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, gd
+
+      - name: Install dependencies
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+      - name: Start web server
+        working-directory: web
+        run: |
+          php -S 127.0.0.1:8888 index.php > /tmp/herbie-smoke-server.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -fsS -o /dev/null http://127.0.0.1:8888/index.php/; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/herbie-smoke-server.log
+          exit 1
+
+      - name: Run smoke tests
+        run: php tests/smoke.php
