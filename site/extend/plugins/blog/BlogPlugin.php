@@ -10,9 +10,7 @@ use herbie\Page;
 use herbie\PageRepositoryInterface;
 use herbie\Plugin;
 use herbie\Site;
-use herbie\UrlManager;
 use herbie\middlewares\PageResolverMiddleware;
-use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -26,9 +24,7 @@ final class BlogPlugin extends AbstractPlugin
 {
     public function __construct(
         private readonly PageRepositoryInterface $pageRepository,
-        private readonly ResponseFactoryInterface $responseFactory,
         private readonly Site $site,
-        private readonly UrlManager $urlManager,
     ) {}
 
     public function applicationMiddlewares(): array
@@ -44,10 +40,6 @@ final class BlogPlugin extends AbstractPlugin
         $route = $request->getAttribute(PageResolverMiddleware::HERBIE_REQUEST_ATTRIBUTE_ROUTE, '');
         /** @var array<string, string> $params */
         $params = $request->getAttribute(PageResolverMiddleware::HERBIE_REQUEST_ATTRIBUTE_ROUTE_PARAMS, []);
-
-        if ($route === 'blog/feed.xml') {
-            return $this->createFeedResponse();
-        }
 
         if ($route !== 'blog' || $params === []) {
             return $handler->handle($request);
@@ -201,70 +193,6 @@ final class BlogPlugin extends AbstractPlugin
     {
         $data = $this->site->getData();
         return is_array($data['authors'] ?? null) ? $data['authors'] : [];
-    }
-
-    private function createFeedResponse(): ResponseInterface
-    {
-        $siteData = $this->site->getData();
-        $site = is_array($siteData['site'] ?? null) ? $siteData['site'] : [];
-        $title = $this->escape((string)($site['title'] ?? 'Blog')) . ' Blog';
-        $description = $this->escape((string)($site['description'] ?? ''));
-
-        $posts = [];
-        foreach ($this->pageRepository->findAll() as $post) {
-            if (($post['type'] ?? '') === 'post') {
-                $posts[] = $post;
-            }
-        }
-        usort($posts, static fn(Page $a, Page $b): int => strcmp((string)$b['date'], (string)$a['date']));
-
-        $selfUrl = $this->escape($this->urlManager->createAbsoluteUrl('blog/feed.xml'));
-        $blogUrl = $this->escape($this->urlManager->createAbsoluteUrl('blog'));
-
-        $xml = '<?xml version="1.0" encoding="utf-8"?>' . "\n"
-            . '<feed xmlns="http://www.w3.org/2005/Atom">' . "\n"
-            . '    <title>' . $title . '</title>' . "\n"
-            . '    <subtitle>' . $description . '</subtitle>' . "\n"
-            . '    <link href="' . $selfUrl . '" rel="self" />' . "\n"
-            . '    <link href="' . $blogUrl . '" />' . "\n"
-            . '    <id>' . $blogUrl . '</id>' . "\n"
-            . '    <updated>' . date('c') . '</updated>' . "\n";
-
-        foreach ($posts as $post) {
-            $postUrl = $this->escape($this->urlManager->createAbsoluteUrl((string)$post->getRoute()));
-            $authors = (array)($post['authors'] ?? []);
-            $authorName = $this->escape((string)(reset($authors) ?: ''));
-            $published = $this->isoDate((string)($post['date'] ?? ''));
-
-            $xml .= "    <entry>\n"
-                . '        <title>' . $this->escape((string)($post['title'] ?? '')) . '</title>' . "\n"
-                . '        <link href="' . $postUrl . '" />' . "\n"
-                . '        <id>' . $postUrl . '</id>' . "\n"
-                . '        <published>' . $published . '</published>' . "\n"
-                . '        <updated>' . $published . '</updated>' . "\n"
-                . '        <summary>' . $this->escape((string)($post['abstract'] ?? '')) . '</summary>' . "\n"
-                . '        <author><name>' . $authorName . '</name></author>' . "\n";
-
-            foreach (['categories', 'tags'] as $field) {
-                foreach ((array)($post[$field] ?? []) as $term) {
-                    $xml .= '        <category term="' . $this->escape((string)$term) . '" />' . "\n";
-                }
-            }
-
-            $xml .= "    </entry>\n";
-        }
-
-        $xml .= "</feed>\n";
-
-        $response = $this->responseFactory->createResponse();
-        $response->getBody()->write($xml);
-        return $response->withHeader('Content-Type', 'application/atom+xml');
-    }
-
-    private function isoDate(string $date): string
-    {
-        $timestamp = strtotime($date);
-        return $timestamp === false ? $this->escape($date) : date('c', $timestamp);
     }
 
     private function escape(string $value): string
