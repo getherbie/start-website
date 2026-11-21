@@ -44,7 +44,7 @@ abstract: A short summary for list pages.
 
 The `type: post` property is what makes the blog layouts pick the page up. Authors,
 categories and tags are pages as well, so the whole blog is just a folder of text
-files. The [getting-started guide]({{ link_page('getting-started', 'getting-started guide') }})
+files. The {{ link_page('getting-started', 'getting-started guide') }}
 shows the full file layout.
 
 ## Make it yours
