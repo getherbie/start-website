@@ -1,0 +1,39 @@
+/* Spotlight theme: a bold, publication-style palette. Layouts and scripts are
+   inherited from the default theme; this file supplies the visual tokens. */
+:root {
+    color-scheme: light;
+
+    --page-bg: #f5f7f6;
+    --surface: #ffffff;
+    --surface-alt: #eef2f0;
+    --text: #2b3430;
+    --text-muted: #6b7a80;
+    --heading: #0b1712;
+    --border: #d9e4de;
+
+    --accent: #00a86b;
+    --accent-hover: #007d50;
+    --accent-contrast: #ffffff;
+    --accent-button: #00a86b;
+    --accent-button-text: #ffffff;
+
+    --hero-bg: #061a12;
+    --hero-text: #ffffff;
+
+    --footer-bg: #15171a;
+    --footer-text: #a9b4b1;
+    --footer-heading: #ffffff;
+    --footer-border: rgba(255, 255, 255, 0.16);
+
+    --code-bg: #eef2f0;
+    --code-text: #1c2422;
+    --error: #b23b3b;
+
+    --radius: 0.5rem;
+    --shadow: 0 12px 34px rgba(6, 26, 18, 0.12);
+    --max-width: 1140px;
+    --gap: 1.5rem;
+
+    --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --reading-width: 48rem;
+}

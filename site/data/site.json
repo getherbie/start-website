@@ -5,6 +5,9 @@
   "themes": [
     "default",
     "light",
-    "dark"
+    "dark",
+    "journal",
+    "spotlight",
+    "docs"
   ]
 }

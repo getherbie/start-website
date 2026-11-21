@@ -941,7 +941,7 @@ input::placeholder {
     font-weight: 600;
 }
 
-.herbie-contact-control-group-honeypot {
+.herbie-contact-form .herbie-contact-control-group-honeypot {
     display: none;
 }
 

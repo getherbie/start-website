@@ -1,0 +1,90 @@
+{% apply spaceless %}
+    {{ css_add('@theme/css/styles.css') }}
+    {{ css_add('@theme/css/theme.css') }}
+    {{ js_add('@theme/js/scripts.js') }}
+{% endapply %}
+<!DOCTYPE html>
+<html lang="{{ site.language }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ site.data.site.description }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="{{ (site.base_url ~ 'favicon.svg')|replace({'//': '/'}) }}" type="image/svg+xml">
+    <link rel="alternate icon" href="{{ (site.base_url ~ 'favicon.ico')|replace({'//': '/'}) }}" sizes="16x16">
+    <link rel="alternate" type="application/atom+xml" title="{{ site.data.site.title }} Blog" href="{{ url_rel('blog/feed.xml') }}">
+    <title>{% if page.type starts with 'blog-' %}{{ page.title }} / {% endif %}{{ page_title(delimiter=' / ', site_title=site.data.site.title, root_title=site.data.site.tagline, reverse=true) }}</title>
+    <base href="{{ site.base_url }}">
+    {{ css_out() }}
+</head>
+<body class="{{ css_classes() }}">
+<a class="skip-link" href="#content">Skip to content</a>
+<div class="docs-shell">
+    <header class="docs-topbar">
+        <div class="docs-topbar__inner">
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+            <a class="brand" href="{{ url_rel('index') }}">
+                <svg class="brand__mark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" aria-hidden="true">
+                    <rect width="64" height="64" rx="11" fill="#3456d8"/>
+                    <g fill="#ffffff"><rect x="14" y="14" width="36" height="9"/><rect x="14" y="27.5" width="23" height="9"/><rect x="14" y="41" width="36" height="9"/></g>
+                </svg>
+                <span>{{ site.data.site.title }}</span>
+            </a>
+            <div class="docs-topbar__right">
+                <a class="docs-search-link" href="{{ url_rel('search') }}">
+                    <svg class="docs-search-link__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="10.5" cy="10.5" r="6.5"/>
+                        <line x1="15.5" y1="15.5" x2="21" y2="21"/>
+                    </svg>
+                    <span>Search</span>
+                </a>
+                <div class="theme-switcher" role="group" aria-label="Choose a theme">
+                    <span class="theme-switcher__label">Theme</span>
+                    {% for theme in site.data.site.themes %}
+                        {% set isCurrent = (theme == site.theme) %}
+                        <a class="theme-switcher__link{% if isCurrent %} is-active{% endif %}" href="{{ url_rel(site.route) }}?theme={{ theme }}"{% if isCurrent %} aria-current="true"{% endif %}>{{ theme|title }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <aside class="docs-sidebar" id="site-nav">
+        <nav class="site-nav" aria-label="Site navigation">
+            <p class="docs-sidebar__title">Navigation</p>
+            <ul class="site-nav__list">
+                {% for item in site.data.menu %}
+                    {% set isActive = item.route == site.route or site.route starts with item.route ~ '/' %}
+                    <li>
+                        <a class="site-nav__link{% if isActive %} is-active{% endif %}" href="{{ url_rel(item.route) }}"{% if isActive %} aria-current="page"{% endif %}>{{ item.label }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+        <div class="docs-sidebar__links">
+            <p class="docs-sidebar__title">More</p>
+            <ul class="site-nav__list">
+                <li><a class="site-nav__link" href="{{ url_rel('blog/archive') }}">Archive</a></li>
+                <li><a class="site-nav__link" href="{{ url_rel('blog/category') }}">Categories</a></li>
+                <li><a class="site-nav__link" href="{{ url_rel('blog/tag') }}">Tags</a></li>
+                <li><a class="site-nav__link" href="{{ url_rel('blog/feed.xml') }}">Atom feed</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main id="content" class="docs-main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="docs-footer__inner">
+            <p>&copy; {{ 'now'|date('Y') }} {{ site.data.site.title }} &middot; Theme: {{ site.theme }}</p>
+            <p>Made with Herbie CMS</p>
+        </div>
+    </footer>
+</div>
+{{ js_out() }}
+</body>
+</html>
