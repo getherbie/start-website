@@ -79,7 +79,7 @@ jobs:
   publish:
     name: CD - Push to server
     needs: [install, smoke]
-    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

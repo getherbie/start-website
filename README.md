@@ -111,7 +111,7 @@ Themes, CSS and the contact form stay the same in both variants.
 
 ## Deployment
 
-Pushes to `master` and `develop` run the smoke tests, then deploy over SSH
+Pushes to `master` run the smoke tests, then deploy over SSH
 (see `.github/workflows/ci.yml`).
 
 * **Variables:** `SSH_HOST`, `SSH_TARGET` — use a dedicated target directory; its
