@@ -15,5 +15,10 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@php -r \"is_file('site/config/main.php') || copy('site/config/main.dist.php', 'site/config/main.php');\""
+        ]
     }
 }

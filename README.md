@@ -40,6 +40,9 @@ Optional: `HERBIE_DEBUG=1 php -S localhost:8888 index.php` for debug output, or
 
 </details>
 
+`site/config/main.php` is generated from `main.dist.php` on install. Replace the
+placeholder contact secrets there before going live.
+
 ## Themes
 
 | | | |

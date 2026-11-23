@@ -20,6 +20,8 @@ Without Docker:
     php -S localhost:8888 index.php
 
 Open <http://localhost:8888> and use the theme switcher in the bottom-right corner.
+`site/config/main.php` is generated from `main.dist.php` on install; replace the
+placeholder contact secrets there before going live.
 
 ## Where things live
 
