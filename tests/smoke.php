@@ -113,7 +113,7 @@ $routes = [
     '/index.php/blog/category/herbie',
     '/index.php/blog/tag/twig',
     '/index.php/blog/archive',
-    '/index.php/search?q=theme',
+    '/index.php/search?query=theme',
     '/index.php/contact',
     '/index.php/blog/feed.xml',
 ];
@@ -128,6 +128,17 @@ foreach ($themes as $theme) {
     }
 }
 
+[, $contactHtml] = fetch(siteUrl($base, '/index.php/contact', $themes[0]));
+$check(str_contains($contactHtml, 'class="herbie-contact-form'), 'contact form renders');
+preg_match('/name="csrf_token" value="([^"]*)"/', $contactHtml, $csrfToken);
+$check(isset($csrfToken[1]) && $csrfToken[1] !== '', 'contact form has a CSRF token');
+$check(str_contains($contactHtml, '<altcha-widget'), 'contact form has an ALTCHA widget');
+
+[, $searchHtml] = fetch(siteUrl($base, '/index.php/search?query=theme', $themes[0]));
+$check(str_contains($searchHtml, 'class="plugin-search-results"'), 'search results block renders');
+$check(str_contains($searchHtml, 'class="result"'), 'search returns results for query=theme');
+$check(str_contains($searchHtml, '<mark>theme</mark>'), 'search highlights matching terms');
+
 [$feedStatus, $feedBody, $feedType] = fetch(siteUrl($base, '/index.php/blog/feed.xml', $themes[0]));
 $check(str_contains($feedType, 'application/atom+xml'), "feed content type: $feedType");
 $check(str_starts_with(ltrim($feedBody), '<?xml'), 'feed body starts with XML declaration');
@@ -136,7 +147,7 @@ $switchRoutes = [
     '/index.php/blog?page=2' => ['page' => '2'],
     '/index.php/blog/author/alex-example' => [],
     '/index.php/blog/author/robin-starter' => [],
-    '/index.php/search?q=theme' => ['q' => 'theme'],
+    '/index.php/search?query=theme' => ['query' => 'theme'],
 ];
 foreach ($themes as $theme) {
     foreach ($switchRoutes as $route => $expectedQuery) {

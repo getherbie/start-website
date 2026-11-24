@@ -76,9 +76,65 @@ jobs:
       - name: Run smoke tests
         run: php tests/smoke.php
 
+  create-project:
+    name: Create-project install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, gd
+          tools: composer:v2
+
+      - name: Prepare local source package
+        run: |
+          git clone --no-hardlinks "$GITHUB_WORKSPACE" "$RUNNER_TEMP/starter-source"
+          git -C "$RUNNER_TEMP/starter-source" tag -f v0.0.0-beta.1
+
+      - name: Run create-project
+        run: |
+          repository="{\"type\":\"vcs\",\"url\":\"$RUNNER_TEMP/starter-source\"}"
+          composer create-project \
+            --repository="$repository" \
+            getherbie/start-website mywebsite 0.0.0-beta.1 \
+            --ignore-platform-reqs --no-interaction --no-progress
+
+      - name: Start web server
+        working-directory: mywebsite/web
+        run: |
+          php -S 127.0.0.1:8888 index.php > "$RUNNER_TEMP/herbie-create-project.log" 2>&1 &
+          echo $! > "$RUNNER_TEMP/herbie-create-project.pid"
+          for i in $(seq 1 60); do
+            if curl -fsS -o /dev/null http://127.0.0.1:8888/index.php/; then
+              exit 0
+            fi
+            sleep 2
+          done
+          cat "$RUNNER_TEMP/herbie-create-project.log"
+          exit 1
+
+      - name: Run smoke tests on created project
+        working-directory: mywebsite
+        run: php tests/smoke.php
+
+      - name: Show server log on failure
+        if: failure()
+        run: cat "$RUNNER_TEMP/herbie-create-project.log" || true
+
+      - name: Stop web server
+        if: always()
+        run: |
+          if [ -f "$RUNNER_TEMP/herbie-create-project.pid" ]; then
+            kill "$(cat "$RUNNER_TEMP/herbie-create-project.pid")" 2>/dev/null || true
+          fi
+
   publish:
     name: CD - Push to server
-    needs: [install, smoke]
+    needs: [install, smoke, create-project]
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
