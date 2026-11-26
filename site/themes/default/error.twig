@@ -11,7 +11,7 @@
                 <p>An error occurred.</p>
             {% endif %}
 
-            <p><a href="/">Back to the home page</a> &middot; <a href="/index.php/search">Search this site</a></p>
+            <p><a href="{{ url_rel('/') }}">Back to the home page</a> &middot; <a href="{{ url_rel('search') }}">Search this site</a></p>
 
             {% if herbie_debug() %}
                 <table class="error-table">

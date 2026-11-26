@@ -21,7 +21,6 @@
                 {{ content.default|raw }}
 
                 {% set pagination = query(site.page_list).where('type=post').where('author_id=' ~ page.author_id).order('-date').paginate(6) %}
-                {% do pagination.setCurrentPage(blog_page_number()) %}
                 {% set posts = pagination.items %}
 
                 <h2>Posts by {{ page.title }}</h2>
