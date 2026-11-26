@@ -101,21 +101,21 @@ foreach ($placeholders[0] as $placeholder) {
 }
 
 $routes = [
-    '/index.php/',
-    '/index.php/getting-started',
-    '/index.php/features',
-    '/index.php/about',
-    '/index.php/blog',
-    '/index.php/blog?page=2',
-    '/index.php/blog/author/alex-example',
-    '/index.php/blog/author/jane-sample',
-    '/index.php/blog/author/robin-starter',
-    '/index.php/blog/category/herbie',
-    '/index.php/blog/tag/twig',
-    '/index.php/blog/archive',
-    '/index.php/search?query=theme',
-    '/index.php/contact',
-    '/index.php/blog/feed.xml',
+    '/',
+    '/getting-started',
+    '/features',
+    '/about',
+    '/blog',
+    '/blog?page=2',
+    '/blog/author/alex-example',
+    '/blog/author/jane-sample',
+    '/blog/author/robin-starter',
+    '/blog/category/herbie',
+    '/blog/tag/twig',
+    '/blog/archive',
+    '/search?query=theme',
+    '/contact',
+    '/blog/feed.xml',
 ];
 
 foreach ($themes as $theme) {
@@ -124,30 +124,54 @@ foreach ($themes as $theme) {
         $check($status === 200, "$theme $route: HTTP $status");
         if (str_contains($contentType, 'text/html')) {
             $check(!str_contains($body, '](<span class="link'), "$theme $route: rendered Markdown links");
+            $check(!str_contains($body, 'href="/index.php/'), "$theme $route: links use clean URLs");
         }
     }
 }
 
-[, $contactHtml] = fetch(siteUrl($base, '/index.php/contact', $themes[0]));
+$canonicalRoutes = [
+    '/' => ['/', ''],
+    '/getting-started' => ['/getting-started', ''],
+    '/blog/author/alex-example' => ['/blog/author/alex-example', ''],
+    '/blog?page=2' => ['/blog', 'page=2'],
+];
+foreach ($themes as $theme) {
+    foreach ($canonicalRoutes as $route => [$expectedPath, $expectedQuery]) {
+        [, $html] = fetch(siteUrl($base, $route, $theme));
+        preg_match('~<link rel="canonical" href="([^"]+)">~', $html, $canonical);
+        $check(isset($canonical[1]), "$theme $route: canonical link renders");
+        if (!isset($canonical[1])) {
+            continue;
+        }
+        $href = html_entity_decode($canonical[1], ENT_QUOTES | ENT_HTML5);
+        $check(str_starts_with($href, 'http') && parse_url($href, PHP_URL_PATH) === $expectedPath, "$theme $route: canonical uses the clean path");
+        $check((parse_url($href, PHP_URL_QUERY) ?: '') === $expectedQuery, "$theme $route: canonical query is '$expectedQuery'");
+        $check(!str_contains($href, 'theme='), "$theme $route: canonical drops the theme parameter");
+    }
+}
+[$legacyStatus] = fetch($base . '/index.php/getting-started');
+$check($legacyStatus === 200, "legacy /index.php URL still works: HTTP $legacyStatus");
+
+[, $contactHtml] = fetch(siteUrl($base, '/contact', $themes[0]));
 $check(str_contains($contactHtml, 'class="herbie-contact-form'), 'contact form renders');
 preg_match('/name="csrf_token" value="([^"]*)"/', $contactHtml, $csrfToken);
 $check(isset($csrfToken[1]) && $csrfToken[1] !== '', 'contact form has a CSRF token');
 $check(str_contains($contactHtml, '<altcha-widget'), 'contact form has an ALTCHA widget');
 
-[, $searchHtml] = fetch(siteUrl($base, '/index.php/search?query=theme', $themes[0]));
+[, $searchHtml] = fetch(siteUrl($base, '/search?query=theme', $themes[0]));
 $check(str_contains($searchHtml, 'class="plugin-search-results"'), 'search results block renders');
 $check(str_contains($searchHtml, 'class="result"'), 'search returns results for query=theme');
 $check(str_contains($searchHtml, '<mark>theme</mark>'), 'search highlights matching terms');
 
-[$feedStatus, $feedBody, $feedType] = fetch(siteUrl($base, '/index.php/blog/feed.xml', $themes[0]));
+[$feedStatus, $feedBody, $feedType] = fetch(siteUrl($base, '/blog/feed.xml', $themes[0]));
 $check(str_contains($feedType, 'application/atom+xml'), "feed content type: $feedType");
 $check(str_starts_with(ltrim($feedBody), '<?xml'), 'feed body starts with XML declaration');
 
 $switchRoutes = [
-    '/index.php/blog?page=2' => ['page' => '2'],
-    '/index.php/blog/author/alex-example' => [],
-    '/index.php/blog/author/robin-starter' => [],
-    '/index.php/search?query=theme' => ['query' => 'theme'],
+    '/blog?page=2' => ['page' => '2'],
+    '/blog/author/alex-example' => [],
+    '/blog/author/robin-starter' => [],
+    '/search?query=theme' => ['query' => 'theme'],
 ];
 foreach ($themes as $theme) {
     foreach ($switchRoutes as $route => $expectedQuery) {
@@ -177,7 +201,7 @@ foreach ($themes as $theme) {
 }
 
 foreach ($themes as $theme) {
-    [, $html] = fetch(siteUrl($base, '/index.php/', $theme));
+    [, $html] = fetch(siteUrl($base, '/', $theme));
     preg_match_all('/class="theme-switcher__description">([^<]+)</', $html, $descriptions);
     $check(count($descriptions[1]) === count($themes), "$theme: switcher describes every theme");
     $check(
@@ -191,7 +215,7 @@ foreach ($themes as $theme) {
         $downloads[1],
     );
     sort($downloadPaths);
-    $expectedPaths = array_map(static fn(string $name): string => '/index.php/theme-download/' . $name, $themes);
+    $expectedPaths = array_map(static fn(string $name): string => '/theme-download/' . $name, $themes);
     sort($expectedPaths);
     $check($downloadPaths === $expectedPaths, "$theme: switcher offers a download for every theme");
 }
@@ -206,7 +230,7 @@ $externalTargets = count(array_filter(
 ));
 
 foreach ($themes as $theme) {
-    [, $html] = fetch(siteUrl($base, '/index.php/', $theme));
+    [, $html] = fetch(siteUrl($base, '/', $theme));
     if ($theme === 'docs') {
         preg_match('/docs-sidebar__title">More<\/p>\s*<ul class="site-nav__list">(.*?)<\/ul>/s', $html, $block);
         $check(isset($block[1]), "$theme: docs sidebar More list renders");
@@ -228,7 +252,7 @@ foreach ($themes as $theme) {
     $check(substr_count($project[1] ?? '', 'target="_blank"') === $externalTargets, "$theme: external footer links open in a new tab");
 }
 
-[, $blogHtml] = fetch(siteUrl($base, '/index.php/blog', $themes[0]));
+[, $blogHtml] = fetch(siteUrl($base, '/blog', $themes[0]));
 preg_match('/More from the blog<\/h2>\s*<ul class="widget__list">(.*?)<\/ul>/s', $blogHtml, $blogMore);
 $check(isset($blogMore[1]), 'blog sidebar More from the blog list renders');
 foreach ($footerData['blogMore'] ?? [] as $item) {
@@ -236,17 +260,17 @@ foreach ($footerData['blogMore'] ?? [] as $item) {
 }
 
 foreach ($themes as $theme) {
-    [$status, $body, $contentType] = fetch($base . '/index.php/theme-download/' . $theme);
+    [$status, $body, $contentType] = fetch($base . '/theme-download/' . $theme);
     $check($status === 200, "theme download $theme: HTTP $status");
     $check(str_contains($contentType, 'application/zip'), "theme download $theme: content type $contentType");
     $check(str_starts_with($body, "PK\x03\x04"), "theme download $theme: ZIP signature");
     $check(str_contains($body, $theme . '/css/theme.css'), "theme download $theme: contains theme.css");
     $check(str_contains($body, $theme . '/css/extensions.css'), "theme download $theme: contains extensions.css");
 }
-[$unknownStatus] = fetch($base . '/index.php/theme-download/not-a-theme');
+[$unknownStatus] = fetch($base . '/theme-download/not-a-theme');
 $check($unknownStatus === 404, "theme download rejects unknown theme: HTTP $unknownStatus");
 
-[, $gettingStarted] = fetch(siteUrl($base, '/index.php/getting-started', $themes[0]));
+[, $gettingStarted] = fetch(siteUrl($base, '/getting-started', $themes[0]));
 preg_match('~<img[^>]+src="([^"]*tulpen[^"]*)"~', $gettingStarted, $image);
 $check(isset($image[1]), 'getting-started renders an imagine image');
 if (isset($image[1])) {

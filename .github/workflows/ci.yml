@@ -65,7 +65,7 @@ jobs:
         run: |
           php -S 127.0.0.1:8888 index.php > /tmp/herbie-smoke-server.log 2>&1 &
           for i in $(seq 1 30); do
-            if curl -fsS -o /dev/null http://127.0.0.1:8888/index.php/; then
+            if curl -fsS -o /dev/null http://127.0.0.1:8888/; then
               exit 0
             fi
             sleep 1
@@ -109,7 +109,7 @@ jobs:
           php -S 127.0.0.1:8888 index.php > "$RUNNER_TEMP/herbie-create-project.log" 2>&1 &
           echo $! > "$RUNNER_TEMP/herbie-create-project.pid"
           for i in $(seq 1 60); do
-            if curl -fsS -o /dev/null http://127.0.0.1:8888/index.php/; then
+            if curl -fsS -o /dev/null http://127.0.0.1:8888/; then
               exit 0
             fi
             sleep 2

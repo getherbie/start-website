@@ -43,6 +43,12 @@ Optional: `HERBIE_DEBUG=1 php -S localhost:8888 index.php` for debug output, or
 `site/config/main.php` is generated from `main.dist.php` on install. Replace the
 placeholder contact secrets there before going live.
 
+Clean URLs such as `/getting-started` are enabled by default. Apache uses the
+rewrite rules in `web/.htaccess`; with nginx and `web/` as the document root,
+forward unknown paths to the front controller:
+
+    try_files $uri $uri/ /index.php$is_args$args;
+
 ## Themes
 
 | | | |

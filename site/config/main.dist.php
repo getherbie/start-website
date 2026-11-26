@@ -59,7 +59,7 @@ return [
     ],
     'components' => [
         'urlManager' => [
-            'niceUrls' => false,
+            'niceUrls' => true,
             // Virtual blog routes are rendered by site/extend/plugins/blog.
             'rules' => [
                 ['blog/author/{author}', 'blog'],

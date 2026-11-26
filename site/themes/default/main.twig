@@ -15,6 +15,7 @@
     <link rel="icon" href="{{ (site.base_url ~ 'favicon.svg')|replace({'//': '/'}) }}" type="image/svg+xml">
     <link rel="alternate icon" href="{{ (site.base_url ~ 'favicon.ico')|replace({'//': '/'}) }}" sizes="16x16">
     <link rel="alternate" type="application/atom+xml" title="{{ site.data.site.title }} Blog" href="{{ url_rel('blog/feed.xml') }}">
+    <link rel="canonical" href="{{ canonical_url() }}">
     <title>{% if page.type starts with 'blog-' %}{{ page.title }} / {% endif %}{{ page_title(delimiter=' / ', site_title=site.data.site.title, root_title=site.data.site.tagline, reverse=true) }}</title>
     <base href="{{ site.base_url }}">
     {{ css_out() }}

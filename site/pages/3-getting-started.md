@@ -49,8 +49,8 @@ title: My page
 This is my first page.
 ```
 
-It is immediately available at `/my-page` (or `/index.php/my-page` without pretty
-URLs). Use `layout` in the header to pick a Twig layout from `site/themes/default`.
+It is immediately available at `/my-page`. Use `layout` in the header to pick a
+Twig layout from `site/themes/default`.
 
 ## Add a blog post
 
